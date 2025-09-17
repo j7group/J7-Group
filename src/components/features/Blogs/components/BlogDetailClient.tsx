@@ -15,7 +15,7 @@ interface BlogDetailClientProps {
   relatedPosts: BlogPost[];
 }
 
-// Related Blog Card Component matching the exact design
+// Related Blog Card Component with title under image
 const RelatedBlogCard: React.FC<{ post: BlogPost; index: number }> = ({
   post,
   index,
@@ -28,110 +28,100 @@ const RelatedBlogCard: React.FC<{ post: BlogPost; index: number }> = ({
 
   return (
     <motion.div
-      className="relative h-[480px] overflow-hidden cursor-pointer group"
+      className="relative cursor-pointer group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      {/* Background Image */}
-      {post.mainImage && (
-        <Image
-          src={urlFor(post.mainImage).width(600).height(480).url()}
-          alt={post.mainImage.alt || post.title}
-          fill
-          className="object-cover transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      )}
-
-      {/* Dark Overlay - Only visible when not hovered */}
-      <AnimatePresence>
-        {!isHovered && (
-          <motion.div
-            className="absolute inset-0 bg-black/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+      {/* Image Container */}
+      <div className="relative h-[300px] sm:h-[350px] md:h-[400px] lg:h-[480px] overflow-hidden">
+        {/* Background Image */}
+        {post.mainImage && (
+          <Image
+            src={urlFor(post.mainImage).width(600).height(480).url()}
+            alt={post.mainImage.alt || post.title}
+            fill
+            className="object-cover transition-transform duration-500"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         )}
-      </AnimatePresence>
 
-      {/* Light Overlay for Hover State */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            className="absolute inset-0 bg-[#ECE4D9] backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          />
-        )}
-      </AnimatePresence>
+        {/* Dark Overlay - Only visible when not hovered */}
+        <AnimatePresence>
+          {!isHovered && (
+            <motion.div
+              className="absolute inset-0 bg-black/10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          )}
+        </AnimatePresence>
 
-      {/* Content Container - Default State */}
-      <AnimatePresence>
-        {!isHovered && (
-          <motion.div
-            className="absolute inset-0 flex flex-col justify-between p-6"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {/* Number Tag - Top Left */}
-            <div className="flex justify-start">
-              <span className="text-white text-5xl font-medium">
+        {/* Light Overlay for Hover State */}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              className="absolute inset-0 bg-[#ECE4D9] backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          )}
+        </AnimatePresence>
+
+        {/* Number Tag - Top Left (Only visible when not hovered) */}
+        <AnimatePresence>
+          {!isHovered && (
+            <motion.div
+              className="absolute top-4 left-4 sm:top-6 sm:left-6"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="text-white text-3xl sm:text-4xl lg:text-5xl font-medium">
                 {String(index + 1).padStart(2, "0")}
               </span>
-            </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-            {/* Title - Bottom */}
-            <div>
-              <h3 className="text-white text-xl font-medium leading-tight">
-                {post.title}
-              </h3>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Content Container - Hover State */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            className="absolute inset-0 flex flex-col justify-center items-center p-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Title - Centered */}
-            <motion.h3
-              className="text-amber-900 text-xl font-normal leading-tight mb-8 max-w-sm"
-              initial={{ opacity: 0, y: 10 }}
+        {/* Hover Content - Centered */}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              className="absolute inset-0 flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 text-center"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
             >
-              {post.title}
-            </motion.h3>
+              {/* View Details Button */}
+              <motion.button
+                onClick={() => handleViewDetails(post.slug.current)}
+                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-[#7A3110] text-white cursor-pointer font-normal rounded-full transition-colors duration-300 text-sm sm:text-base"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                View Details
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
-            {/* View Details Button */}
-            <motion.button
-              onClick={() => handleViewDetails(post.slug.current)}
-              className="px-8 py-3 bg-[#7A3110] text-white cursor-pointer font-normal rounded-full transition-colors duration-300 shadow-lg"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              View Details
-            </motion.button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Title Under Image */}
+      <div className="pt-4 sm:pt-6">
+        <h3 className="text-[#51301F] text-lg sm:text-xl font-medium leading-tight">
+          {post.title}
+        </h3>
+      </div>
     </motion.div>
   );
 };
@@ -159,23 +149,24 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
               priority
               sizes="100vw"
             />
+            <div className="absolute inset-0 bg-black/30"></div>
           </div>
         )}
 
         {/* Content Overlay */}
-        <div className="relative z-10 container mx-auto px-12 text-center text-white">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 text-center text-white">
           {/* Categories */}
           {post.categories && post.categories.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex flex-wrap justify-center gap-3 mb-8"
+              className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8"
             >
               {post.categories.map((category) => (
                 <span
                   key={category._id}
-                  className="px-6 py-2 bg-[#7A3110] text-white text-sm font-medium rounded-full"
+                  className="px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 bg-[#7A3110] text-white text-xs sm:text-sm font-medium rounded-full"
                 >
                   {category.title}
                 </span>
@@ -188,39 +179,33 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl font-coconat text-white mb-8 leading-tight max-w-5xl mx-auto"
+            className="text-3xl sm:text-4xl md:text-5xl text-white leading-tight max-w-5xl mx-auto px-4"
           >
             {post.title}
           </motion.h1>
+        </div>
+      </section>
 
-          {/* Meta Information */}
-          <motion.div
+      {/* Content Section */}
+      <section className="py-12 sm:py-16 md:py-20 relative">
+        <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <motion.article
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-8 text-white/80 mb-12"
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="p-6 sm:p-8 md:p-12 lg:p-16 shadow-sm"
           >
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-              <time className="text-lg">{formatDate(post.publishedAt)}</time>
-            </div>
-
-            {post.readingTime && (
+            {/* Meta Information */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12"
+            >
               <div className="flex items-center gap-2">
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -229,57 +214,63 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-lg">{post.readingTime} min read</span>
+                <time className="text-sm sm:text-base lg:text-lg">{formatDate(post.publishedAt)}</time>
               </div>
-            )}
 
-            {post.author && (
-              <div className="flex items-center gap-3">
-                {post.author.image && (
-                  <div className="relative w-10 h-10 overflow-hidden">
-                    <Image
-                      src={urlFor(post.author.image).width(40).height(40).url()}
-                      alt={post.author.name}
-                      fill
-                      className="object-cover"
+              {post.readingTime && (
+                <div className="flex items-center gap-2">
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
-                  </div>
-                )}
-                <span className="text-lg font-medium">
-                  by {post.author.name}
-                </span>
-              </div>
-            )}
-          </motion.div>
-        </div>
-      </section>
+                  </svg>
+                  <span className="text-sm sm:text-base lg:text-lg">{post.readingTime} min read</span>
+                </div>
+              )}
 
-      {/* Content Section */}
-      <section className="py-20 relative">
-        <div className="mx-auto px-12">
-          <motion.article
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className=" p-12 md:p-16 shadow-sm"
-          >
+              {post.author && (
+                <div className="flex items-center gap-2 sm:gap-3">
+                  {post.author.image && (
+                    <div className="relative w-8 h-8 sm:w-10 sm:h-10 overflow-hidden rounded-full">
+                      <Image
+                        src={urlFor(post.author.image)
+                          .width(40)
+                          .height(40)
+                          .url()}
+                        alt={post.author.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  <span className="text-sm sm:text-base lg:text-lg font-medium">
+                    by {post.author.name}
+                  </span>
+                </div>
+              )}
+            </motion.div>
+
             {/* Excerpt */}
             {post.excerpt && (
-              <div
-                className="text-2xl text-[#51301F] leading-relaxed mb-
-              12 pb-12 border-b border-[#51301F]/10 font-medium text-center italic"
-              >
+              <div className="text-lg sm:text-xl md:text-2xl text-[#51301F] leading-relaxed mb-8 sm:mb-12 pb-8 sm:pb-12 border-b border-[#51301F]/10 font-medium text-center italic px-4">
                 &quot;{post.excerpt}&quot;
               </div>
             )}
 
             {/* Main Content */}
             {post.body && (
-              <div className="prose prose-lg max-w-none luxury-prose">
+              <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none luxury-prose">
                 <PortableText
                   value={post.body}
                   components={portableTextComponents}
@@ -295,14 +286,14 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="mt-16 bg-white p-12 shadow-xl"
+              className="mt-12 sm:mt-16 p-6 sm:p-8 md:p-12"
             >
-              <h3 className="text-3xl font-coconat text-[#51301F] text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl font-coconat text-[#51301F] text-center mb-6 sm:mb-8">
                 About the Author
               </h3>
-              <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
                 {post.author.image && (
-                  <div className="relative w-32 h-32 overflow-hidden flex-shrink-0 shadow-lg">
+                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 overflow-hidden flex-shrink-0 shadow-lg rounded-full">
                     <Image
                       src={urlFor(post.author.image)
                         .width(128)
@@ -315,20 +306,20 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
                   </div>
                 )}
                 <div className="text-center md:text-left">
-                  <h4 className="text-2xl text-[#51301F] mb-4">
+                  <h4 className="text-xl sm:text-2xl text-[#51301F] mb-3 sm:mb-4">
                     {post.author.name}
                   </h4>
-                  <div className="prose prose-lg text-[#51301F]/80">
+                  <div className="prose prose-sm sm:prose-base lg:prose-lg text-[#51301F]/80">
                     <PortableText value={post.author.bio} />
                   </div>
                   {post.author.social && (
-                    <div className="flex justify-center md:justify-start gap-6 mt-6">
+                    <div className="flex flex-wrap justify-center md:justify-start gap-4 sm:gap-6 mt-4 sm:mt-6">
                       {post.author.social.twitter && (
                         <a
                           href={post.author.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#7A3110] hover:text-[#51301F] transition-colors text-lg font-medium"
+                          className="text-[#7A3110] hover:text-[#51301F] transition-colors text-base sm:text-lg font-medium"
                         >
                           Twitter
                         </a>
@@ -338,7 +329,7 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
                           href={post.author.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#7A3110] hover:text-[#51301F] transition-colors text-lg font-medium"
+                          className="text-[#7A3110] hover:text-[#51301F] transition-colors text-base sm:text-lg font-medium"
                         >
                           LinkedIn
                         </a>
@@ -348,7 +339,7 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
                           href={post.author.social.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#7A3110] hover:text-[#51301F] transition-colors text-lg font-medium"
+                          className="text-[#7A3110] hover:text-[#51301F] transition-colors text-base sm:text-lg font-medium"
                         >
                           Website
                         </a>
@@ -362,21 +353,21 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
         </div>
       </section>
 
-      {/* Related Posts Section with Exact Same Design */}
+      {/* Related Posts Section */}
       {relatedPosts.length > 0 && (
-        <section className="py-20">
-          <div className="container mx-auto px-12">
+        <section className="py-12 sm:py-16 md:py-20">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl lg:text-5xl text-[#51301F] py-4 mb-12 font-coconat text-center"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#51301F] py-4 mb-8 sm:mb-12 font-coconat text-center"
             >
               Related Articles
             </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {relatedPosts.map((relatedPost, index) => (
                 <motion.div
                   key={relatedPost._id}
@@ -400,14 +391,14 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="text-center mt-16"
+              className="text-center mt-12 sm:mt-16"
             >
               <Link
                 href="/blog"
-                className="inline-flex bg-[#51301F] items-center px-12 py-4 rounded-full border-2 border-white text-[#ECE4D9] font-medium hover:bg-transparent hover:border-2 hover:border-[#51301F] ease-in hover:text-[#51301F] transition-all duration-300 text-lg"
+                className="inline-flex bg-[#51301F] items-center px-8 sm:px-12 py-3 sm:py-4 rounded-full border-2 border-white text-[#ECE4D9] font-medium hover:bg-transparent hover:border-2 hover:border-[#51301F] ease-in hover:text-[#51301F] transition-all duration-300 text-base sm:text-lg"
               >
                 <svg
-                  className="mr-3 w-6 h-6"
+                  className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

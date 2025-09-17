@@ -20,7 +20,7 @@ const NewsListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
     if (post.externalLink) {
       window.open(post.externalLink, '_blank');
     } else {
-      window.location.href = `/news/${slug}`;
+      window.location.href = `/media/news/${slug}`;
     }
   };
 
@@ -69,20 +69,20 @@ const NewsListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
         )}
         
         {/* Content - Hover State Only */}
-        <div className={`absolute inset-0 flex flex-col justify-center items-center p-4 sm:p-6 text-center transition-all duration-500 transform ${isHovered ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+        <div className={`absolute inset-0 bg-[#51301F] flex flex-col justify-center items-center p-4 sm:p-6 text-center transition-all duration-500 transform ${isHovered ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
           {post.publishedAt && (
-            <p className="text-sm sm:text-base text-gray-600 font-medium mb-3 sm:mb-4">
+            <p className="text-sm sm:text-base text-white font-medium mb-3 sm:mb-4">
               {format(new Date(post.publishedAt), 'MMMM dd, yyyy')}
             </p>
           )}
           
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 max-w-sm line-clamp-3">
+          <h2 className="text-lg sm:text-xl text-white font-normal leading-tight mb-6 sm:mb-8 max-w-sm line-clamp-3">
             {post.title}
           </h2>
           
           <motion.button
             onClick={() => handleViewDetails(post.slug.current)}
-            className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-3 bg-[#7A3110] hover:bg-[#5D2612] text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+            className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-3 bg-white text-[#51301F] font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -108,11 +108,11 @@ const NewsListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
       {/* Title and Date - Now Outside Image */}
       <div className="p-4 sm:p-6 bg-white">
         {post.publishedAt && (
-          <p className="text-sm sm:text-base text-gray-600 font-medium mb-2">
+          <p className="text-sm sm:text-base font-medium mb-2 text-[#51301F]">
             {format(new Date(post.publishedAt), 'MMMM dd, yyyy')}
           </p>
         )}
-        <h2 className="text-lg sm:text-xl md:text-2xl font-normal text-gray-900 leading-tight line-clamp-2">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-normal text-[#51301F] leading-tight line-clamp-2">
           {post.title}
         </h2>
       </div>

@@ -18,7 +18,7 @@ const BlogListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
   const [isHovered, setIsHovered] = useState(false);
 
   const handleViewDetails = (slug: string) => {
-    window.location.href = `/blog/${slug}`;
+    window.location.href = `/media/blog/${slug}`;
   };
 
   const formatDate = (date: string) => {
@@ -55,7 +55,7 @@ const BlogListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
         <AnimatePresence>
           {isHovered && (
             <motion.div 
-              className="absolute inset-0 bg-[#ECE4D9]/90"
+              className="absolute inset-0 bg-[#51301F]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -94,7 +94,7 @@ const BlogListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
             >
               {/* Title - Centered */}
               <motion.h3 
-                className="text-amber-900 text-base sm:text-lg md:text-xl lg:text-xl font-light leading-tight mb-4 sm:mb-6 lg:mb-8 max-w-xs sm:max-w-sm px-2"
+                className="text-base sm:text-lg md:text-xl lg:text-xl text-white font-light leading-tight mb-4 sm:mb-6 lg:mb-8 max-w-xs sm:max-w-sm px-2"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
@@ -105,7 +105,7 @@ const BlogListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
               {/* View Details Button */}
               <motion.button
                 onClick={() => handleViewDetails(post.slug.current)}
-                className="px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 bg-[#7A3110] text-white cursor-pointer font-medium rounded-full transition-colors duration-300 shadow-lg hover:bg-[#8B3A1A] text-sm sm:text-base"
+                className="px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 bg-white text-[#51301F] cursor-pointer font-medium rounded-full transition-colors duration-300 shadow-lg text-sm sm:text-base"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -121,14 +121,14 @@ const BlogListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
 
       {/* Title and Date Below Image */}
       <div className="pt-4 sm:pt-5 lg:pt-6 pb-3 sm:pb-4">
-        <h3 className="text-gray-900 text-base sm:text-lg lg:text-xl font-medium leading-tight mb-2 hover:text-[#7A3110] transition-colors duration-300 line-clamp-2">
-          <Link href={`/blog/${post.slug.current}`}>
+        <h3 className="text-[#51301F] text-base sm:text-lg lg:text-xl font-medium leading-tight mb-2  transition-colors duration-300 line-clamp-2">
+          <Link href={`/media/blog/${post.slug.current}`}>
             {post.title}
           </Link>
         </h3>
         
         {/* Date and Category Info */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 text-xs sm:text-sm text-gray-600">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 text-xs sm:text-sm">
           <time dateTime={post.publishedAt}>
             {formatDate(post.publishedAt)}
           </time>
@@ -138,7 +138,7 @@ const BlogListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
               {post.categories.slice(0, 2).map((category) => (
                 <span
                   key={category._id}
-                  className="px-2 sm:px-3 py-1 bg-[#ECE4D9] text-[#7A3110] text-xs font-medium rounded-full whitespace-nowrap"
+                  className="px-2 sm:px-3 py-1 bg-white text-[#7A3110] text-xs font-medium rounded-full whitespace-nowrap"
                 >
                   {category.title}
                 </span>
@@ -149,7 +149,7 @@ const BlogListingCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
 
         {/* Excerpt if available */}
         {post.excerpt && (
-          <p className="text-gray-600 text-xs sm:text-sm mt-2 sm:mt-3 leading-relaxed line-clamp-2 sm:line-clamp-3">
+          <p className=" text-xs sm:text-sm mt-2 sm:mt-3 leading-relaxed line-clamp-2 sm:line-clamp-3">
             {post.excerpt}
           </p>
         )}

@@ -62,7 +62,7 @@ const RelatedNewsCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
       <AnimatePresence>
         {isHovered && (
           <motion.div 
-            className="absolute inset-0 bg-[#ECE4D9] backdrop-blur-sm"
+            className="absolute inset-0 bg-[#51301F] backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -120,7 +120,7 @@ const RelatedNewsCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
           >
             {/* Title - Centered */}
             <motion.h3 
-              className="text-amber-900 text-xl font-semibold leading-tight mb-8"
+              className="text-white text-xl leading-tight mb-8"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
@@ -131,7 +131,7 @@ const RelatedNewsCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
             {/* View Details Button */}
             <motion.button
               onClick={() => handleViewDetails(post.slug.current)}
-              className="px-8 py-3 bg-[#7A3110] text-white cursor-pointer font-medium rounded-full transition-colors duration-300 shadow-lg"
+              className="px-8 py-3 bg-white text-[#51301F] cursor-pointer font-medium rounded-full transition-colors duration-300 shadow-lg"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
@@ -451,8 +451,8 @@ const NewsDetailClient: React.FC<NewsDetailClientProps> = ({ post, relatedPosts 
               className="text-center mt-16"
             >
               <Link 
-                href="/news"
-                className="inline-flex items-center px-12 py-4 bg-transparent border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-[#51301F] transition-all duration-300 text-lg"
+                href="/media/news"
+                className="inline-flex items-center px-12 py-4 hover:bg-transparent hover:border-2 border-[#51301F] text-white bg-[#51301F] font-medium rounded-full hover:text-[#51301F] transition-all duration-300 text-lg"
               >
                 <svg 
                   className="mr-3 w-6 h-6" 
