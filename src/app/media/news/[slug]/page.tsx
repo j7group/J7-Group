@@ -3,18 +3,18 @@ import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getRelatedPosts } from '@/lib/sanity/queries';
-// import type { BlogPost } from '@/lib/sanity/types';
 import { urlFor } from '@/lib/sanity/image';
 import NewsDetailClient from '@/components/features/news/components/NewsDetailClient';
 
 interface NewsPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: NewsPostPageProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post || post.contentType !== 'news') {
     return {
@@ -52,7 +52,8 @@ export async function generateMetadata({ params }: NewsPostPageProps): Promise<M
 }
 
 export default async function NewsPostPage({ params }: NewsPostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   // Ensure this is actually a news post
   if (!post || post.contentType !== 'news') {
