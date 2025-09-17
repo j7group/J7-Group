@@ -1,4 +1,4 @@
-// Updated app/blog/[slug]/page.tsx (with contentType check)
+// Updated app/blog/[slug]/page.tsx (Next.js 15 compatible)
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -7,13 +7,14 @@ import { urlFor } from '@/lib/sanity/image';
 import BlogDetailClient from '@/components/features/Blogs/components/BlogDetailClient';
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post || post.contentType !== 'blog') {
     return {
@@ -51,7 +52,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   // Ensure this is actually a blog post
   if (!post || post.contentType !== 'blog') {
