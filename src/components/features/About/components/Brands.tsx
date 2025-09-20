@@ -2,19 +2,41 @@
 import React from "react";
 
 const BrandCollaborations = () => {
-  const brands = [
-    { name: "Acme Corp", logo: ">" },
-    { name: "Outside", logo: "Outside" },
-    { name: "PULSE", logo: "PULSE" },
-    { name: "Quantum", logo: "✦ Quantum" },
-    { name: "Celestial", logo: "✱ Celestial" },
-    { name: "Echo Valley", logo: "✕ Echo Valley" },
-    { name: "Acme Corp", logo: ">" },
-    { name: "Outside", logo: "Outside" },
-    { name: "PULSE", logo: "PULSE" },
-    { name: "Quantum", logo: "✦ Quantum" },
-    { name: "Celestial", logo: "✱ Celestial" },
-  ];
+ const brands = [
+  { name: "Chaye Khanna", logo: "* Chaaye Khana" },
+  { name: "Mini Minors", logo: "* Mini Minors" },
+  { name: "Bareeze", logo: "* Bareeze" },
+  { name: "Chinyere", logo: "* Chinyere" },
+  { name: "Kayseria", logo: "* Kayseria" },
+  { name: "Leisure Club", logo: "* Leisure Club" },
+  { name: "Rang Ja", logo: "* Rang Ja" },
+  { name: "Bareeze Man", logo: "* Bareeze Man" },
+  { name: "China Town", logo: "* China Town" },
+  { name: "Jade", logo: "* Jade" },
+  { name: "Vostro World", logo: "* Vostro World" },
+  { name: "Essentia", logo: "* Essentia" },
+  { name: "Air Cell", logo: "* Air Cell" },
+  { name: "Khas", logo: "* Khas" },
+  { name: "Ittehad", logo: "* Ittehad" },
+  { name: "Lime Light", logo: "* Lime Light" },
+  { name: "The Entertainer", logo: "* The Entertainer" },
+  { name: "Edenrobe", logo: "* Edenrobe" },
+  { name: "Furor", logo: "* Furor" },
+  { name: "Miniso", logo: "* Miniso" },
+  { name: "Ndure", logo: "* Ndure" },
+  { name: "Imtiaz Cash and Carry", logo: "* Imtiaz" },
+  { name: "Mr Baby", logo: "* Mr Baby" },
+  { name: "Headrogen", logo: "* Headrogen" },
+  { name: "Shapers", logo: "* Shapers" },
+  { name: "ARA Associates", logo: "* ARA Associates" },
+  { name: "PTCL", logo: "* PTCL" },
+  { name: "Nayatel", logo: "* Nayatel" },
+  { name: "TEVTA", logo: "* TEVTA" },
+  { name: "STZA", logo: "* STZA" },
+  { name: "PEB", logo: "* PEB" },
+  { name: "ICII", logo: "* ICII" },
+  { name: "FPCCI", logo: "* FPCCI" },
+];
 
   return (
     <div className="bg-white py-16 overflow-hidden">
@@ -53,9 +75,9 @@ const BrandCollaborations = () => {
               {brands.map((brand, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 w-32 h-32 bg-[#51301F] flex items-center justify-center mx-1 transition-colors duration-300 cursor-pointer"
+                  className="flex-shrink-0 w-40 h-40 bg-[#51301F] flex items-center justify-center mx-1 transition-colors duration-300 cursor-pointer"
                 >
-                  <span className="text-[#C4A484] font-bold font-sans text-sm text-center px-2">
+                  <span className="text-white font-bold  text-base text-center px-2">
                     {brand.logo}
                   </span>
                 </div>

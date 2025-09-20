@@ -64,25 +64,13 @@ const FAQsSection: React.FC = () => {
 
         {/* Main Content */}
         <div className="flex flex-col lg:flex-row gap-x-6 sm:gap-x-8 lg:gap-x-12">
-          {/* Left Side - Images */}
-          <div className="lg:w-1/2 flex flex-col gap-2 order-2 lg:order-1">
-            {/* First Image */}
-            <div className="relative group overflow-hidden h-48 sm:h-56 lg:h-64">
+          {/* Left Side - Single Full Height Image */}
+          <div className="lg:w-1/2 order-2 lg:order-1 mb-8 lg:mb-0">
+            <div className="relative group overflow-hidden h-64 sm:h-80 lg:h-full lg:min-h-[600px]">
               <CldImage
-                src="imgi_36_NxCqGwbJAP6xDCDb55NnOw7rUoQ_qlijqq"
+                src="imgi_9_7i6IELAZjs38Kk7pbY6PuCgJiY_zgr6an"
                 fill
                 alt="J7 Group Construction Project"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-
-            {/* Second Image */}
-            <div className="relative group overflow-hidden h-32 sm:h-40 lg:h-64">
-              <CldImage
-                src="imgi_164_UJ3XvF53JVGcndcAA8YClq5vlgvMq3M0GsJ14PD8_ugvd8o"
-                fill
-                alt="J7 Group Quality Construction"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
               />
@@ -90,7 +78,7 @@ const FAQsSection: React.FC = () => {
           </div>
 
           {/* Right Side - FAQs */}
-          <div className="lg:w-1/2 order-1 lg:order-2 -mt-5">
+          <div className="lg:w-1/2 order-1 lg:order-2">
             <div className="space-y-0">
               {faqs.map((faq) => (
                 <div

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import {  Play } from 'lucide-react';
+import {  Play, ChevronDown, ChevronUp } from 'lucide-react';
 import { CldImage } from 'next-cloudinary';
 import { ProjectData } from '@/lib/data/emporium';
 
@@ -19,12 +19,13 @@ interface InteractiveProjectGalleryProps {
 const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
   project,
   autoPlayInterval = 5000,
-  thumbnailCount = 4,
+  thumbnailCount = 6,
   resumeAutoPlayDelay = 10000
 }) => {
   const [activeView, setActiveView] = useState<ViewType>('EXTERIOR');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
 
   // Filter images based on active view
   const filteredImages = project.images.filter(img => 
@@ -47,7 +48,17 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
   // Reset index when view changes
   useEffect(() => {
     setCurrentImageIndex(0);
+    setThumbnailStartIndex(0);
   }, [activeView]);
+
+  // Auto-scroll thumbnails when active image changes
+  useEffect(() => {
+    if (currentImageIndex < thumbnailStartIndex) {
+      setThumbnailStartIndex(currentImageIndex);
+    } else if (currentImageIndex >= thumbnailStartIndex + thumbnailCount) {
+      setThumbnailStartIndex(currentImageIndex - thumbnailCount + 1);
+    }
+  }, [currentImageIndex, thumbnailStartIndex, thumbnailCount]);
 
   const handleThumbnailClick = (index: number) => {
     setCurrentImageIndex(index);
@@ -64,35 +75,46 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
     }
   };
 
+  const scrollThumbnailsUp = () => {
+    setThumbnailStartIndex(Math.max(0, thumbnailStartIndex - 1));
+  };
+
+  const scrollThumbnailsDown = () => {
+    setThumbnailStartIndex(Math.min(filteredImages.length - thumbnailCount, thumbnailStartIndex + 1));
+  };
+
   // Available views based on project data
   const availableViews: ViewType[] = ['EXTERIOR', 'INTERIOR'];
   if (project.hasVideo || project.videoUrl) {
     availableViews.push('VIDEO');
   }
 
+  const visibleThumbnails = filteredImages.slice(thumbnailStartIndex, thumbnailStartIndex + thumbnailCount);
+  const canScrollUp = thumbnailStartIndex > 0;
+  const canScrollDown = thumbnailStartIndex + thumbnailCount < filteredImages.length;
+
   return (
     <section className="w-full bg-white">
       {/* Project Title Header */}
-      <header className="container mx-auto px-4 sm:px-6 py-8 sm:py-10 md:py-12">
+      <header className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 lg:py-24">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#51301F] mb-4 sm:mb-6 leading-tight px-2">
-            Each and Every Residence, a<br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>Panorama of the Sea.
-          </h2>
-          <p className="text-sm sm:text-base max-w-xs sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto leading-relaxed text-[#26140b] font-normal px-4 sm:px-0">
-            At {project.name}, contemporary luxury meets panoramic coastal beauty.
-            Designed for those with a taste for the extraordinary, this exquisite
-            waterfront escape offers modern interiors, sweeping sea views, and an
-            effortless connection to Al Marjan Island&apos;s vibrant lifestyle.
-          </p>
+          {/* Header Section */}
+          <div className="text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#51301F] mb-3 sm:mb-4 md:mb-6 leading-tight px-2">
+              Glimpses of {project.name} 
+            </h2>
+            <p className="text-sm sm:text-base max-w-xs sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto leading-relaxed text-[#26140b] font-normal px-4 sm:px-0">
+              At {project.name}, contemporary luxury meets panoramic coastal beauty.
+              Designed for those with a taste for the extraordinary, this exquisite
+              waterfront escape offers modern interiors, sweeping sea views, and an
+              effortless connection to Al Marjan Island&apos;s vibrant lifestyle.
+            </p>
+          </div>
         </div>
-      </div>
       </header>
 
       {/* Gallery Container */}
-      <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[95vh] overflow-hidden">
+      <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] 2xl:h-[90vh] overflow-hidden">
         
         {/* Main Image Display */}
         {activeView !== 'VIDEO' && filteredImages.length > 0 && (
@@ -103,11 +125,11 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
               fill
               className="object-cover transition-all duration-1000 ease-in-out"
               priority
-              quality={95}
+              quality="auto:best"
               format="webp"
               dpr="auto"
-              sizes="100vw"
-              crop="fill"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
+              crop="fit"
               gravity="auto"
             />
             {/* Subtle overlay for better UI visibility */}
@@ -152,70 +174,63 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
           <>
             {/* Desktop - Right side vertical */}
             <div className="hidden md:block absolute right-4 lg:right-6 top-1/2 transform -translate-y-1/2 z-30">
-              <div className="flex flex-col space-y-2 lg:space-y-3">
-                {filteredImages.slice(0, thumbnailCount).map((image, index) => (
+              <div className="flex flex-col items-center">
+                {/* Up Arrow */}
+                {canScrollUp && (
                   <button
-                    key={image.id}
-                    onClick={() => handleThumbnailClick(index)}
-                    className={`relative w-16 h-12 lg:w-20 lg:h-14 xl:w-28 xl:h-20 overflow-hidden transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white ${
-                      currentImageIndex === index 
-                        ? 'ring-2 ring-white shadow-lg transform scale-105' 
-                        : 'ring-1 ring-white/30 hover:ring-white/60'
-                    }`}
+                    onClick={scrollThumbnailsUp}
+                    className="mb-2 p-1 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
                   >
-                    <CldImage
-                      src={image.cloudinaryId}
-                      alt={image.alt}
-                      fill
-                      className="object-cover"
-                      quality={95}
-                      format="webp"
-                      crop="fill"
-                      gravity="auto"
-                    />
-                    
-                    {/* Active indicator */}
-                    {currentImageIndex === index && (
-                      <div className="absolute inset-0 bg-white/20 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-full shadow-lg"></div>
-                      </div>
-                    )}
+                    <ChevronUp className="w-4 h-4 text-white" />
                   </button>
-                ))}
-              </div>
-            </div>
+                )}
 
-            {/* Mobile/Tablet - Bottom horizontal */}
-            <div className="block md:hidden absolute bottom-14 sm:bottom-16 left-1/2 transform -translate-x-1/2 z-30 px-4">
-              <div className="flex space-x-2 justify-center">
-                {filteredImages.slice(0, Math.min(thumbnailCount, 3)).map((image, index) => (
+                {/* Thumbnails */}
+                <div className="flex flex-col space-y-2 lg:space-y-3">
+                  {visibleThumbnails.map((image, index) => {
+                    const actualIndex = thumbnailStartIndex + index;
+                    return (
+                      <button
+                        key={`${image.id}-${actualIndex}`}
+                        onClick={() => handleThumbnailClick(actualIndex)}
+                        className={`relative w-16 h-12 lg:w-20 lg:h-14 xl:w-28 xl:h-20 overflow-hidden transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white ${
+                          currentImageIndex === actualIndex 
+                            ? 'ring-2 ring-white shadow-lg transform scale-105' 
+                            : 'ring-1 ring-white/30 hover:ring-white/60'
+                        }`}
+                      >
+                        <CldImage
+                          src={image.cloudinaryId}
+                          alt={image.alt}
+                          fill
+                          className="object-cover"
+                          quality="auto:best"
+                          format="webp"
+                          crop="fit"
+                          gravity="auto"
+                          sizes="(max-width: 1024px) 80px, (max-width: 1280px) 100px, 120px"
+                        />
+                        
+                        {/* Active indicator */}
+                        {currentImageIndex === actualIndex && (
+                          <div className="absolute inset-0 bg-white/20 flex items-center justify-center">
+                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-full shadow-lg"></div>
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Down Arrow */}
+                {canScrollDown && (
                   <button
-                    key={image.id}
-                    onClick={() => handleThumbnailClick(index)}
-                    className={`relative w-12 h-9 sm:w-16 sm:h-12 overflow-hidden transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white ${
-                      currentImageIndex === index 
-                        ? 'ring-2 ring-white shadow-lg transform scale-105' 
-                        : 'ring-1 ring-white/30 hover:ring-white/60'
-                    }`}
+                    onClick={scrollThumbnailsDown}
+                    className="mt-2 p-1 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
                   >
-                    <CldImage
-                      src={image.cloudinaryId}
-                      alt={image.alt}
-                      fill
-                      className="object-cover"
-                      quality={"auto:best"}
-                      format="webp"
-                      crop={"fill"}
-                    />
-                    
-                    {/* Active indicator */}
-                    {currentImageIndex === index && (
-                      <div className="absolute inset-0 bg-white/20 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 bg-white rounded-full shadow-lg"></div>
-                      </div>
-                    )}
+                    <ChevronDown className="w-4 h-4 text-white" />
                   </button>
-                ))}
+                )}
               </div>
             </div>
           </>

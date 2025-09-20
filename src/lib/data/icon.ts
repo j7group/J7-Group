@@ -25,7 +25,7 @@ export const iconData: ProjectData = {
     // { id: '5', cloudinaryId: 'nj35hpsamud4ekxqqqhj_k7g0j8', alt: 'J7 Emporium Kitchen', type: 'exterior' },
     // { id: '6', cloudinaryId: 'bdm79wg1vocjednjsc8o_iol4ix', alt: 'J7 Emporium Bedroom', type: 'exterior' },
     { id: '7', cloudinaryId: 'Hotel_Residences_2_dti3gh', alt: 'J7 Emporium Hotel Suite', type: 'interior' },
-    { id: '8', cloudinaryId: 'Hotel_Residences_3_jlsjoo', alt: 'J7 Emporium Luxury Room', type: 'interior' },
+    { id: '8', cloudinaryId: 'imgi_31_largeimg-1_arl4qb', alt: 'J7 Emporium Luxury Room', type: 'interior' },
     { id: '9', cloudinaryId: 'Hotel_Residences_1_vmzzra', alt: 'J7 Emporium Executive Suite', type: 'interior' },
     { id: '10', cloudinaryId: 'Co-Working_Spaces_x2rz4t', alt: 'J7 Emporium Co-Working', type: 'interior' },
     { id: '11', cloudinaryId: 'Banquet_Hall_rk47z6', alt: 'J7 Emporium Banquet Hall', type: 'interior' },

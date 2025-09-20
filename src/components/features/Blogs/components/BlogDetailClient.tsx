@@ -23,7 +23,7 @@ const RelatedBlogCard: React.FC<{ post: BlogPost; index: number }> = ({
   const [isHovered, setIsHovered] = useState(false);
 
   const handleViewDetails = (slug: string) => {
-    window.location.href = `/blog/${slug}`;
+    window.location.href = `/media/blog/${slug}`;
   };
 
   return (
@@ -63,7 +63,7 @@ const RelatedBlogCard: React.FC<{ post: BlogPost; index: number }> = ({
         <AnimatePresence>
           {isHovered && (
             <motion.div
-              className="absolute inset-0 bg-[#ECE4D9] backdrop-blur-sm"
+              className="absolute inset-0 bg-[#51301F] backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -98,10 +98,19 @@ const RelatedBlogCard: React.FC<{ post: BlogPost; index: number }> = ({
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3 }}
             >
+              {/* Title - Centered */}
+              <motion.h3
+                className="text-white text-lg sm:text-xl leading-tight mb-4 sm:mb-8 max-w-sm"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+              >
+                {post.title}
+              </motion.h3>
               {/* View Details Button */}
               <motion.button
                 onClick={() => handleViewDetails(post.slug.current)}
-                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-[#7A3110] text-white cursor-pointer font-normal rounded-full transition-colors duration-300 text-sm sm:text-base"
+                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-[#51301F] cursor-pointer font-semibold rounded-full transition-colors duration-300 text-sm sm:text-base"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}

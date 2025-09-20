@@ -14,7 +14,7 @@ import { iconData, iconDetail } from "@/lib/data/icon";
 import IconIframe from "@/components/features/projects/j7Icon/Map";
 
 const J7EmporiumPage = () => {
-  const propertyAmenities = getAmenitiesByProperty("J7 Emporium");
+  const propertyAmenities = getAmenitiesByProperty("J7 Icon");
 
   // Fallback data in case Sanity data is not available
   const fallbackProgressData = {

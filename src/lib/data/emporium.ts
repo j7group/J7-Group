@@ -72,7 +72,7 @@ export const j7EmporiumData: ProjectData = {
     },
     {
       id: "7",
-      cloudinaryId: "amenities6_n62ghn",
+      cloudinaryId: "AdobeStock_981045239_aiodpz",
       alt: "J7 Emporium Hotel Suite",
       type: "interior",
     },
@@ -165,3 +165,8 @@ export const emporiumDetail: ResidenceDetail = {
   description:
     "J7 Emporium stands as a symbol of sophistication, where contemporary architecture meets timeless design. With premium spaces, curated amenities, and a vibrant atmosphere, it offers an elevated lifestyle experience tailored for those who aspire to the extraordinary.",
 };
+
+export const aboutDetail: ResidenceDetail = {
+  title: "Where Luxury Meets Convenience",
+  description: "J7 Group stands as a symbol of sophistication, where contemporary architecture meets timeless design. With premium spaces, curated amenities, and a vibrant atmosphere, it offers an elevated lifestyle experience tailored for those who aspire to the extraordinary."
+}

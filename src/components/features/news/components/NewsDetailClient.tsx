@@ -174,25 +174,6 @@ const NewsDetailClient: React.FC<NewsDetailClientProps> = ({ post, relatedPosts 
 
         {/* Content Overlay */}
         <div className="relative z-10 container mx-auto px-12 text-center text-white">
-          {/* Breadcrumb */}
-          <motion.nav
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <div className="flex items-center justify-center text-sm text-white/80">
-              <Link href="/" className="hover:text-white transition-colors">
-                Home
-              </Link>
-              <span className="mx-2">/</span>
-              <Link href="/news" className="hover:text-white transition-colors">
-                News
-              </Link>
-              <span className="mx-2">/</span>
-              <span className="text-white">Article</span>
-            </div>
-          </motion.nav>
 
           {/* News Source */}
           {post.newsSource && (
@@ -232,19 +213,24 @@ const NewsDetailClient: React.FC<NewsDetailClientProps> = ({ post, relatedPosts 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl sm:text-6xl text-white mb-8 leading-tight mx-auto"
+            className="text-4xl sm:text-5xl text-white mb-8 leading-tight mx-auto max-w-4xl"
           >
             {post.title}
           </motion.h1>
+        </div>
+      </section>
 
-          {/* Meta Information */}
+      {/* Content Section */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-12">
+           {/* Meta Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap items-center justify-center gap-8 text-white/80 mb-12"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-[#7A3110]">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
@@ -254,7 +240,7 @@ const NewsDetailClient: React.FC<NewsDetailClientProps> = ({ post, relatedPosts 
             </div>
             
             {post.readingTime && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 text-[#7A3110]">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -263,7 +249,7 @@ const NewsDetailClient: React.FC<NewsDetailClientProps> = ({ post, relatedPosts 
             )}
 
             {post.author && (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 text-[#7A3110]">
                 {post.author.image && (
                   <div className="relative w-10 h-10 rounded-full overflow-hidden">
                     <Image
@@ -295,12 +281,6 @@ const NewsDetailClient: React.FC<NewsDetailClientProps> = ({ post, relatedPosts 
               </div>
             )}
           </motion.div>
-        </div>
-      </section>
-
-      {/* Content Section */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-12">
           <motion.article
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

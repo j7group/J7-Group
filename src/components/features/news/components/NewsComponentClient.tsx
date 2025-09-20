@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { urlFor } from '@/lib/sanity/image';
 import type { BlogPost, Category } from '@/lib/sanity/types';
+import { Hero } from '../../home/components/hero-section';
 
 interface NewsListingClientProps {
   posts: BlogPost[];
@@ -148,26 +149,11 @@ const NewsListingClient: React.FC<NewsListingClientProps> = ({ posts }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#51301F] via-[#7A3110] to-[#51301F]" />
-        <div className="relative mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-coconat text-white mb-4 sm:mb-6 md:mb-8 leading-tight">
-              News & <span className="text-[#ECE4D9]">Press</span>
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/85 mx-auto leading-relaxed max-w-4xl">
-              Stay updated with the latest news, press releases, and announcements from the world of 
-              luxury architecture and real estate development.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
+     
+     <Hero 
+     backgroundSrc='imgi_1_MW7isZMroAzztFTAdj3P1jeIuWU_pstmwz'
+     backgroundType='image'
+     />
       {/* News Grid Section */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-[#FFF]">
         <div className="mx-auto">
