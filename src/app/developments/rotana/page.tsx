@@ -43,10 +43,10 @@ const page = () => {
       project={rotanaData}
       autoPlayInterval={4000}
       />
-      <PropertySection data={rotanaFeatures}/>
+      <PropertySection data={rotanaFeatures} propertyName="Rotana"/>
 
       <RotanaIframe />
-      <ContactFormSection />
+      <ContactFormSection property="Rotana"/>
     </div>
   );
 };

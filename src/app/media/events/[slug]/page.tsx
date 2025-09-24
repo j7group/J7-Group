@@ -95,7 +95,7 @@ function EventGallery({ gallery }: { gallery: Event["gallery"] }) {
           <div key={index} className="group cursor-pointer">
             <div className="relative aspect-square overflow-hidden">
               <Image
-                src={urlFor(image).width(400).height(400).url()}
+                src={urlFor(image).width(1200).height(1200).url()}
                 alt={image.alt || `Gallery image ${index + 1}`}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -289,11 +289,10 @@ async function EventDetail({ slug }: { slug: string }) {
   return (
     <>
       {/* Event Content */}
-      <Hero 
-      backgroundSrc="Generated_Image_September_07_2025_-_11_56PM_qccfzy"
-      backgroundType="image"
-      overlay="medium"
-
+      <Hero
+        backgroundSrc="Generated_Image_September_07_2025_-_11_56PM_qccfzy"
+        backgroundType="image"
+        overlay="medium"
       />
       <div className="mx-auto px-4 sm:px-6 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-24">
@@ -307,23 +306,20 @@ async function EventDetail({ slug }: { slug: string }) {
                 {event.description}
               </p>
             </div>
-
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg p-6 shadow-sm border sticky top-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">
-                Event Details
-              </h3>
+              <h3 className="text-xl font-normal mb-6">Event Details</h3>
 
               <div className="space-y-6">
                 {/* Date & Time */}
                 <div className="flex items-start">
-                  <FiCalendar className="w-5 h-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                  <FiCalendar className="w-5 h-5 text-[#51301F] mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-900">Date & Time</p>
-                    <p className="text-gray-600">
+                    <p className="font-medium text-[#51301F]">Date & Time</p>
+                    <p className="">
                       {eventDate.toLocaleDateString("en-US", {
                         weekday: "long",
                         year: "numeric",
@@ -331,7 +327,7 @@ async function EventDetail({ slug }: { slug: string }) {
                         day: "numeric",
                       })}
                     </p>
-                    <p className="text-gray-600">
+                    <p className="">
                       {eventDate.toLocaleTimeString("en-US", {
                         hour: "2-digit",
                         minute: "2-digit",
@@ -342,23 +338,23 @@ async function EventDetail({ slug }: { slug: string }) {
 
                 {/* Location */}
                 <div className="flex items-start">
-                  <FiMapPin className="w-5 h-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                  <FiMapPin className="w-5 h-5 mr-3 text-[#51301F] mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-900">Location</p>
-                    <p className="text-gray-600">{event.location}</p>
+                    <p className="font-medium text-[#51301F]">Location</p>
+                    <p className="">{event.location}</p>
                   </div>
                 </div>
 
                 {/* Status */}
                 <div className="flex items-start">
-                  <FiCheckCircle className="w-5 h-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                  <FiCheckCircle className="w-5 h-5 text-[#51301F] mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-gray-900">Status</p>
                     <span
                       className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
                         isUpcoming
-                        ? "bg-green-100 text-green-800"
-                        : "bg-gray-100 text-gray-800"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-gray-100 text-gray-800"
                       }`}
                     >
                       {isUpcoming ? "Upcoming" : "Past Event"}
@@ -387,7 +383,7 @@ async function EventDetail({ slug }: { slug: string }) {
             </div>
           </div>
         </div>
-                <EventGallery gallery={event.gallery} />
+        <EventGallery gallery={event.gallery} />
       </div>
 
       <RelatedEvents events={relatedEvents} />

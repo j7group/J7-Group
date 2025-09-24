@@ -81,9 +81,9 @@ export const j7EmporiumAmenities: PropertyAmenities = {
     "At the heart of J7 Emporium properties lies a refined blend of amenities for the most discerning tastes. With opulent facilities, modern conveniences, and premium services, every detail is meticulously crafted to create a true sanctuary of luxury and comfort.",
   amenities: [
     {
-      id: "mall",
-      name: "Shopping Mall",
-      imagePublicId: "vlcsnap-2025-09-18-12h02m35s127_g7zqva",
+      id: "salon",
+      name: "Men Salon",
+      imagePublicId: "img4150_fbmhyv",
       title: "Grand Lobby Experience",
       description:
         "Welcome to an impressive double-height lobby featuring premium marble finishes, contemporary seating areas, and sophisticated lighting.",
@@ -91,7 +91,7 @@ export const j7EmporiumAmenities: PropertyAmenities = {
     {
       id: "fitness",
       name: "Fitness Centre",
-      imagePublicId: "AdobeStock_1340126777_g43is3",
+      imagePublicId: "img5_ox6pqb",
       title: "State-of-the-Art Fitness Center",
       description:
         "A fully equipped fitness center with the latest cardio and strength training equipment, personal training areas, and panoramic views.",
@@ -107,15 +107,15 @@ export const j7EmporiumAmenities: PropertyAmenities = {
     {
       id: "pool",
       name: "Swimming Pool",
-      imagePublicId: "vlcsnap-2025-09-18-11h45m53s857_jky2eb",
+      imagePublicId: "img4622_rkcsji",
       title: "Indoor Pool Paradise",
       description:
         "Temperature-controlled indoor swimming pool with luxurious amenities and relaxation areas.",
     },
     {
-      id: "elevators",
-      name: "Elevators",
-      imagePublicId: "vlcsnap-2025-09-18-12h01m25s712_p96ccv",
+      id: "spa",
+      name: "SPA",
+      imagePublicId: "img2969_mnkua3",
       title: "Luxury Spa & Wellness Center",
       description:
         "Indulge in rejuvenating treatments at our world-class spa facility with massage therapy rooms and relaxation areas.",
@@ -123,7 +123,7 @@ export const j7EmporiumAmenities: PropertyAmenities = {
     {
       id: "lounge",
       name: "Executive Lounge",
-      imagePublicId: "modern-architecture-clean-design-bright-lighting-comfortable-seating-indoors-generated-by-artificial-intelligence_duuk74",
+      imagePublicId: "img1791_nq468l",
       title: "Premium Executive Lounge",
       description:
         "Sophisticated lounge space designed for business meetings and exclusive gatherings.",
@@ -147,7 +147,7 @@ export const j7EmporiumAmenities: PropertyAmenities = {
     {
       id: "sitting",
       name: "Sitting Area",
-      imagePublicId: "vlcsnap-2025-09-18-12h01m09s860_iuirvx",
+      imagePublicId: "img1201_oi4zoo",
       title: "Modern Co-working Space",
       description:
         "Flexible co-working environment with modern amenities and collaborative spaces.",
@@ -155,7 +155,7 @@ export const j7EmporiumAmenities: PropertyAmenities = {
     {
       id: "banquet",
       name: "Banquet Hall",
-      imagePublicId: "vlcsnap-2025-09-18-11h51m38s271_lemaqa",
+      imagePublicId: "img493_o3qfi6",
       title: "Elegant Banquet Hall",
       description:
         "Spacious banquet facilities perfect for events, celebrations, and corporate functions.",
@@ -163,7 +163,7 @@ export const j7EmporiumAmenities: PropertyAmenities = {
     {
       id: "parking",
       name: "Parking Garage",
-      imagePublicId: "AdobeStock_740512005_wcf31x",
+      imagePublicId: "urtq3jh2oywizofgafs0_bstrof",
       title: "Premium Airline Lounge",
       description:
         "Exclusive lounge facilities designed for airline crew and VIP guests.",
@@ -171,7 +171,7 @@ export const j7EmporiumAmenities: PropertyAmenities = {
     {
       id: "cafe",
       name: "Premium Cafe",
-      imagePublicId: "vlcsnap-2025-09-18-12h00m42s489_hhp0b4",
+      imagePublicId: "img1319_pj84hs",
       title: "Luxury Premium Suite",
       description:
         "Exceptional suite accommodations with premium amenities and stunning views.",
@@ -189,7 +189,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "lobby",
       name: "Sky Lobby",
-      imagePublicId: "Sky_Lobby_aybbhv",
+      imagePublicId: "yzujzobpkaoucmypn7ev_gve74z",
       title: "Grand Lobby Experience",
       description:
         "Welcome to an impressive double-height lobby featuring premium marble finishes, contemporary seating areas, and sophisticated lighting.",
@@ -197,7 +197,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "fitness",
       name: "Fitness Centre",
-      imagePublicId: "AdobeStock_1340126777_g43is3",
+      imagePublicId: "r76cxjkw9hdiaxpqq2f2_xb5hse",
       title: "State-of-the-Art Fitness Center",
       description:
         "A fully equipped fitness center with the latest cardio and strength training equipment, personal training areas, and panoramic views.",
@@ -205,7 +205,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "rooftop",
       name: "Rooftop Restaurant",
-      imagePublicId: "Rooftop_Restaurant_so4cas",
+      imagePublicId: "kh4uo8ftnul6dmw21qry_qrsr32",
       title: "Rooftop Dining Experience",
       description:
         "Enjoy exquisite dining with panoramic city views and premium culinary offerings.",
@@ -213,7 +213,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "pool",
       name: "Swimming Pool",
-      imagePublicId: "Indoor_Swiming_Pool_kmbf0h",
+      imagePublicId: "szwmdfxaffngq0ppi7zk_s4ylo1",
       title: "Indoor Pool Paradise",
       description:
         "Temperature-controlled indoor swimming pool with luxurious amenities and relaxation areas.",
@@ -221,7 +221,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "spa",
       name: "Spa & Wellness",
-      imagePublicId: "Sauna_Spa_dmq8rr",
+      imagePublicId: "ovw4hcryj7pwjyoyrgz5_x97wgv",
       title: "Luxury Spa & Wellness Center",
       description:
         "Indulge in rejuvenating treatments at our world-class spa facility with massage therapy rooms and relaxation areas.",
@@ -229,7 +229,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "lounge",
       name: "Executive Lounge",
-      imagePublicId: "Executive_Lounge_if9xsn",
+      imagePublicId: "yzujzobpkaoucmypn7ev_gve74z",
       title: "Premium Executive Lounge",
       description:
         "Sophisticated lounge space designed for business meetings and exclusive gatherings.",
@@ -237,7 +237,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "business",
       name: "Business Lounge",
-      imagePublicId: "Business_Lounge_qgwtal",
+      imagePublicId: "smqz3r8wcfedqdoc9sup_dd5dec",
       title: "Professional Business Center",
       description:
         "A sophisticated workspace with high-speed internet, private meeting rooms, and premium office amenities.",
@@ -253,7 +253,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "coworking",
       name: "Co-working Space",
-      imagePublicId: "Co-Working_Spaces_x2rz4t",
+      imagePublicId: "mvekjynsu85dwzb1qkvz_he8mjr",
       title: "Modern Co-working Space",
       description:
         "Flexible co-working environment with modern amenities and collaborative spaces.",
@@ -261,7 +261,7 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "banquet",
       name: "Banquet Hall",
-      imagePublicId: "Banquet_Hall_rk47z6",
+      imagePublicId: "egkmhcvbsurke9vyepe0_q8xrih",
       title: "Elegant Banquet Hall",
       description:
         "Spacious banquet facilities perfect for events, celebrations, and corporate functions.",
@@ -269,15 +269,15 @@ export const radissonAmenities: PropertyAmenities = {
     {
       id: "airline",
       name: "Airline Lounge",
-      imagePublicId: "Airline_Crew_Lounge_mbpkqt",
+      imagePublicId: "n0rkrhlbps12mulzl6f0_mbbotk",
       title: "Premium Airline Lounge",
       description:
         "Exclusive lounge facilities designed for airline crew and VIP guests.",
     },
     {
-      id: "amenity10",
-      name: "Premium Suite",
-      imagePublicId: "vlcsnap-2025-09-18-11h48m40s647_zodvmz",
+      id: "terrace",
+      name: "Terrace",
+      imagePublicId: "aqfg0tma72m6bwdrxmbp_luopnl",
       title: "Luxury Premium Suite",
       description:
         "Exceptional suite accommodations with premium amenities and stunning views.",
@@ -295,7 +295,7 @@ export const j7IconAmenities: PropertyAmenities = {
     {
       id: "lobby",
       name: "Sky Lobby",
-      imagePublicId: "AdobeStock_1654036467_tprbsj",
+      imagePublicId: "lr8nsjhpgkizarxcrzub_upkszp",
       title: "Grand Central Atrium",
       description:
         "Impressive multi-level atrium with natural lighting, artistic installations, and comfortable seating areas for relaxation and social gatherings.",
@@ -303,7 +303,7 @@ export const j7IconAmenities: PropertyAmenities = {
     {
       id: "meet",
       name: "Meeting Room",
-      imagePublicId: "AdobeStock_1118174747_epp4dv",
+      imagePublicId: "tex6rphg1pi2c2nrwtzd_pwdxss",
       title: "Premium Brand Stores",
       description:
         "Over 200 international and local brands featuring fashion, electronics, home decor, and specialty stores with modern retail spaces.",
@@ -311,7 +311,7 @@ export const j7IconAmenities: PropertyAmenities = {
     {
       id: "foodcourt-mall",
       name: "Food Court",
-      imagePublicId: "AdobeStock_639731555_w6eo8y",
+      imagePublicId: "crzu1nfq98dvg4giadkp_pxjug5",
       title: "International Food Court",
       description:
         "Diverse dining options featuring international cuisines, fast food, casual dining, and premium restaurants with spacious seating areas.",
@@ -319,7 +319,7 @@ export const j7IconAmenities: PropertyAmenities = {
     {
       id: "retail-store",
       name: "Branded Retail Store",
-      imagePublicId: "AdobeStock_891253668_dgtxvu",
+      imagePublicId: "uj84cljkupqv7disi6gm_qeodse",
       title: "Multiplex Cinema Experience",
       description:
         "State-of-the-art cinema complex with multiple screens, premium sound systems, comfortable seating, and latest movie releases.",
@@ -327,7 +327,7 @@ export const j7IconAmenities: PropertyAmenities = {
     {
       id: "entertainment-mall",
       name: "Entertainment Zone",
-      imagePublicId: "vlcsnap-2025-09-18-11h58m46s691_nvy3om",
+      imagePublicId: "piyudjfs2wcrm3djyh4a_msm3gp",
       title: "Family Entertainment Center",
       description:
         "Exciting entertainment facilities including gaming zones, kids' play areas, arcade games, and family-friendly activities.",
@@ -335,7 +335,7 @@ export const j7IconAmenities: PropertyAmenities = {
     {
       id: "parking-mall",
       name: "Smart Parking",
-      imagePublicId: "AdobeStock_740512005_wcf31x",
+      imagePublicId: "urtq3jh2oywizofgafs0_yxsbrc",
       title: "Intelligent Parking System",
       description:
         "Multi-level parking facility with smart parking guidance, electric vehicle charging stations, and convenient access to all mall levels.",
@@ -343,7 +343,7 @@ export const j7IconAmenities: PropertyAmenities = {
     {
       id: "events-mall",
       name: "Event Plaza",
-      imagePublicId: "AdobeStock_637166455_pqwjl1",
+      imagePublicId: "w43xrtnwtgbb1wdil069_hruoly",
       title: "Community Event Space",
       description:
         "Flexible event spaces for exhibitions, promotional events, fashion shows, and community gatherings with professional event support.",
@@ -351,7 +351,7 @@ export const j7IconAmenities: PropertyAmenities = {
     {
       id: "services-mall",
       name: "Luxury Bedroom",
-      imagePublicId: "AdobeStock_981045239_aiodpz",
+      imagePublicId: "teksjagesj7ohg38cdj9_hjoopw",
       title: "Premium Customer Care",
       description:
         "Comprehensive customer services including information desk, lost and found, banking services, and personal shopping assistance.",

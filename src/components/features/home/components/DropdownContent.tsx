@@ -22,53 +22,56 @@ const DropdownContent: React.FC<DropdownContentProps> = ({
 }) => {
   if (!isVisible || !type) return null;
 
-  const isAbout = type === 'about';
-  const gridCols = isAbout ? 'grid-cols-3' : 'grid-cols-4';
-  const cardHeight = isAbout ? 'h-72' : 'h-64';
-  const gap = isAbout ? 'gap-8' : 'gap-6';
+  const isMedia = type === 'media';
+  const isDevelopments = type === 'developments';
+  
+  // Set grid layout based on section type
+  const gridCols = isMedia ? 'grid-cols-3' : 'grid-cols-4';
+  const cardHeight = isMedia ? 'h-84' : 'h-64';
+  const gap = isMedia ? 'gap-8' : 'gap-6';
 
   return (
     <div 
       className={`absolute top-full left-0 right-0 backdrop-blur-xl shadow-2xl transition-colors duration-500 ${
         isScrolled 
           ? 'bg-[#51301F] border-b border-gray-200' 
-          :' border-b border-gray-100'
+          : 'border-b border-gray-100'
       }`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       <div className="mx-auto px-8 py-12">
         <div className={`grid ${gridCols} ${gap}`}>
-          {isAbout ? (
+          {isMedia ? (
             <>
-              {/* First card with description for About */}
+              {/* First card with description for Media Center */}
               <DropdownCard 
-                section={sections[0]} 
+                section={sections[0]}
                 showDescription={true}
                 height={cardHeight}
                 isScrolled={isScrolled}
               />
-              {/* Other cards */}
+              {/* Other cards without description */}
               {sections.slice(1).map((section) => (
                 <DropdownCard 
-                  key={section.id} 
+                  key={section.id}
                   section={section}
                   height={cardHeight}
                   isScrolled={isScrolled}
                 />
               ))}
             </>
-          ) : (
-            /* All cards for Developments */
+          ) : isDevelopments ? (
+            /* All cards for Developments (4 items) */
             sections.map((section) => (
               <DropdownCard 
-                key={section.id} 
+                key={section.id}
                 section={section}
                 height={cardHeight}
                 isScrolled={isScrolled}
               />
             ))
-          )}
+          ) : null}
         </div>
       </div>
     </div>

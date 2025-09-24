@@ -53,7 +53,7 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
       {/* Main Content Container */}
       <div className="w-full">
         <div className="max-w-screen-2xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-0 lg:gap-6 xl:gap-8">
+          <div className="grid lg:grid-cols-2 gap-0 ">
             
             {/* Image Section */}
             <div className="mt-4 sm:mt-6 lg:mt-16 order-1 lg:order-1">
@@ -61,13 +61,10 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
                 <CldImage
                   src={activeAmenity.imagePublicId}
                   alt={activeAmenity.title}
-                  width={800}
-                  height={600}
+                  width={1920}
+                  height={1080}
                   className="w-full h-full object-cover transition-all duration-500"
-                  priority
                   quality="auto:best"
-                  crop="fit"
-                  gravity="auto"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
                 />
               </div>
@@ -95,7 +92,7 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
                         key={amenity.id}
                         onClick={() => handleAmenityClick(amenity)}
                         className={`
-                          px-3 sm:px-4 py-2 sm:py-3 lg:py-3 xl:py-4 text-left transition-all duration-300 focus:outline-none text-xs sm:text-sm
+                          px-3 sm:px-4 py-2 sm:py-3 lg:py-3 xl:py-4 border-2 border-[#51301F] text-left transition-all duration-300 focus:outline-none text-xs sm:text-sm
                           ${activeAmenity.id === amenity.id
                             ? 'bg-[#51301F] text-[#ECE4D9] shadow-sm'
                             : 'bg-transparent text-[#51301F] hover:bg-[#51301F] hover:text-[#ECE4D9] cursor-pointer'

@@ -12,9 +12,9 @@ const NavLink: React.FC<NavLinkProps> = ({ href, isScrolled, children }) => {
   return (
     <Link
       href={href} 
-      className={`text-xs lg:text-sm tracking-wide text-nowrap  duration-500 whitespace-nowrap ${
+      className={`text-xs lg:text-sm tracking-wide text-nowrap uppercase duration-500 whitespace-nowrap ${
         isScrolled
-          ? 'text-[#51301F] hover:text-gray-600 font-medium uppercase'
+          ? 'text-[#51301F] hover:text-gray-600 font-medium'
           : 'text-white hover:text-white/80'
       }`}
     >

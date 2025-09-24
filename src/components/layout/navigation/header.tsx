@@ -8,7 +8,7 @@ import DropdownContent from "@/components/features/home/components/DropdownConte
 import DropdownNavItem from "@/components/features/home/components/DropdownNavItem";
 import Logo from "@/components/features/home/components/Logo";
 import NavLink from "@/components/features/home/components/NavLink";
-import { aboutSections, developments, mediaCenter } from "@/lib/data/navbar";
+import { developments, mediaCenter } from "@/lib/data/navbar";
 import { DropdownType } from "@/lib/navbar/types";
 import Link from "next/link";
 
@@ -130,14 +130,9 @@ const RangeNavbar: React.FC = () => {
               {/* Left Navigation - Fixed Width Container */}
               <div className="w-1/3 flex items-center justify-start">
                 <div className="flex items-center space-x-4 xl:space-x-6 2xl:space-x-8">
-                  <DropdownNavItem
-                    label="About"
-                    isActive={activeDropdown === "about"}
-                    type="about"
-                    isScrolled={isScrolled}
-                    onMouseEnter={() => handleDropdownEnter("about")}
-                    onMouseLeave={handleDropdownLeave}
-                  />
+                  <NavLink href="/about" isScrolled={isScrolled}>
+                    About
+                  </NavLink>
 
                   <DropdownNavItem
                     label="Developments"
@@ -179,15 +174,6 @@ const RangeNavbar: React.FC = () => {
         {/* Desktop Dropdown Content */}
         <div className="hidden lg:block">
           <DropdownContent
-            isVisible={activeDropdown === "about"}
-            type="about"
-            sections={aboutSections}
-            isScrolled={isScrolled}
-            onMouseEnter={() => handleDropdownEnter("about")}
-            onMouseLeave={handleDropdownLeave}
-          />
-
-          <DropdownContent
             isVisible={activeDropdown === "developments"}
             type="developments"
             sections={developments}
@@ -226,35 +212,15 @@ const RangeNavbar: React.FC = () => {
         <div className="h-full overflow-y-auto">
           <div className="px-6 py-8">
             <div className="space-y-1">
-              {/* About Section */}
+              {/* About Link - No Dropdown */}
               <div className="border-b border-gray-100 pb-4 mb-4">
-                <button
-                  onClick={() => handleMobileDropdownToggle("about")}
-                  className="w-full flex items-center justify-between text-left text-[#51301F] hover:text-gray-600 transition-colors py-3 text-base font-medium"
+                <Link
+                  href="/about"
+                  onClick={closeMobileMenu}
+                  className="block text-[#51301F] hover:text-gray-600 transition-colors py-3 text-base font-medium"
                 >
-                  <span>About</span>
-                  <span className={`transform transition-transform duration-200 text-xs ${
-                    activeDropdown === "about" ? "rotate-180" : ""
-                  }`}>
-                    +
-                  </span>
-                </button>
-                <div className={`overflow-hidden transition-all duration-300 ${
-                  activeDropdown === "about" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                }`}>
-                  <div className="pt-2 space-y-2 pl-4">
-                    {aboutSections.map((section) => (
-                      <Link
-                        key={section.id}
-                        href={section.href}
-                        onClick={closeMobileMenu}
-                        className="block text-gray-600 hover:text-[#51301F] transition-colors py-2 text-sm"
-                      >
-                        {section.title}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+                  About
+                </Link>
               </div>
 
               {/* Developments Section */}
@@ -275,14 +241,14 @@ const RangeNavbar: React.FC = () => {
                 }`}>
                   <div className="pt-2 space-y-2 pl-4">
                     {developments.map((section) => (
-                      <a
+                      <Link
                         key={section.id}
                         href={section.href}
                         onClick={closeMobileMenu}
                         className="block text-gray-600 hover:text-[#51301F] transition-colors py-2 text-sm"
                       >
                         {section.title}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>

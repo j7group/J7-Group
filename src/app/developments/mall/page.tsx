@@ -6,68 +6,67 @@ import BuildingShowcase from "@/components/features/projects/BuildingShowcase";
 import GalleryComponent from "@/components/features/projects/GalleryComponent";
 import PropertySection from "@/components/features/projects/PropertySection";
 import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
-import { j7EmporiumFeatures } from "@/lib/data/emporium";
 import { getAmenitiesByProperty } from "@/lib/data/properties";
-import CarouselGalleryWrapper from "@/components/features/projects/CarouselGalleryWrapper";
-import ReusableProgressSection from "@/components/features/projects/ProgressIndicator";
-import { iconData, iconDetail } from "@/lib/data/icon";
+// import CarouselGalleryWrapper from "@/components/features/projects/CarouselGalleryWrapper";
+// import ReusableProgressSection from "@/components/features/projects/ProgressIndicator";
+import { iconData, iconDetail, j7IconFeatures } from "@/lib/data/icon";
 import IconIframe from "@/components/features/projects/j7Icon/Map";
 
 const J7EmporiumPage = () => {
   const propertyAmenities = getAmenitiesByProperty("J7 Icon");
 
   // Fallback data in case Sanity data is not available
-  const fallbackProgressData = {
-    overall: 85,
-    exterior: 90,
-    interior: 75,
-    infrastructure: 80,
-  };
+  // const fallbackProgressData = {
+  //   overall: 85,
+  //   exterior: 90,
+  //   interior: 75,
+  //   infrastructure: 80,
+  // };
 
-  const fallbackGalleryImages = [
-    {
-      id: 1,
-      cloudinaryPublicId: "construction/j7-emporium/foundation-phase",
-      alt: "Foundation construction phase showing concrete work and structural preparation",
-      title: "Foundation Work Complete",
-      phase: "foundation",
-    },
-    {
-      id: 2,
-      cloudinaryPublicId: "construction/j7-emporium/structure-phase",
-      alt: "Structural framework and steel beams during construction phase",
-      title: "Structure Development",
-      phase: "structure",
-    },
-    {
-      id: 3,
-      cloudinaryPublicId: "construction/j7-emporium/exterior-phase",
-      alt: "Exterior walls, windows and facade work in progress",
-      title: "Exterior Work Progress",
-      phase: "exterior",
-    },
-    {
-      id: 4,
-      cloudinaryPublicId: "construction/j7-emporium/interior-phase",
-      alt: "Interior finishing work including flooring and electrical systems",
-      title: "Interior Finishing",
-      phase: "interior",
-    },
-    {
-      id: 5,
-      cloudinaryPublicId: "construction/j7-emporium/landscaping-phase",
-      alt: "Landscaping and outdoor areas development around the building",
-      title: "Landscaping Development",
-      phase: "landscaping",
-    },
-    {
-      id: 6,
-      cloudinaryPublicId: "construction/j7-emporium/aerial-view",
-      alt: "Aerial view of the complete J7 Emporium construction site",
-      title: "Aerial Overview",
-      phase: "overview",
-    },
-  ];
+  // const fallbackGalleryImages = [
+  //   {
+  //     id: 1,
+  //     cloudinaryPublicId: "construction/j7-emporium/foundation-phase",
+  //     alt: "Foundation construction phase showing concrete work and structural preparation",
+  //     title: "Foundation Work Complete",
+  //     phase: "foundation",
+  //   },
+  //   {
+  //     id: 2,
+  //     cloudinaryPublicId: "construction/j7-emporium/structure-phase",
+  //     alt: "Structural framework and steel beams during construction phase",
+  //     title: "Structure Development",
+  //     phase: "structure",
+  //   },
+  //   {
+  //     id: 3,
+  //     cloudinaryPublicId: "construction/j7-emporium/exterior-phase",
+  //     alt: "Exterior walls, windows and facade work in progress",
+  //     title: "Exterior Work Progress",
+  //     phase: "exterior",
+  //   },
+  //   {
+  //     id: 4,
+  //     cloudinaryPublicId: "construction/j7-emporium/interior-phase",
+  //     alt: "Interior finishing work including flooring and electrical systems",
+  //     title: "Interior Finishing",
+  //     phase: "interior",
+  //   },
+  //   {
+  //     id: 5,
+  //     cloudinaryPublicId: "construction/j7-emporium/landscaping-phase",
+  //     alt: "Landscaping and outdoor areas development around the building",
+  //     title: "Landscaping Development",
+  //     phase: "landscaping",
+  //   },
+  //   {
+  //     id: 6,
+  //     cloudinaryPublicId: "construction/j7-emporium/aerial-view",
+  //     alt: "Aerial view of the complete J7 Emporium construction site",
+  //     title: "Aerial Overview",
+  //     phase: "overview",
+  //   },
+  // ];
 
   return (
     <div className="bg-white">
@@ -83,7 +82,7 @@ const J7EmporiumPage = () => {
         title={iconDetail.title}
         description={iconDetail.description}
       />
-      <BuildingShowcase propertyId="mall" />
+      <BuildingShowcase propertyId="j7-icon" />
 
       {/* Conditional rendering based on available amenities */}
       {propertyAmenities && (
@@ -96,10 +95,10 @@ const J7EmporiumPage = () => {
       )}
 
       <GalleryComponent project={iconData} autoPlayInterval={4000} />
-      <PropertySection data={j7EmporiumFeatures} />
+      <PropertySection data={j7IconFeatures} propertyName="J7 Icon" />
 
       {/* Reusable Carousel Gallery - Enhanced with better configuration */}
-      <CarouselGalleryWrapper
+      {/* <CarouselGalleryWrapper
         propertyName="J7 Emporium"
         fallbackImages={fallbackGalleryImages}
         title="Construction Progress Gallery"
@@ -109,17 +108,17 @@ const J7EmporiumPage = () => {
         autoPlay={true} // Enable auto-play functionality
         autoPlayInterval={6000} // 6 seconds between slides
         className="construction-gallery" // Custom CSS class if needed
-      />
+      /> */}
 
       {/* Reusable Progress Section - will fetch from Sanity or use fallback */}
-      <ReusableProgressSection
+      {/* <ReusableProgressSection
         propertyName="J7 Emporium"
         fallbackData={fallbackProgressData}
         title="Construction Progress"
         description="Track our construction milestones and development phases"
-      />
+      /> */}
       <IconIframe />
-      <ContactFormSection />
+      <ContactFormSection property="J7 Icon"/>
     </div>
   );
 };

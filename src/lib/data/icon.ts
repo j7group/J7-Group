@@ -33,34 +33,16 @@ export const iconData: ProjectData = {
   ]
 };
 
-
-export const iconFeatures: PropertySectionData = {
-  title: "Discover the Ultimate in Radisson Blu Islamabad",
-  description: "Introducing The Beach Vista in Al Marjan Island – featuring luxurious studio, 1-bedroom, and 2-bedroom apartments. Located directly across from Wynn Marjan Island and offering breathtaking views of the Arabian Gulf, The Beach Vista's architectural design is inspired by the serene beauty of the coastline. Each residence is designed to provide a serene beachfront living experience, emphasizing sophistication and elegance.",
-  mainImage: {
-    cloudinaryId: "nj35hpsamud4ekxqqqhj_k7g0j8",
-    alt: "Radisson Blu Islamabad Interior"
-  },
-  features: [
-    {
-      iconId: "imgi_11_67c7bc857d870bdadf59bef6_Rangerak_icon_3_1_vmqha4",
-      title: "Prime Location",
-      description: "Situated directly opposite the Wynn Al Marjan."
-    },
-    {
-      iconId: "imgi_12_67ad581258c315dd1bb96954_Rangerak_icon_4_og1ayr",
-      title: "Exclusive Units",
-      description: "Exclusive units with panoramic views."
-    },
-    {
-      iconId: "imgi_61_67c7bc857d870bdadf59c137_image_20_9_-p-2000_lqnnie",
-      title: "Luxury Amenities",
-      description: "Pristine swimming pool and a premium gym"
-    }
-  ],
-};
-
 export const iconDetail : ResidenceDetail = {
     title: "A Symbol of Prestige",
     description: "J7 Icon redefines modern excellence with its striking architecture and premium offerings. Designed to embody sophistication and innovation, it stands as a landmark destination that blends luxury, functionality, and an exceptional lifestyle experience for the elite."
+}
+
+export const j7IconFeatures: PropertySectionData = {
+  title: "J7 Icon – Royal Swiss: Pinnacle of Five-Star Hospitality",
+  description: "J7 Icon, the Royal Swiss Hotel, is a 5-star landmark by J7 Group in Mumtaz City, Islamabad — where Swiss-inspired elegance meets world-class hospitality. Strategically located along Srinagar Highway, just minutes from the new airport and major motorways, the project offers luxury hotel suites, fine dining, wellness and spa amenities, banquet and event facilities, and exclusive services. Every element is crafted to set a new standard of prestige and comfort in the capital.",
+  mainImage: {
+    cloudinaryId: "img1201_oi4zoo",
+    alt: "J7 Icon Luxury Building",
+  }
 }

@@ -35,29 +35,12 @@ export const rotanaData: ProjectData = {
 
 
 export const rotanaFeatures: PropertySectionData = {
-  title: "Discover the Ultimate in Radisson Blu Islamabad",
-  description: "Introducing The Beach Vista in Al Marjan Island – featuring luxurious studio, 1-bedroom, and 2-bedroom apartments. Located directly across from Wynn Marjan Island and offering breathtaking views of the Arabian Gulf, The Beach Vista's architectural design is inspired by the serene beauty of the coastline. Each residence is designed to provide a serene beachfront living experience, emphasizing sophistication and elegance.",
+  title: "Signature Rotana Islamabad – Landmark of Luxury Hospitality",
+  description: "Signature Rotana Islamabad sets a new benchmark in luxury hospitality. Situated in TopCity-1 on the Main Srinagar Highway, this 26-storey masterpiece features 378 hotel rooms and 144 branded residence apartments — a total of 522 keys, combining Rotana’s world-class standards with sophistication and ease. Business Traveller Guests and residents will enjoy a full range of premium amenities, including an expansive business centre with six meeting rooms, banquet and multipurpose halls, two speciality restaurants, and a café. For wellness and recreation there’s an indoor pool, gymnasium, spa, thermal facilities, and dedicated relaxation lounges.",
   mainImage: {
-    cloudinaryId: "nj35hpsamud4ekxqqqhj_k7g0j8",
+    cloudinaryId: "img7218_cecutc",
     alt: "Radisson Blu Islamabad Interior"
   },
-  features: [
-    {
-      iconId: "imgi_11_67c7bc857d870bdadf59bef6_Rangerak_icon_3_1_vmqha4",
-      title: "Prime Location",
-      description: "Situated directly opposite the Wynn Al Marjan."
-    },
-    {
-      iconId: "imgi_12_67ad581258c315dd1bb96954_Rangerak_icon_4_og1ayr",
-      title: "Exclusive Units",
-      description: "Exclusive units with panoramic views."
-    },
-    {
-      iconId: "imgi_61_67c7bc857d870bdadf59c137_image_20_9_-p-2000_lqnnie",
-      title: "Luxury Amenities",
-      description: "Pristine swimming pool and a premium gym"
-    }
-  ],
 };
 
 export const rotanaDetail : ResidenceDetail = {

@@ -403,7 +403,7 @@ const BlogDetailClient: React.FC<BlogDetailClientProps> = ({
               className="text-center mt-12 sm:mt-16"
             >
               <Link
-                href="/blog"
+                href="/media/blog"
                 className="inline-flex bg-[#51301F] items-center px-8 sm:px-12 py-3 sm:py-4 rounded-full border-2 border-white text-[#ECE4D9] font-medium hover:bg-transparent hover:border-2 hover:border-[#51301F] ease-in hover:text-[#51301F] transition-all duration-300 text-base sm:text-lg"
               >
                 <svg

@@ -66,7 +66,7 @@ const VillasLandingPage: React.FC = () => {
       id: 1,
       name: "Pine Villas",
       description: "Pine Villa is an ultra-luxurious property located in the prestigious neighborhood of Al Barari, Dubai. Renowned for its exclusivity and lush green surroundings. Spanning an impressive 16,500 square feet, this bespoke residence is designed to meet the highest standards of sophistication and elegance, catering to the discerning tastes of elite investors. The villa features six expansive bedrooms, each thoughtfully crafted to provide unparalleled comfort and style.",
-      image: "villas6_on26yw",
+      image: "villas6_xfowy1",
       stats: {
         location: "Multi B-17",
         builtUpArea: "16,000 sqft",
@@ -88,7 +88,7 @@ const VillasLandingPage: React.FC = () => {
       id: 2,
       name: "Palm Villas",
       description: "Palm Villa represents the pinnacle of tropical luxury living, situated in the heart of Dubai's most coveted residential district. This magnificent property showcases contemporary architecture with natural elements, creating a harmonious blend of modern comfort and tropical serenity. With sprawling indoor and outdoor spaces, the villa offers an unmatched lifestyle experience for those who appreciate refined living.",
-      image: "villas5_pbbmft",
+      image: "villas5_cruiec",
       stats: {
         location: "Multi B-17",
         builtUpArea: "14,500 sqft",
@@ -110,7 +110,7 @@ const VillasLandingPage: React.FC = () => {
       id: 3,
       name: "Oasis Villas",
       description: "Oasis Villa is a masterpiece of architectural excellence, designed to provide an exclusive retreat from the bustling city life. Nestled in a serene environment, this luxury residence combines traditional elegance with modern innovations. The villa features meticulously landscaped gardens, state-of-the-art facilities, and premium finishes throughout, making it an ideal sanctuary for discerning homeowners.",
-      image: "villas4_otadlw",
+      image: "villas3_hyjhxo",
       stats: {
         location: "Multi B-17",
         builtUpArea: "18,000 sqft",
@@ -151,7 +151,7 @@ const VillasLandingPage: React.FC = () => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <Hero
-      backgroundSrc='Villas.mp4_1_ckblp9'
+      backgroundSrc='Villas.mp4_1.mp4_bguy7k'
       backgroundType='video'
       overlay='light'
       />
@@ -204,7 +204,7 @@ const VillasLandingPage: React.FC = () => {
 
                 {/* Image Section */}
                 <div className={`relative ${isImageRight ? 'lg:order-2' : 'lg:order-1 lg:col-start-1'}`}>
-                  <div className="relative h-96 lg:h-[600px] overflow-hidden">
+                  <div className="relative h-96 lg:h-[640px] overflow-hidden">
                     <CldImage
                       src={villa.image}
                       fill

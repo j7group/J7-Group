@@ -1,16 +1,16 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { 
-  FaPhone, 
-  FaEnvelope, 
-  FaMapMarkerAlt, 
-  FaFacebookF,  
-  FaLinkedinIn, 
+import React, { useState, useEffect } from "react";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaFacebookF,
+  FaLinkedinIn,
   FaInstagram,
   FaYoutube,
   FaTiktok,
-} from 'react-icons/fa';
-import Link from 'next/link';
+} from "react-icons/fa";
+import Link from "next/link";
 
 const Footer = () => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -24,10 +24,10 @@ const Footer = () => {
     checkScreenSize();
 
     // Add event listener for window resize
-    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
 
     // Cleanup
-    return () => window.removeEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   const quickLinks = [
@@ -38,15 +38,40 @@ const Footer = () => {
     { name: "News", href: "/media/news" },
     { name: "Privacy Policy", href: "#" },
     { name: "Terms & Conditions", href: "#" },
-    { name: "Cookie Policy", href: "#" }
+    { name: "Cookie Policy", href: "#" },
   ];
 
   const socialLinks = [
-    { icon: <FaYoutube size={isLargeScreen ? 20 : 16} />, name: "YouTube", href: "#", color: "hover:text-red-400" },
-    { icon: <FaFacebookF size={isLargeScreen ? 20 : 16} />, name: "Facebook", href: "#", color: "hover:text-blue-400" },
-    { icon: <FaTiktok size={isLargeScreen ? 20 : 16} />, name: "TikTok", href: "#", color: "hover:text-white" },
-    { icon: <FaLinkedinIn size={isLargeScreen ? 20 : 16} />, name: "LinkedIn", href: "#", color: "hover:text-blue-300" },
-    { icon: <FaInstagram size={isLargeScreen ? 20 : 16} />, name: "Instagram", href: "#", color: "hover:text-pink-400" }
+    {
+      icon: <FaYoutube size={isLargeScreen ? 20 : 16} />,
+      name: "YouTube",
+      href: "#",
+      color: "hover:text-red-400",
+    },
+    {
+      icon: <FaFacebookF size={isLargeScreen ? 20 : 16} />,
+      name: "Facebook",
+      href: "#",
+      color: "hover:text-blue-400",
+    },
+    {
+      icon: <FaTiktok size={isLargeScreen ? 20 : 16} />,
+      name: "TikTok",
+      href: "#",
+      color: "hover:text-white",
+    },
+    {
+      icon: <FaLinkedinIn size={isLargeScreen ? 20 : 16} />,
+      name: "LinkedIn",
+      href: "#",
+      color: "hover:text-blue-300",
+    },
+    {
+      icon: <FaInstagram size={isLargeScreen ? 20 : 16} />,
+      name: "Instagram",
+      href: "#",
+      color: "hover:text-pink-400",
+    },
   ];
 
   return (
@@ -56,7 +81,6 @@ const Footer = () => {
         <div className="relative z-10 h-full flex items-center">
           <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-              
               {/* Company Info */}
               <div className="lg:col-span-1">
                 <div className="mb-6 lg:mb-8">
@@ -67,20 +91,25 @@ const Footer = () => {
                     DEVELOPMENTS
                   </div>
                 </div>
-                
+
                 <p className="text-red-100 leading-relaxed mb-6 lg:mb-8 text-sm lg:text-base">
-                  J7 Group, a leading technology and development company, delivers comprehensive solutions for all kinds of development projects, media services, and digital innovation from initial concept through completion and ongoing support.
+                  J7 Group, a leading technology and development company,
+                  delivers comprehensive solutions for all kinds of development
+                  projects, media services, and digital innovation from initial
+                  concept through completion and ongoing support.
                 </p>
               </div>
 
               {/* Quick Links */}
               <div className="lg:col-span-1">
-                <h3 className="text-base lg:text-lg font-normal mb-4 lg:mb-6 text-white tracking-wide">QUICK LINKS</h3>
+                <h3 className="text-base lg:text-lg font-normal mb-4 lg:mb-6 text-white tracking-wide">
+                  QUICK LINKS
+                </h3>
                 <ul className="space-y-1">
                   {quickLinks.map((link, index) => (
                     <li key={index}>
-                      <a 
-                        href={link.href} 
+                      <a
+                        href={link.href}
                         className="text-red-100 hover:text-white transition-colors duration-200 text-sm lg:text-base leading-relaxed block"
                       >
                         {link.name}
@@ -92,32 +121,50 @@ const Footer = () => {
 
               {/* Contact Us */}
               <div className="lg:col-span-1">
-                <h3 className="text-base lg:text-lg font-normal text-white mb-4 lg:mb-6 tracking-wide">CONTACT US</h3>
+                <h3 className="text-base lg:text-lg font-normal text-white mb-4 lg:mb-6 tracking-wide">
+                  CONTACT US
+                </h3>
                 <div className="space-y-3 lg:space-y-4">
                   <div className="flex items-start">
-                    <FaPhone className="text-red-200 mt-1 mr-3 flex-shrink-0" size={14} />
+                    <FaPhone
+                      className="text-red-200 mt-1 mr-3 flex-shrink-0"
+                      size={14}
+                    />
                     <div>
-                      <a href="tel:+15551234567" className="text-red-100 hover:text-white transition-colors text-sm lg:text-base">
-                        +1 555 123 4567
+                      <a
+                        href="tel:+923377777700"
+                        className="text-red-100 hover:text-white transition-colors text-sm lg:text-base"
+                      >
+                        +923377777700
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start">
-                    <FaEnvelope className="text-red-200 mt-1 mr-3 flex-shrink-0" size={14} />
+                    <FaEnvelope
+                      className="text-red-200 mt-1 mr-3 flex-shrink-0"
+                      size={14}
+                    />
                     <div>
-                      <a href="mailto:info@j7group.com" className="text-red-100 hover:text-white transition-colors text-sm lg:text-base">
+                      <a
+                        href="mailto:info@j7group.com"
+                        className="text-red-100 hover:text-white transition-colors text-sm lg:text-base"
+                      >
                         info@j7group.com
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start">
-                    <FaMapMarkerAlt className="text-red-200 mt-1 mr-3 flex-shrink-0" size={14} />
+                    <FaMapMarkerAlt
+                      className="text-red-200 mt-1 mr-3 flex-shrink-0"
+                      size={14}
+                    />
                     <div>
                       <p className="text-red-100 text-sm lg:text-base leading-relaxed">
-                        Suite 123, Tech Tower,<br />
-                        Business District, City, Country
+                        MR 9, Block C Multi Gardens B-17
+                        <br />
+                        Islamabad
                       </p>
                     </div>
                   </div>
@@ -126,8 +173,10 @@ const Footer = () => {
 
               {/* Newsletter & Social */}
               <div className="lg:col-span-1">
-                <h3 className="text-base lg:text-lg text-white mb-4 lg:mb-6 tracking-wide">SUBSCRIBE TO NEWSLETTER</h3>
-                
+                <h3 className="text-base lg:text-lg text-white mb-4 lg:mb-6 tracking-wide">
+                  SUBSCRIBE TO NEWSLETTER
+                </h3>
+
                 {/* Newsletter Form */}
                 <div className="mb-4 lg:mb-6">
                   <div className="flex">

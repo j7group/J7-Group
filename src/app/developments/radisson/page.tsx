@@ -46,7 +46,7 @@ const page = () => {
       project={radissonData}
       autoPlayInterval={4000}
       />
-      <PropertySection data={radissonFeatures}/>
+      <PropertySection data={radissonFeatures} propertyName="Radisson"/>
       
          <CarouselGalleryWrapper
         propertyName="Radisson"
@@ -69,7 +69,7 @@ const page = () => {
       />
       <MapLocation />
 
-      <ContactFormSection />
+      <ContactFormSection property="Radisson"/>
     </div>
   );
 };

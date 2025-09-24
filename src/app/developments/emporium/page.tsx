@@ -6,7 +6,7 @@ import AmenitiesSection from "@/components/features/projects/AmenitySection";
 import GalleryComponent from "@/components/features/projects/GalleryComponent";
 import PropertySection from "@/components/features/projects/PropertySection";
 import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
-import { emporiumDetail, j7EmporiumData, j7EmporiumFeatures } from "@/lib/data/emporium";
+import { emporiumDetail, j7EmporiumData, emporiumFeatures } from "@/lib/data/emporium";
 import { getAmenitiesByProperty } from "@/lib/data/properties";
 import React from "react";
 import CarouselGalleryWrapper from "@/components/features/projects/CarouselGalleryWrapper";
@@ -103,7 +103,7 @@ const J7EmporiumPage = () => {
       )}
 
       <GalleryComponent project={j7EmporiumData} autoPlayInterval={4000} />
-      <PropertySection data={j7EmporiumFeatures} />
+      <PropertySection data={emporiumFeatures} propertyName="J7 Emporium"/>
 
       {/* Reusable Carousel Gallery - Enhanced with better configuration */}
       <CarouselGalleryWrapper
@@ -126,7 +126,7 @@ const J7EmporiumPage = () => {
         description="Track our construction milestones and development phases"
       />
       <GoogleMapsIframe />
-      <ContactFormSection />
+      <ContactFormSection property="J7 Emporium"/>
     </div>
   );
 };

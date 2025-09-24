@@ -23,9 +23,9 @@ const DropdownNavItem: React.FC<DropdownNavItemProps> = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <div className={`text-xs lg:text-sm font-light tracking-wide transition-colors duration-500 flex items-center py-6 cursor-pointer whitespace-nowrap ${
+      <div className={`text-xs lg:text-sm font-light uppercase tracking-wider transition-colors duration-500 flex items-center py-6 cursor-pointer whitespace-nowrap ${
         isScrolled 
-          ? 'text-[#51301F] hover:text-gray-600 uppercase font-medium'
+          ? 'text-[#51301F] hover:text-gray-600 font-medium'
           : 'text-white hover:text-white/80'
       }`}>
         <span className='text-nowrap'>{label}</span>

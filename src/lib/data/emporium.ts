@@ -22,7 +22,6 @@ export interface PropertyFeature {
 export interface PropertySectionData {
   title: string;
   description: string;
-  features: PropertyFeature[];
   mainImage: {
     cloudinaryId: string;
     alt: string;
@@ -72,90 +71,75 @@ export const j7EmporiumData: ProjectData = {
     },
     {
       id: "7",
-      cloudinaryId: "AdobeStock_981045239_aiodpz",
+      cloudinaryId: "img7690_cnxaz6",
       alt: "J7 Emporium Hotel Suite",
       type: "interior",
     },
     {
       id: "8",
-      cloudinaryId: "amenities5_nm61l2",
+      cloudinaryId: "img7336_knnbfm",
       alt: "J7 Emporium Luxury Room",
       type: "interior",
     },
     {
       id: "9",
-      cloudinaryId: "amenities7_id5sqw",
+      cloudinaryId: "img5330_rh0t0x",
       alt: "J7 Emporium Executive Suite",
       type: "interior",
     },
     {
       id: "10",
-      cloudinaryId: "amenities14_wsxyvb",
+      cloudinaryId: "img4622_rkcsji",
       alt: "J7 Emporium Co-Working",
       type: "interior",
     },
     {
       id: "11",
-      cloudinaryId: "amenities9_vwhjqw",
+      cloudinaryId: "img4268_tmjolm",
       alt: "J7 Emporium Banquet Hall",
       type: "interior",
     },
     {
       id: "12",
-      cloudinaryId: "amenities10_h7qh1v",
+      cloudinaryId: "img4150_fbmhyv",
       alt: "J7 Emporium Gymnasium",
       type: "interior",
     },
     {
-      id: "12",
-      cloudinaryId: "amenities4_uln9lo",
+      id: "13",
+      cloudinaryId: "img4032_lovlsw",
       alt: "J7 Emporium Gymnasium",
       type: "interior",
     },
     {
-      id: "12",
-      cloudinaryId: "amenities1_vy0dry",
+      id: "14",
+      cloudinaryId: "img3560_a1ngcb",
       alt: "J7 Emporium Gymnasium",
       type: "interior",
     },
     {
-      id: "12",
-      cloudinaryId: "amenities2_m81f6t",
+      id: "15",
+      cloudinaryId: "img2969_mnkua3",
       alt: "J7 Emporium Gymnasium",
       type: "interior",
     },
     {
-      id: "12",
-      cloudinaryId: "amenities12_qxlvad",
+      id: "16",
+      cloudinaryId: "img2027_o1jpjx",
       alt: "J7 Emporium Gymnasium",
       type: "interior",
     },
-  ],
-};
-
-export const j7EmporiumFeatures: PropertySectionData = {
-  title: "Experience Luxury at J7 Emporium",
-  description:
-    "J7 Emporium represents the pinnacle of modern commercial and residential development. Located in the heart of the business district, this architectural marvel offers premium office spaces, luxury apartments, and world-class retail outlets. Every detail has been carefully crafted to provide an unparalleled experience of sophistication and convenience.",
-  mainImage: {
-    cloudinaryId: "m5hoguezjidwdmul1iv4_s7alhl",
-    alt: "J7 Emporium Luxury Building",
-  },
-  features: [
     {
-      iconId: "imgi_11_67c7bc857d870bdadf59bef6_Rangerak_icon_3_1_vmqha4",
-      title: "Business Center",
-      description: "State-of-the-art office spaces with modern amenities.",
+      id: "17",
+      cloudinaryId: "img965_hxrum2",
+      alt: "J7 Emporium Gymnasium",
+      type: "interior",
     },
     {
-      iconId: "imgi_12_67ad581258c315dd1bb96954_Rangerak_icon_4_og1ayr",
-      title: "Premium Retail",
-      description: "High-end shopping and dining experiences.",
-    },
-    {
-      iconId: "imgi_61_67c7bc857d870bdadf59c137_image_20_9_-p-2000_lqnnie",
-      title: "Luxury Living",
-      description: "Elegant residential units with premium finishes.",
+      id: "18",
+      cloudinaryId: "img2027_o1jpjx",
+      alt: "J7 Emporium Gymnasium",
+      type: "interior",
     },
   ],
 };
@@ -169,4 +153,13 @@ export const emporiumDetail: ResidenceDetail = {
 export const aboutDetail: ResidenceDetail = {
   title: "Where Luxury Meets Convenience",
   description: "J7 Group stands as a symbol of sophistication, where contemporary architecture meets timeless design. With premium spaces, curated amenities, and a vibrant atmosphere, it offers an elevated lifestyle experience tailored for those who aspire to the extraordinary."
+}
+
+export const emporiumFeatures: PropertySectionData = {
+  title: "J7 Emporium – Islamabad’s Premier Mixed-Use Icon",
+  description: "Rising in the heart of B-17, Islamabad, J7 Emporium is a 30-storey masterpiece covering 46 kanals of prime real estate. This landmark development blends luxury residences, a grand shopping mall, corporate offices, and hotel suites—all unified by world-class amenities. With features such as Pakistan’s first skywalk, towering atrium, rooftop restaurants, spa & gym, and cutting-edge infrastructure, J7 Emporium redefines urban excellence and offers unmatched investment opportunity and lifestyle sophistication.",
+  mainImage: {
+    cloudinaryId: "img2145_qnp7ky",
+    alt: "J7 Emporium Luxury Building",
+  }
 }

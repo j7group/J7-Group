@@ -23,7 +23,7 @@ const RelatedNewsCard: React.FC<{ post: BlogPost; index: number }> = ({ post, in
     if (post.externalLink) {
       window.open(post.externalLink, '_blank');
     } else {
-      window.location.href = `/news/${slug}`;
+      window.location.href = `/media/news/${slug}`;
     }
   };
 

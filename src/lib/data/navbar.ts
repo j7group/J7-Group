@@ -2,30 +2,6 @@
 
 import { DropdownSection } from "../navbar/types";
 
-export const aboutSections: DropdownSection[] = [
-  {
-    id: 1,
-    category: "About Us",
-    title: "Our Story",
-    image: "J7Emporium-View1_1_oskv4d",
-    description: "Range Ras Al Khaimah, part of Range Developments, offers luxury beachfront apartments in Al Marjan. With a decade of expertise, we craft bespoke living experiences in one of the UAE's most coveted destinations.",
-    href: "/about/story"
-  },
-  {
-    id: 2,
-    category: "About Us", 
-    title: "Partnerships",
-    image: "samples/landscapes/girl-urban-view",
-    href: "/about/partnerships"
-  },
-  {
-    id: 3,
-    category: "About Us",
-    title: "Our Team", 
-    image: "samples/people/jazz",
-    href: "/about/team"
-  }
-];
 
 export const developments: DropdownSection[] = [
   {
@@ -80,11 +56,4 @@ export const mediaCenter: DropdownSection[] = [
     image: "imgi_81_kam-idris-vqMQN9zImG4-unsplash_1_-min_eidivr",
     href: "/media/events" // Future events page
   },
-  {
-    id: 4,
-    category: "Media Center",
-    title: "Gallery",
-    image: "imgi_3_3kgjP9qDZpTTY29GYKnxPhfglWs_rhkhtw",
-    href: "/media/gallery" // Future gallery page
-  }
 ];
