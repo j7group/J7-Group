@@ -32,8 +32,8 @@ const J7GroupHero = () => {
   ];
 
   const stats = [
-    { number: '8+', label: 'Years experience', description: 'Improving homes with expert craftsmanship for years' },
-    { number: '26+', label: 'Projects completed', description: 'Over 250 successful projects delivered with quality and care' },
+    { number: '26+', label: 'Years experience', description: 'Improving homes with expert craftsmanship for years' },
+    { number: '15+', label: 'Projects completed', description: 'Over 250 successful projects delivered with quality and care' },
     { number: '30+', label: 'Skilled Tradespeople', description: 'Our team of 30 experts ensures top-quality results' },
     { number: '100%', label: 'Client satisfaction', description: 'All of our clients are satisfied with our work and service' }
   ];

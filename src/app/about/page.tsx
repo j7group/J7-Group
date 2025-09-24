@@ -8,6 +8,7 @@ import { Hero } from "@/components/features/home/components/hero-section";
 import React from "react";
 import { aboutDetail } from "@/lib/data/emporium";
 import ChairmanMessage from "@/components/features/About/components/AboutLuxury";
+import OurStory from "@/components/features/About/components/story";
 
 const page = () => {
   return (
@@ -23,6 +24,7 @@ const page = () => {
         title={aboutDetail.title}
         description={aboutDetail.description}
       />
+      <OurStory />
       <ChairmanMessage />
       <Owner />
       <Services />

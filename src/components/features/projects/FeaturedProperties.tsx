@@ -31,7 +31,7 @@ const properties: Property[] = [
     id: "2",
     title: "Radisson Blu by J7 Group",
     location: "Mumtaz City Near New Islamabad International Airport",
-    image: "Render_J7Global_7_jkjfjq",
+    image: "bu6bonjx9ob7knrb24gw_hgpyzo",
     type: "Commercial",
     sqft: "350,000",
     year: "2024",
