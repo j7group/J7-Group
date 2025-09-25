@@ -5,7 +5,7 @@ export const propertyConfigurations: Record<string, PropertyData> = {
   'j7-emporium': {
     name: 'J7 Emporium',
     location: 'Multi Garden, Sector B-17, Islamabad, Pakistan',
-    backgroundImage: 'Cam_04_final_night_light_fs8sja',
+    backgroundImage: 'Cam_04_final_night_light_kazjdn',
     projectDetails: {
       stories: 30,
       totalArea: '46 kanal',
@@ -42,12 +42,6 @@ export const propertyConfigurations: Record<string, PropertyData> = {
         floorArea: { top: '30%', left: '25%', width: '30%', height: '25%' }
       },
       {
-        id: 'hotel',
-        name: 'Hotel Suites',
-        position: { top: '25%', left: '55%' },
-        floorArea: { top: '20%', left: '25%', width: '28%', height: '10%' }
-      },
-      {
         id: 'penthouse',
         name: 'Penthouse Level',
         position: { top: '8%', left: '55%' },
@@ -60,7 +54,7 @@ export const propertyConfigurations: Record<string, PropertyData> = {
         name: 'Studio Apartment',
         totalArea: '705 - 741 sq.ft.',
         unitNumber: 'Multiple Units Available',
-        floors: 'Residential Floors (5-18)',
+        floors: '15-22',
         rate: 'PKR 18,500',
         totalPrice: 'PKR 13,042,500 - 13,708,500',
         downPayment: 'PKR 3,260,625 - 3,427,125 (25%)',
@@ -70,17 +64,17 @@ export const propertyConfigurations: Record<string, PropertyData> = {
       '1 Bedroom': {
         id: '1bed',
         name: '1 Bedroom Apartment',
-        totalArea: '680 - 750 sq.ft.',
+        totalArea: '1124 sq.ft.',
         unitNumber: 'Multiple Units Available',
-        floors: 'Residential Floors (5-18)',
+        floors: '10-22',
         rate: 'PKR 18,500'
       },
       '2 Bedroom': {
         id: '2bed',
         name: '2 Bedroom Apartment',
-        totalArea: '2114 - 2189 sq.ft.',
+        totalArea: '1890 - 2189 sq.ft.',
         unitNumber: 'Multiple Units Available',
-        floors: 'Residential Floors (5-18)',
+        floors: '6-10',
         rate: 'PKR 18,500',
         totalPrice: 'PKR 39,109,000 - 40,496,500',
         downPayment: 'PKR 9,777,250 - 10,124,125 (25%)',
@@ -89,10 +83,10 @@ export const propertyConfigurations: Record<string, PropertyData> = {
       },
       '3 Bedroom': {
         id: '3bed',
-        name: '3 Bedroom Apartment',
+        name: '3 Bedroom Apartment - Duplex',
         totalArea: '2607 - 2837 sq.ft.',
         unitNumber: 'Limited Units Available',
-        floors: 'Select Residential Floors',
+        floors: '11&12 - 13&14',
         rate: 'PKR 18,500',
         totalPrice: 'PKR 48,229,500 - 52,484,500',
         downPayment: 'PKR 12,057,375 - 13,121,125 (25%)',
@@ -118,18 +112,18 @@ export const propertyConfigurations: Record<string, PropertyData> = {
       'Commercial Shops': {
         id: 'commercial',
         name: 'Commercial Shops',
-        totalArea: '200 - 2000+ sq.ft.',
+        totalArea: '229 - 512+ Sq.ft.',
         unitNumber: 'Multiple Units Available',
-        floors: 'Ground Floor & Mezzanine',
-        rate: 'PKR 50,000'
+        floors: 'Ground Floor1 & Ground Floor 2',
+        rate: 'PKR 58,000'
       },
       'Office': {
         id: 'office',
         name: 'Office Spaces',
-        totalArea: '300 - 1500+ sq.ft.',
+        totalArea: '490 - 520+ sq.ft.',
         unitNumber: 'Multiple Units Available',
-        floors: 'Office Floors (2-4)',
-        rate: 'PKR 45,000'
+        floors: 'Office Floors 5th A',
+        rate: 'PKR 30,000'
       },
       'STZA IT Zone': {
         id: 'stza',
@@ -178,7 +172,7 @@ export const propertyConfigurations: Record<string, PropertyData> = {
   'radisson': {
     name: 'Radisson Blu Hotel & Residences',
     location: 'Mumtaz City, Srinagar Highway, Islamabad, Pakistan',
-    backgroundImage: 'Render_J7Global_1_t3a3ad',
+    backgroundImage: 'unrdxwszgeenqwunfr6t_tjgaqi',
     projectDetails: {
       stories: 15,
       totalArea: 'Not specified',
@@ -460,7 +454,7 @@ export const propertyConfigurations: Record<string, PropertyData> = {
   'rotana': {
     name: 'Signature Rotana Hotel & Residences',
     location: 'Top City-1, Srinagar Highway, Islamabad, Pakistan',
-    backgroundImage: 'imgi_66_1-5.jpg-1_s17rfp',
+    backgroundImage: 'imgi_66_1-5.jpg-1_p1zir0',
     projectDetails: {
       stories: 26,
       totalArea: 'Not specified',

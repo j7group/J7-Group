@@ -14,9 +14,9 @@ export interface ProjectData {
   hasVideo?: boolean;
 }
 export const iconData: ProjectData = {
-  name: "Radisson Blu",
-  hasVideo: true,
-  videoUrl: "https://example.com/j7-emporium-video.mp4",
+  name: "J7 Icon",
+  hasVideo: false,
+  // videoUrl: "https://example.com/j7-emporium-video.mp4",
   images: [
     { id: '1', cloudinaryId: 'icon2_wwpfmi', alt: 'J7 Emporium Luxury Building', type: 'exterior' },
     { id: '2', cloudinaryId: 'icon3_wzqaqu', alt: 'J7 Emporium Pool Area', type: 'exterior' },

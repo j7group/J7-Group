@@ -30,8 +30,8 @@ export interface PropertySectionData {
 }
 export const j7EmporiumData: ProjectData = {
   name: "J7 Emporium",
-  hasVideo: true,
-  videoUrl: "https://example.com/j7-emporium-video.mp4",
+  hasVideo: false,
+  // videoUrl: "https://example.com/j7-emporium-video.mp4",
   images: [
     {
       id: "5",
@@ -41,31 +41,31 @@ export const j7EmporiumData: ProjectData = {
     },
     {
       id: "1",
-      cloudinaryId: "Cam_12_final_day_light_mvu5m6",
+      cloudinaryId: "Cam_04_final_night_light_kazjdn",
       alt: "J7 Emporium Luxury Building",
       type: "exterior",
     },
     {
       id: "2",
-      cloudinaryId: "Cam_09_final_daylight_1_inafbw",
+      cloudinaryId: "Cam_12_final_day_light_vq6sry",
       alt: "J7 Emporium Pool Area",
       type: "exterior",
     },
     {
       id: "3",
-      cloudinaryId: "Cam_04_final_night_light_fs8sja",
+      cloudinaryId: "Cam_13_final_day_light_vbsgsb",
       alt: "J7 Emporium Modern Exterior",
       type: "exterior",
     },
     {
       id: "4",
-      cloudinaryId: "Cam_14_final_day_light_edrri3",
+      cloudinaryId: "Cam_09_final_daylight_1_kbnlar",
       alt: "J7 Emporium Interior Living",
       type: "exterior",
     },
     {
       id: "6",
-      cloudinaryId: "bdm79wg1vocjednjsc8o_iol4ix",
+      cloudinaryId: "Cam_14_final_day_light_zdb4aa",
       alt: "J7 Emporium Bedroom",
       type: "exterior",
     },

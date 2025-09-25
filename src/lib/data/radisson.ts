@@ -15,8 +15,8 @@ export interface ProjectData {
 }
 export const radissonData: ProjectData = {
   name: "Radisson Blu",
-  hasVideo: true,
-  videoUrl: "https://example.com/j7-emporium-video.mp4",
+  hasVideo: false,
+  // videoUrl: "https://example.com/j7-emporium-video.mp4",
   images: [
     { id: '1', cloudinaryId: 'unrdxwszgeenqwunfr6t_tjgaqi', alt: 'J7 Emporium Luxury Building', type: 'exterior' },
     { id: '2', cloudinaryId: 'bu6bonjx9ob7knrb24gw_hgpyzo', alt: 'J7 Emporium Pool Area', type: 'exterior' },

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { CldImage } from "next-cloudinary";
+import CldImage from "../../home/components/Cld-Image";
 
 interface FeatureCard {
   id: string;

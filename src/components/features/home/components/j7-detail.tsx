@@ -2,6 +2,7 @@
 import React from "react";
 import { CldImage } from "next-cloudinary";
 
+
 const J7GroupAbout = () => {
   return (
     <div className="py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-[#FFFFFF]">

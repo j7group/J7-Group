@@ -164,9 +164,9 @@ export const j7EmporiumAmenities: PropertyAmenities = {
       id: "parking",
       name: "Parking Garage",
       imagePublicId: "urtq3jh2oywizofgafs0_bstrof",
-      title: "Premium Airline Lounge",
+      title: "Smart Parking System",
       description:
-        "Exclusive lounge facilities designed for airline crew and VIP guests.",
+        "Multi-level parking facility with smart parking guidance, electric vehicle charging stations, and convenient access to all mall levels.",
     },
     {
       id: "cafe",
@@ -377,7 +377,7 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "lobby-rotana",
       name: "Grand Lobby",
-      imagePublicId: "rotana_lobby_grand",
+      imagePublicId: "img2263_iflafh",
       title: "Majestic Reception Hall",
       description:
         "An opulent lobby featuring marble columns, crystal chandeliers, premium furnishings, and personalized welcome services with dedicated concierge.",
@@ -385,23 +385,15 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "presidential-rotana",
       name: "Presidential Suite",
-      imagePublicId: "rotana_suite_presidential",
+      imagePublicId: "img3324_l8siek",
       title: "Presidential Suite Experience",
       description:
         "Ultra-luxury presidential suite with panoramic views, private butler service, premium amenities, and exclusive access to VIP facilities.",
     },
     {
-      id: "rooftop-rotana",
-      name: "Rooftop Restaurant",
-      imagePublicId: "rotana_restaurant_rooftop",
-      title: "Sky-High Culinary Experience",
-      description:
-        "Exclusive rooftop dining with breathtaking city views, gourmet cuisine, premium wine selection, and intimate fine dining atmosphere.",
-    },
-    {
-      id: "ballroom-rotana",
-      name: "Grand Ballroom",
-      imagePublicId: "rotana_ballroom_elegant",
+      id: "salon",
+      name: "Men Salon",
+      imagePublicId: "img4150_fbmhyv",
       title: "Elegant Grand Ballroom",
       description:
         "Spectacular ballroom with crystal lighting, premium decor, flexible layouts, and comprehensive event planning for weddings and galas.",
@@ -409,7 +401,7 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "pool-rotana",
       name: "Infinity Pool",
-      imagePublicId: "rotana_pool_infinity",
+      imagePublicId: "img4504_jeauat",
       title: "Infinity Pool Paradise",
       description:
         "Stunning infinity pool with city views, poolside cabanas, premium pool service, and temperature-controlled water year-round.",
@@ -417,7 +409,7 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "spa-rotana",
       name: "Royal Spa",
-      imagePublicId: "rotana_spa_royal",
+      imagePublicId: "img2851_f3l1nq",
       title: "Royal Wellness Sanctuary",
       description:
         "World-class spa facility offering signature treatments, private treatment suites, relaxation lounges, and holistic wellness programs.",
@@ -425,7 +417,7 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "gym-rotana",
       name: "Premium Fitness",
-      imagePublicId: "rotana_gym_premium",
+      imagePublicId: "img1556_fmew2q",
       title: "Elite Fitness Center",
       description:
         "State-of-the-art fitness facility with premium equipment, personal trainers, group classes, and stunning views during workouts.",
@@ -433,7 +425,7 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "lounge-rotana",
       name: "Executive Lounge",
-      imagePublicId: "rotana_lounge_executive",
+      imagePublicId: "img1555_qaov6i",
       title: "Exclusive Executive Access",
       description:
         "Private executive lounge with complimentary refreshments, business facilities, meeting spaces, and personalized service for VIP guests.",
@@ -441,7 +433,7 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "dining-rotana",
       name: "Fine Dining",
-      imagePublicId: "rotana_restaurant_fine",
+      imagePublicId: "img1319_pj84hs",
       title: "Michelin-Quality Dining",
       description:
         "Multiple premium restaurants featuring international cuisines, award-winning chefs, wine cellars, and private dining options.",
@@ -449,7 +441,7 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "business-rotana",
       name: "Business Center",
-      imagePublicId: "rotana_business_center",
+      imagePublicId: "img611_cxjqq8",
       title: "Premium Business Facilities",
       description:
         "Comprehensive business center with conference rooms, high-tech equipment, secretarial services, and 24/7 business support.",
@@ -457,7 +449,7 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "valet-rotana",
       name: "Valet Services",
-      imagePublicId: "rotana_valet_service",
+      imagePublicId: "img729_c9vjeu",
       title: "Premium Concierge Services",
       description:
         "Full-service concierge and valet services including car service, shopping assistance, tour arrangements, and personal assistance.",
@@ -465,11 +457,19 @@ export const rotanaAmenities: PropertyAmenities = {
     {
       id: "club-rotana",
       name: "Club Lounge",
-      imagePublicId: "rotana_club_lounge",
+      imagePublicId: "img847_dt4rkf",
       title: "Exclusive Members Club",
       description:
         "Private members' club with premium bar service, networking events, entertainment, and exclusive access for distinguished guests.",
     },
+    {
+      id: "female-salon",
+      name: "Women Salon",
+      imagePublicId: "img7100_wbb6ae",
+      title: "Elegant Grand Ballroom",
+      description:
+        "Spectacular ballroom with crystal lighting, premium decor, flexible layouts, and comprehensive event planning for weddings and galas.",
+    }
   ],
 };
 

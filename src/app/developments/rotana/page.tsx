@@ -11,7 +11,7 @@ import { rotanaData, rotanaDetail, rotanaFeatures } from "@/lib/data/rotana";
 import React from "react";
 
 const page = () => {
-  const propertyAmenities = getAmenitiesByProperty("Radisson");
+  const propertyAmenities = getAmenitiesByProperty("Rotana");
   console.log(propertyAmenities);
   return (
     <div className="">

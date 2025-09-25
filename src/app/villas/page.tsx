@@ -1,6 +1,5 @@
-"use client"
+import CldImage from '@/components/features/home/components/Cld-Image';
 import { Hero } from '@/components/features/home/components/hero-section';
-import { CldImage } from 'next-cloudinary';
 import React from 'react';
 import { IconType } from 'react-icons';
 import { 

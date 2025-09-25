@@ -1,10 +1,10 @@
 // ContactForm.tsx
 "use client";
 import React from "react";
-import { CldImage } from "next-cloudinary";
 import { motion } from "framer-motion";
 import { Toaster } from "react-hot-toast";
 import { useContactForm } from "@/hooks/useContactForm";
+import CldImage from "../../home/components/Cld-Image";
 
 const ContactForm = () => {
   const { formData, isSubmitting, handleInputChange, handleSubmit, isFormValid } = useContactForm();
