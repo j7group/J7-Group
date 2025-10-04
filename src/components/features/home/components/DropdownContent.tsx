@@ -27,7 +27,7 @@ const DropdownContent: React.FC<DropdownContentProps> = ({
   
   // Set grid layout based on section type
   const gridCols = isMedia ? 'grid-cols-3' : 'grid-cols-4';
-  const cardHeight = isMedia ? 'h-84' : 'h-64';
+  const cardHeight = isMedia ? 'h-72' : 'h-64';
   const gap = isMedia ? 'gap-8' : 'gap-6';
 
   return (

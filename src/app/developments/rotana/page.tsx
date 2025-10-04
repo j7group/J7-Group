@@ -18,7 +18,7 @@ const page = () => {
       <Hero
         isHomePage={false}
         backgroundType="video"
-        backgroundSrc="render.mov_j8bghj"
+        backgroundSrc="Rotana_compressed_krduwe"
         overlay="light"
         ariaLabel="Hero section"
         enableAnimations={true}

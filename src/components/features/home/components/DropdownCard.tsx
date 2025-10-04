@@ -14,7 +14,7 @@ interface DropdownCardProps {
 const DropdownCard: React.FC<DropdownCardProps> = ({
   section,
   showDescription = false,
-  height = "h-76",
+  height = "h-72",
 }) => {
   const cardContent = (
     <div className="group cursor-pointer">
