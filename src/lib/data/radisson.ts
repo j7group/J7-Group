@@ -104,7 +104,7 @@ export const radissonFeatures: PropertySectionData = {
   description:
     "Introducing Radisson Blu Islamabad — offering elegant studio, 1-bedroom, and 2-bedroom apartments, hotel suites, and high-end retail shops. Located in Mumtaz City on Srinagar Highway, moments from Islamabad International Airport, this development stands at the confluence of luxury and accessibility. With architecture inspired by modern design and meticulous craftsmanship, every residence and space is created for refined living, emphasizing sophistication, prestige, and comfort.",
   mainImage: {
-    cloudinaryId: "/Radisson/unrdxwszgeenqwunfr6t_with_bgc.webp",
+    cloudinaryId: "Radisson/rtxerroioyipklgevnpo_with_bgc.webp",
     alt: "Radisson Blu Islamabad Interior",
   },
 };

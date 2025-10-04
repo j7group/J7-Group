@@ -194,7 +194,7 @@ export const propertyConfigurations: Record<string, PropertyData> = {
   radisson: {
     name: "Radisson Blu Hotel & Residences",
     location: "Mumtaz City, Srinagar Highway, Islamabad, Pakistan",
-    backgroundImage: "Radisson/unrdxwszgeenqwunfr6t.webp",
+    backgroundImage: "Radisson/unrdxwszgeenqwunfr6t_with_bgc.webp",
     projectDetails: {
       stories: 15,
       totalArea: "Not specified",
