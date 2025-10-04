@@ -19,7 +19,7 @@ const CostaMareHero: React.FC = () => {
     "J7 Emporium",
     "Radisson Blu",
     "Rotana",
-    "Royal Swiss",
+    "J7 Icon",
   ];
 
   useEffect(() => {
