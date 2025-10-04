@@ -8,7 +8,7 @@ const page = () => {
   return (
     <div>
         <Hero 
-        backgroundSrc='imgi_165_UJLFxuhDXlE4CSHhgho4sHURAheE2kTtmsUieBId_vy9akb'
+        backgroundSrc='Google_AI_Studio_2025-09-30T09_45_34.616Z_m5hlyz'
         backgroundType='image'
         overlay='medium'
         />

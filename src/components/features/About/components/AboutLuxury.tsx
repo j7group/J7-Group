@@ -1,7 +1,7 @@
 // components/ChairmanMessage.tsx (Updated)
 import React from "react";
-import CldImage from "../../home/components/Cld-Image";
 import { chairmanContent } from "@/lib/data/owner";
+import { Image } from "@imagekit/next";
 
 const ChairmanMessage = () => {
   // Split message text by \n\n to create paragraphs
@@ -48,7 +48,8 @@ const ChairmanMessage = () => {
           {/* Right Column - Image */}
           <div className="relative">
             <div className="aspect-[3/4] sm:aspect-[4/3] lg:aspect-[14/13] w-full overflow-hidden">
-              <CldImage
+              <Image
+              urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                 src={chairmanContent.image.src}
                 alt={chairmanContent.image.alt}
                 className="w-full h-full object-cover"

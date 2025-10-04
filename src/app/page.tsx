@@ -43,7 +43,7 @@ const page = async() => {
           isHomePage={true}
           backgroundType="video"
           overlay="light"
-          backgroundSrc="J7_group_Video_parrct"
+          backgroundSrc="J7_group_new_fsiz2b"
           ariaLabel="Altaf Development Home Section"
           contentAlignment="center"
         />
@@ -55,7 +55,7 @@ const page = async() => {
         <LuxuryRealEstateComponent />
         {/* <LuxuryRealEstateComponent2 /> */}
         {/* <FeaturedBlogPosts /> */}
-        <FeaturedBlogPosts posts={featuredPosts} />
+        {featuredPosts ? <FeaturedBlogPosts posts={featuredPosts} /> : null}
         <TestimonialsSection />
         {/* <J7FeaturesGrid /> */}
         {/* <TeamCards /> */}

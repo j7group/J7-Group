@@ -57,29 +57,30 @@ export const portableTextComponents: PortableTextComponents = {
   },
   block: {
     normal: ({ children }) => (
-      <p className="mb-6 text-[#150c07] leading-relaxed font-light">{children}</p>
+      <p className="mb-6 text-sm sm:text-base text-[#150c07] leading-relaxed font-light">{children}</p>
     ),
     h1: ({ children }) => (
-      <h1 className="text-5xl text-[#51301F] mb-8 mt-12 leading-tight">{children}</h1>
+      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#51301F] mb-8 mt-12 leading-tight">{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-4xl text-[#51301F] mb-6 mt-10 leading-tight">{children}</h2>
+      <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-[#51301F] mb-6 mt-10 leading-tight">{children}</h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-3xl text-[#51301F] mb-6 mt-8">{children}</h3>
+      <h3 className="text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-[#51301F] mb-6 mt-8">{children}</h3>
     ),
+
     h4: ({ children }) => (
-      <h4 className="text-2xl text-[#51301F] mb-4 mt-6">{children}</h4>
+      <h4 className="text-lg sm:text-xl md:text-2xl text-[#51301F] mb-4 mt-6">{children}</h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-[#7A3110] pl-8 py-6 my-8 italic text-xl text-[#51301F] rounded-r-2xl shadow-lg">
+      <blockquote className="border-l-4 border-[#7A3110] pl-8 py-6 my-8 italic text-base  sm:text-lg md:text-xl text-[#51301F] rounded-r-2xl shadow-lg">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-none pl-0 mb-6 space-y-3">{children}</ul>
+      <ul className="text-sm sm:text-base list-none pl-0 mb-6 space-y-3">{children}</ul>
     ),
     number: ({ children }) => (
       <ol className="list-none pl-0 mb-6 space-y-3 counter-reset-list">{children}</ol>
@@ -87,7 +88,7 @@ export const portableTextComponents: PortableTextComponents = {
   },
   listItem: {
     bullet: ({ children }) => (
-      <li className="text-[#51301F]/80 leading-relaxed text-lg relative pl-8 before:content-['•'] before:absolute before:left-0 before:text-[#7A3110] before:font-bold before:text-xl">
+      <li className="text-[#51301F]/80 leading-relaxed text-sm sm:text-base md:text-lg relative pl-8 before:content-['•'] before:absolute before:left-0 before:text-[#7A3110] before:font-bold before:text-xl">
         {children}
       </li>
     ),

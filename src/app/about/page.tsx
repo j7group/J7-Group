@@ -16,7 +16,7 @@ const page = () => {
       {/* <MissionVision /> */}
       <Hero
         backgroundType="image"
-        backgroundSrc="Cam_14_final_day_light_edrri3"
+        backgroundSrc="Cam_13_final_day_light_qpbu12"
         overlay="medium"
         ariaLabel="About Hero section"
       />

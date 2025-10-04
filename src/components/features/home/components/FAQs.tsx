@@ -1,6 +1,6 @@
 "use client";
-import { CldImage } from 'next-cloudinary';
 import React, { useState } from 'react';
+import { Image } from '@imagekit/next';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
 
 const FAQsSection: React.FC = () => {
@@ -67,9 +67,11 @@ const FAQsSection: React.FC = () => {
           {/* Left Side - Single Full Height Image */}
           <div className="lg:w-1/2 order-2 lg:order-1 mb-8 lg:mb-0">
             <div className="relative group overflow-hidden h-64 sm:h-80 lg:h-full lg:min-h-[600px]">
-              <CldImage
-                src="imgi_9_7i6IELAZjs38Kk7pbY6PuCgJiY_zgr6an"
-                fill
+              <Image
+                urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
+                src="/Amenities J7 Emp/img1083.jpg"
+                width={1920}
+                height={1080}
                 alt="J7 Group Construction Project"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"

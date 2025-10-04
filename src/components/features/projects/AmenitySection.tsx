@@ -1,7 +1,7 @@
 // components/AmenitiesSection.tsx
 "use client";
-import React, { useState } from 'react';
-import { CldImage } from 'next-cloudinary';
+import { Image } from "@imagekit/next";
+import React, { useState } from "react";
 
 interface Amenity {
   id: string;
@@ -21,7 +21,7 @@ interface AmenitiesSectionProps {
 const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
   amenities,
   title = "Premium Amenities",
-  description = "At the heart of J7 Group properties lies an exquisite blend of amenities designed to cater to the most discerning tastes. From opulent facilities and modern conveniences to sophisticated spaces and premium services, every aspect has been meticulously crafted making it a sanctuary of luxury and comfort."
+  description = "At the heart of J7 Group properties lies an exquisite blend of amenities designed to cater to the most discerning tastes. From opulent facilities and modern conveniences to sophisticated spaces and premium services, every aspect has been meticulously crafted making it a sanctuary of luxury and comfort.",
 }) => {
   const [activeAmenity, setActiveAmenity] = useState<Amenity>(amenities[0]);
 
@@ -54,17 +54,16 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
       <div className="w-full">
         <div className="max-w-screen-2xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-0 ">
-            
             {/* Image Section */}
             <div className="mt-4 sm:mt-6 lg:mt-16 order-1 lg:order-1">
               <div className="aspect-[4/3] sm:aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] xl:aspect-[4/3] 2xl:aspect-[6/5] w-full overflow-hidden">
-                <CldImage
+                <Image
+                  urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                   src={activeAmenity.imagePublicId}
                   alt={activeAmenity.title}
                   width={1920}
                   height={1080}
                   className="w-full h-full object-cover transition-all duration-500"
-                  quality="auto:best"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
                 />
               </div>
@@ -74,7 +73,6 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
             <div className="order-2 lg:order-2 py-6 sm:py-8 lg:py-0 -mt-6 sm:-mt-8 lg:mt-16">
               <div className="bg-white px-3 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
                 <div className="w-full mx-auto lg:mx-0">
-                  
                   {/* Desktop Title and Description */}
                   <div className="hidden lg:block mb-2 sm:mb-3 lg:mb-4">
                     <h2 className="text-2xl lg:text-3xl xl:text-4xl text-[#51301F] mb-3 lg:mb-4 tracking-wide leading-tight">
@@ -93,13 +91,16 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
                         onClick={() => handleAmenityClick(amenity)}
                         className={`
                           px-3 sm:px-4 py-2 sm:py-3 lg:py-3 xl:py-4 border-2 border-[#51301F] text-left transition-all duration-300 focus:outline-none text-xs sm:text-sm
-                          ${activeAmenity.id === amenity.id
-                            ? 'bg-[#51301F] text-[#ECE4D9] shadow-sm'
-                            : 'bg-transparent text-[#51301F] hover:bg-[#51301F] hover:text-[#ECE4D9] cursor-pointer'
+                          ${
+                            activeAmenity.id === amenity.id
+                              ? "bg-[#51301F] text-[#ECE4D9] shadow-sm"
+                              : "bg-transparent text-[#51301F] hover:bg-[#51301F] hover:text-[#ECE4D9] cursor-pointer"
                           }
                         `}
                       >
-                        <span className="block truncate font-medium">{amenity.name}</span>
+                        <span className="block truncate font-medium">
+                          {amenity.name}
+                        </span>
                       </button>
                     ))}
                   </div>

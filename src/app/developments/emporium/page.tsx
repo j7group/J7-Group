@@ -79,7 +79,7 @@ const J7EmporiumPage = () => {
       <Hero
         isHomePage={false}
         backgroundType="video"
-        backgroundSrc="J7_Major_anim._v2.mp4_1_lo52bd"
+        backgroundSrc="J7EmpNew_rq41tb"
         overlay="light"
         ariaLabel="J7 Emporium Hero section"
         enableAnimations={true}

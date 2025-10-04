@@ -1,5 +1,4 @@
 // app/events/[slug]/page.tsx
-import { Suspense } from "react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -89,7 +88,7 @@ function EventGallery({ gallery }: { gallery: Event["gallery"] }) {
 
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Event Gallery</h2>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#51301F] mb-6">Event Gallery</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {gallery.map((image, index) => (
           <div key={index} className="group cursor-pointer">
@@ -102,7 +101,7 @@ function EventGallery({ gallery }: { gallery: Event["gallery"] }) {
               />
             </div>
             {image.caption && (
-              <p className="text-sm text-gray-600 mt-2">{image.caption}</p>
+              <p className="text-sm mt-2">{image.caption}</p>
             )}
           </div>
         ))}
@@ -142,10 +141,10 @@ function RelatedEvents({ events }: { events: Event[] }) {
                 )}
               </div>
               <div className="p-4">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                <h3 className="font-semibold  group-hover:text-blue-600 transition-colors mb-2">
                   {event.title}
                 </h3>
-                <div className="flex items-center text-sm text-gray-500">
+                <div className="flex items-center text-sm ">
                   <FiCalendar className="w-4 h-4 mr-2" />
                   {new Date(event.eventDate).toLocaleDateString("en-US", {
                     year: "numeric",
@@ -195,7 +194,7 @@ function ShareButtons({ event }: { event: Event }) {
 
   return (
     <div>
-      <h4 className="font-medium text-gray-900 mb-3 flex items-center">
+      <h4 className="font-medium  mb-3 flex items-center">
         <FiShare2 className="w-4 h-4 mr-2" />
         Share this event
       </h4>
@@ -212,38 +211,6 @@ function ShareButtons({ event }: { event: Event }) {
             {link.name}
           </a>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function EventDetailSkeleton() {
-  return (
-    <div className="animate-pulse">
-      <div className="h-96rounded-lg mb-8"></div>
-      <div className="mx-auto px-4 sm:px-6 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2">
-            <div className="h-8 bg-gray-300 rounded mb-4"></div>
-            <div className="h-4 bg-gray-300 rounded mb-2"></div>
-            <div className="h-4 bg-gray-300 rounded mb-8 w-3/4"></div>
-            <div className="space-y-2">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="h-4 bg-gray-300 rounded"></div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <div className="h-6 bg-gray-300 rounded mb-4"></div>
-              <div className="space-y-4">
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="h-16 bg-gray-300 rounded"></div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -290,7 +257,7 @@ async function EventDetail({ slug }: { slug: string }) {
     <>
       {/* Event Content */}
       <Hero
-        backgroundSrc="Generated_Image_September_07_2025_-_11_56PM_qccfzy"
+        backgroundSrc="j7_group_market_forecast_filled_q2r9lg"
         backgroundType="image"
         overlay="medium"
       />
@@ -299,10 +266,10 @@ async function EventDetail({ slug }: { slug: string }) {
           {/* Main Content */}
           <div className="lg:col-span-2">
             <div className="prose prose-lg max-w-none mt-24">
-              <h2 className="text-4xl font-normal text-[#51301F] mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-[#51301F] mb-4">
                 About This Event
               </h2>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base leading-relaxed">
                 {event.description}
               </p>
             </div>
@@ -349,7 +316,7 @@ async function EventDetail({ slug }: { slug: string }) {
                 <div className="flex items-start">
                   <FiCheckCircle className="w-5 h-5 text-[#51301F] mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-900">Status</p>
+                    <p className="font-medium ">Status</p>
                     <span
                       className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
                         isUpcoming
@@ -369,7 +336,7 @@ async function EventDetail({ slug }: { slug: string }) {
                       <FiUsers className="w-5 h-5 mr-2" />
                       Register for Event
                     </button>
-                    <p className="text-xs text-gray-500 mt-2 text-center">
+                    <p className="text-xs  mt-2 text-center">
                       Click to register or get more information
                     </p>
                   </div>
@@ -398,9 +365,7 @@ export default async function EventDetailPage({
 
   return (
     <div className="min-h-screen relative">
-      <Suspense fallback={<EventDetailSkeleton />}>
-        <EventDetail slug={slug} />
-      </Suspense>
+      <EventDetail slug={slug} />
 
       {/* Back to Events */}
       <div className="bg-white border-t">

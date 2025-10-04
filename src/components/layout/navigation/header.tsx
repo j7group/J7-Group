@@ -105,9 +105,9 @@ const RangeNavbar: React.FC = () => {
                   aria-label="Toggle menu"
                 >
                   {isMobileMenuOpen ? (
-                    <X className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <X className="h-8 w-8 sm:h-10 sm:w-10 -ml-3" />
                   ) : (
-                    <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <Menu className="h-8 w-8 sm:h-10 sm:w-10 -ml-3" />
                   )}
                 </button>
               </div>
@@ -197,7 +197,6 @@ const RangeNavbar: React.FC = () => {
       {isMobileMenuOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-          style={{ top: '64px' }}
           onClick={closeMobileMenu}
         />
       )}
@@ -207,7 +206,6 @@ const RangeNavbar: React.FC = () => {
         className={`lg:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-[999] transform transition-transform duration-300 ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ top: '64px' }}
       >
         <div className="h-full overflow-y-auto">
           <div className="px-6 py-8">
@@ -245,7 +243,7 @@ const RangeNavbar: React.FC = () => {
                         key={section.id}
                         href={section.href}
                         onClick={closeMobileMenu}
-                        className="block text-gray-600 hover:text-[#51301F] transition-colors py-2 text-sm"
+                        className="block hover:text-[#51301F] transition-colors py-2 text-sm border-b border-[#51301F]"
                       >
                         {section.title}
                       </Link>
@@ -276,7 +274,7 @@ const RangeNavbar: React.FC = () => {
                         key={section.id}
                         href={section.href}
                         onClick={closeMobileMenu}
-                        className="block text-gray-600 hover:text-[#51301F] transition-colors py-2 text-sm"
+                        className="block hover:text-[#51301F] transition-colors py-2 text-sm border-b border-[#51301F]"
                       >
                         {section.title}
                       </Link>

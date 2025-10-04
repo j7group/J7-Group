@@ -21,7 +21,7 @@ const page = () => {
       <Hero
         isHomePage={false}
         backgroundType="video"
-        backgroundSrc="Render_animation_desktop_zqweot"
+        backgroundSrc="RadissonNew_xlklbc"
         overlay="light"
         ariaLabel="Hero section"
         enableAnimations={true}

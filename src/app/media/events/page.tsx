@@ -43,15 +43,15 @@ function EventCard({ event }: { event: Event }) {
         </div>
         
         <div className="p-6">
-          <h3 className="text-2xl font-normal text-[#51301F] mb-2 transition-colors">
+          <h3 className="text-lg sm:text-2xl font-normal text-[#51301F] mb-2 transition-colors">
             {event.title}
           </h3>
           
-          <p className="text-gray-600 mb-4 line-clamp-2">
+          <p className="text-sm sm:text-base mb-4 line-clamp-2">
             {event.description}
           </p>
           
-          <div className="space-y-2 text-sm text-gray-500">
+          <div className="space-y-2 text-sm">
             <div className="flex items-center">
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -151,7 +151,7 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
   return (
     <div className="min-h-screen">
   <Hero 
-  backgroundSrc='imgi_45_1729244624-1-travis-mark-12-3-2222x1100-copy_zbi1vb'
+  backgroundSrc='teksjagesj7ohg38cdj9_1_with_bgc_sdntmc'
   backgroundType='image'
   overlay='medium'
   ariaLabel='Events Hero section'

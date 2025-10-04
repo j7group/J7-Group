@@ -1,42 +1,43 @@
 "use client";
-import { CldImage } from "next-cloudinary";
+import { Image } from "@imagekit/next";
 import React, { useState } from "react";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 const Awards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   const awards = [
     {
       year: "2021",
-      title: "Business Excellence Award From President Of Pakistan | Dr Arif Alvi",
-      logo: "imgi_31_Vji1faKB5MrEoKLLjb6nBRRUDA_skw84g"
+      title:
+        "Business Excellence Award From President Of Pakistan | Dr Arif Alvi",
+      logo: "Icons/imgi_12_6WqoaxtEikAfd5t5wlELdCmSE.png",
     },
     {
-      year: "2023", 
+      year: "2023",
       title: "Best Sustainable Architecture Firm",
-      logo: "imgi_30_ADlIphUowsyADZQM0XQkocqaEK4_a9hydf"
+      logo: "Icons/imgi_13_SStfFEYvzlt3abHcGd5j7BgYIM.png",
     },
     {
       year: "2022",
-      title: "Urban Design Excellence Award", 
-      logo: "imgi_29_6WqoaxtEikAfd5t5wlELdCmSE_uyz4eu" 
+      title: "Urban Design Excellence Award",
+      logo: "Icons/imgi_31_Vji1faKB5MrEoKLLjb6nBRRUDA.png",
     },
     {
       year: "2022",
       title: "Luxury Living Design Award",
-      logo: "imgi_13_SStfFEYvzlt3abHcGd5j7BgYIM_gvnn3q"
-    }
+      logo: "Icons/imgi_30_ADlIphUowsyADZQM0XQkocqaEK4.png",
+    },
   ];
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === awards.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? awards.length - 1 : prevIndex - 1
     );
   };
@@ -51,10 +52,13 @@ const Awards = () => {
               Awards & Recognitions
             </h2>
           </div>
-          
+
           <div className="lg:max-w-md lg:text-right flex-shrink-0">
             <p className="text-xs sm:text-sm text-left text-[#51301F] font-sans leading-relaxed font-medium">
-              Our commitment to design excellence, innovation, and sustainability has been recognized globally. Over the years, we have received numerous prestigious awards for our outstanding contributions to architecture and urban development.
+              Our commitment to design excellence, innovation, and
+              sustainability has been recognized globally. Over the years, we
+              have received numerous prestigious awards for our outstanding
+              contributions to architecture and urban development.
             </p>
           </div>
         </div>
@@ -69,7 +73,8 @@ const Awards = () => {
               {/* Logo Container */}
               <div className="flex-1 flex justify-center items-center mb-4">
                 <div className="w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center transition-colors duration-300">
-                  <CldImage 
+                  <Image
+                    urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                     src={award.logo}
                     alt={`${award.title} Logo`}
                     width={100}
@@ -94,25 +99,21 @@ const Awards = () => {
           ))}
         </div>
 
-        
-
         {/* Mobile Slider */}
         <div className="md:hidden">
           <div className="overflow-hidden">
-            <div 
+            <div
               className="flex transition-transform duration-300 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {awards.map((award, index) => (
-                <div
-                  key={index}
-                  className="w-full flex-shrink-0 px-2"
-                >
+                <div key={index} className="w-full flex-shrink-0 px-2">
                   <div className="group bg-[#51301F] p-6 transition-all duration-300 cursor-pointer w-full h-80 flex flex-col justify-between mx-auto max-w-sm">
                     {/* Logo Container */}
                     <div className="flex-1 flex justify-center items-center mb-4">
                       <div className="w-16 h-16 flex items-center justify-center transition-colors duration-300">
-                        <CldImage 
+                        <Image
+                          urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                           src={award.logo}
                           alt={`${award.title} Logo`}
                           width={100}
@@ -140,16 +141,16 @@ const Awards = () => {
           </div>
         </div>
 
-         {/* Mobile Navigation Controls */}
+        {/* Mobile Navigation Controls */}
         <div className="flex justify-center gap-4 items-center mt-6 md:hidden">
-          <button 
+          <button
             onClick={prevSlide}
             className="p-3 rounded-full text-[#51301F] transition-colors duration-300 cursor-pointer"
             aria-label="Previous award"
           >
             <FaArrowLeftLong size={28} />
           </button>
-          <button 
+          <button
             onClick={nextSlide}
             className="p-3 rounded-full text-[#51301F] transition-colors duration-300 cursor-pointer"
             aria-label="Next award"

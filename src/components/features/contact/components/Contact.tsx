@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Toaster } from "react-hot-toast";
 import { useContactForm } from "@/hooks/useContactForm";
-import CldImage from "../../home/components/Cld-Image";
+import { Image } from "@imagekit/next";
 
 const ContactForm = () => {
   const { formData, isSubmitting, handleInputChange, handleSubmit, isFormValid } = useContactForm();
@@ -50,8 +50,9 @@ const ContactForm = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <CldImage
-              src="imgi_10_5NlrQffMZNCcGX0kIlwRQpXM_lht1uo"
+            <Image
+            urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
+              src="Contact/imgi_10_5NlrQffMZNCcGX0kIlwRQpXM.webp"
               alt="Luxury real estate"
               fill
               className="object-cover"

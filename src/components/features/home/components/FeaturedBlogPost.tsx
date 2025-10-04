@@ -25,13 +25,13 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index, onViewDetails }) => {
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {/* Background Image */}
-        {post.mainImage && (
+        {post?.mainImage && (
           <Image
-            src={urlFor(post.mainImage)
+            src={urlFor(post?.mainImage)
               .quality(100)
               .format('webp')
               .url()}
-            alt={post.mainImage.alt || post.title}
+            alt={post?.mainImage.alt || post?.title}
             fill
             className="object-cover transition-transform duration-500"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -100,12 +100,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index, onViewDetails }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
-                {post.title}
+                {post?.title}
               </motion.h3>
 
               {/* View Details Button */}
               <motion.button
-                onClick={() => onViewDetails(post.slug.current, post.contentType)}
+                onClick={() => onViewDetails(post?.slug.current, post?.contentType)}
                 className="px-6 sm:px-8 py-2.5 sm:py-3 bg-[#ECE4D9] text-[#51301F] cursor-pointer font-medium text-sm sm:text-base rounded-full transition-colors duration-300 shadow-lg"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index, onViewDetails }) => {
       {/* Title - Outside Bottom of Image */}
       <div className="pt-3 sm:pt-4">
         <h3 className="text-[#51301F] text-lg sm:text-xl font-light leading-tight">
-          {post.title}
+          {post?.title}
         </h3>
       </div>
     </div>
@@ -217,7 +217,7 @@ const FeaturedBlogPosts: React.FC<FeaturedBlogPostsProps> = ({ posts }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {posts.map((post, index) => (
             <motion.div
-              key={post._id}
+              key={post?._id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ 

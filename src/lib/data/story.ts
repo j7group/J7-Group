@@ -32,14 +32,14 @@ export const ourStoryContent: OurStoryContent = {
       description: "Pioneering vision to stand as a testament to enduring innovation and impact."
     },
     developments: {
-      label: "DEVELOPMENTS",
-      value: "PKR 50Bn+",
+      label: "Service - YEARS",
+      value: "26+",
       description: "We continue to shape Pakistan's skyline and the lives within it."
     }
   },
   closingStatement: "From luxury residences to landmark commercial complexes and mixed-use high-rises, J7 Group has consistently redefined the standards of architecture, quality, and timely delivery. The Group's flagship developments, such as J7 Emporium, have not only transformed Islamabad's skyline but also set new benchmarks for sustainable and technology-driven urban growth.",
   image: {
-    src: "imgi_27_nmBQKhldrY7nA7RsGAUTfTX8X8_rtcjdv",
+    src: "About/imgi_27_nmBQKhldrY7nA7RsGAUTfTX8X8.webp",
     alt: "J7 Group founding team and construction workers at early project site"
   }
 };

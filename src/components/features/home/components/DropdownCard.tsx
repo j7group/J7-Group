@@ -1,8 +1,8 @@
 // components/DropdownCard.tsx
-import React from 'react';
-import Link from 'next/link';
-import { CldImage } from 'next-cloudinary';
-import { DropdownSection } from '@/lib/navbar/types';
+import React from "react";
+import Link from "next/link";
+import { DropdownSection } from "@/lib/navbar/types";
+import { Image } from "@imagekit/next";
 
 interface DropdownCardProps {
   section: DropdownSection;
@@ -11,20 +11,21 @@ interface DropdownCardProps {
   isScrolled: boolean;
 }
 
-const DropdownCard: React.FC<DropdownCardProps> = ({ 
-  section, 
+const DropdownCard: React.FC<DropdownCardProps> = ({
+  section,
   showDescription = false,
-  height = "h-72",
+  height = "h-76",
 }) => {
   const cardContent = (
     <div className="group cursor-pointer">
-      <div className={`relative overflow-hidden ${height} ${showDescription ? 'mb-4' : ''}`}>
-        <CldImage
+      <div
+        className={`relative overflow-hidden ${height} ${showDescription ? "mb-4" : ""}`}
+      >
+        <Image
+          urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
           src={section.image}
           alt={section.title}
-          width={400}
-          height={300}
-          crop="fill"
+          fill
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-black/10"></div>
@@ -32,7 +33,9 @@ const DropdownCard: React.FC<DropdownCardProps> = ({
           <p className="text-white/90 text-xs uppercase tracking-wider mb-2">
             {section.category}
           </p>
-          <h3 className={`text-white font-light ${showDescription ? 'text-xl mb-3' : 'text-lg'}`}>
+          <h3
+            className={`text-white font-light ${showDescription ? "text-xl mb-3" : "text-lg"}`}
+          >
             {section.title}
           </h3>
         </div>
@@ -42,9 +45,7 @@ const DropdownCard: React.FC<DropdownCardProps> = ({
 
   // If href exists, wrap with Link, otherwise return the card as is
   return section.href ? (
-    <Link href={section.href}>
-      {cardContent}
-    </Link>
+    <Link href={section.href}>{cardContent}</Link>
   ) : (
     cardContent
   );

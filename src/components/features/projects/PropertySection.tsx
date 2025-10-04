@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import CldImage from "../home/components/Cld-Image";
 // import Link from "next/link";
 import { PropertySectionData } from "@/lib/data/emporium";
+import { Image } from "@imagekit/next";
 
 interface PropertySectionProps {
   data: PropertySectionData;
@@ -165,19 +165,13 @@ const PropertySection: React.FC<PropertySectionProps> = ({
           {/* Right Side - Image */}
           <div className="order-1 lg:order-2">
             <div className="relative w-full aspect-[4/3]">
-              <CldImage
+              <Image
+              urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                 src={mainImage.cloudinaryId}
                 alt={mainImage.alt}
                 fill
                 className="object-cover"
-                priority
-                quality={100}
-                format="webp"
-                dpr={2}
-                crop="fill"
-                gravity="auto"
                 fetchPriority="high"
-                flags="progressive"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 loading="eager"
               />

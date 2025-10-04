@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import {  Play, ChevronDown, ChevronUp } from 'lucide-react';
-import { CldImage } from 'next-cloudinary';
-import { ProjectData } from '@/lib/data/emporium';
+import React, { useState, useEffect } from "react";
+import { Play, ChevronDown, ChevronUp } from "lucide-react";
+import { ProjectData } from "@/lib/data/emporium";
+import { Image } from "@imagekit/next";
 
-type ViewType = 'EXTERIOR' | 'INTERIOR' | 'VIDEO';
+type ViewType = "EXTERIOR" | "INTERIOR" | "VIDEO";
 
 interface InteractiveProjectGalleryProps {
   project: ProjectData;
@@ -20,24 +20,27 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
   project,
   autoPlayInterval = 5000,
   thumbnailCount = 6,
-  resumeAutoPlayDelay = 10000
+  resumeAutoPlayDelay = 10000,
 }) => {
-  const [activeView, setActiveView] = useState<ViewType>('EXTERIOR');
+  const [activeView, setActiveView] = useState<ViewType>("EXTERIOR");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
 
   // Filter images based on active view
-  const filteredImages = project.images.filter(img => 
-    activeView === 'EXTERIOR' ? img.type === 'exterior' : 
-    activeView === 'INTERIOR' ? img.type === 'interior' : 
-    true
+  const filteredImages = project.images.filter((img) =>
+    activeView === "EXTERIOR"
+      ? img.type === "exterior"
+      : activeView === "INTERIOR"
+        ? img.type === "interior"
+        : true
   );
 
   // Auto-play functionality
   useEffect(() => {
-    if (!isAutoPlaying || activeView === 'VIDEO' || filteredImages.length === 0) return;
-    
+    if (!isAutoPlaying || activeView === "VIDEO" || filteredImages.length === 0)
+      return;
+
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % filteredImages.length);
     }, autoPlayInterval);
@@ -69,8 +72,8 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
   const handleViewChange = (view: ViewType) => {
     setActiveView(view);
     setIsAutoPlaying(true);
-    
-    if (view === 'VIDEO' && project.videoUrl) {
+
+    if (view === "VIDEO" && project.videoUrl) {
       console.log(`Playing video for ${project.name}:`, project.videoUrl);
     }
   };
@@ -80,18 +83,24 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
   };
 
   const scrollThumbnailsDown = () => {
-    setThumbnailStartIndex(Math.min(filteredImages.length - thumbnailCount, thumbnailStartIndex + 1));
+    setThumbnailStartIndex(
+      Math.min(filteredImages.length - thumbnailCount, thumbnailStartIndex + 1)
+    );
   };
 
   // Available views based on project data
-  const availableViews: ViewType[] = ['EXTERIOR', 'INTERIOR'];
+  const availableViews: ViewType[] = ["EXTERIOR", "INTERIOR"];
   if (project.hasVideo || project.videoUrl) {
-    availableViews.push('VIDEO');
+    availableViews.push("VIDEO");
   }
 
-  const visibleThumbnails = filteredImages.slice(thumbnailStartIndex, thumbnailStartIndex + thumbnailCount);
+  const visibleThumbnails = filteredImages.slice(
+    thumbnailStartIndex,
+    thumbnailStartIndex + thumbnailCount
+  );
   const canScrollUp = thumbnailStartIndex > 0;
-  const canScrollDown = thumbnailStartIndex + thumbnailCount < filteredImages.length;
+  const canScrollDown =
+    thumbnailStartIndex + thumbnailCount < filteredImages.length;
 
   return (
     <section className="w-full bg-white">
@@ -101,13 +110,14 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
           {/* Header Section */}
           <div className="text-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#51301F] mb-3 sm:mb-4 md:mb-6 leading-tight px-2">
-              Glimpses of {project.name} 
+              Glimpses of {project.name}
             </h2>
             <p className="text-sm sm:text-base max-w-xs sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto leading-relaxed text-[#26140b] font-normal px-4 sm:px-0">
-              At {project.name}, contemporary luxury meets panoramic coastal beauty.
-              Designed for those with a taste for the extraordinary, this exquisite
-              waterfront escape offers modern interiors, sweeping sea views, and an
-              effortless connection to Al Marjan Island&apos;s vibrant lifestyle.
+              At {project.name}, contemporary luxury meets panoramic coastal
+              beauty. Designed for those with a taste for the extraordinary,
+              this exquisite waterfront escape offers modern interiors, sweeping
+              sea views, and an effortless connection to Al Marjan Island&apos;s
+              vibrant lifestyle.
             </p>
           </div>
         </div>
@@ -115,22 +125,17 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
 
       {/* Gallery Container */}
       <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] 2xl:h-[90vh] overflow-hidden">
-        
         {/* Main Image Display */}
-        {activeView !== 'VIDEO' && filteredImages.length > 0 && (
+        {activeView !== "VIDEO" && filteredImages.length > 0 && (
           <div className="absolute inset-0">
-            <CldImage
+            <Image
+              urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
               src={filteredImages[currentImageIndex]?.cloudinaryId}
               alt={filteredImages[currentImageIndex]?.alt || project.name}
               fill
               className="object-cover transition-all duration-1000 ease-in-out"
               priority
-              quality="auto:best"
-              format="webp"
-              dpr="auto"
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
-              crop="fit"
-              gravity="auto"
             />
             {/* Subtle overlay for better UI visibility */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
@@ -138,12 +143,16 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
         )}
 
         {/* Video View */}
-        {activeView === 'VIDEO' && (
+        {activeView === "VIDEO" && (
           <div className="absolute inset-0 flex items-center justify-center bg-black">
             <div className="text-center text-white px-4">
               <Play className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-4 sm:mb-6 opacity-80" />
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-light mb-2 sm:mb-3">{project.name}</h3>
-              <p className="text-gray-300 text-base sm:text-lg">Video Experience</p>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-light mb-2 sm:mb-3">
+                {project.name}
+              </h3>
+              <p className="text-gray-300 text-base sm:text-lg">
+                Video Experience
+              </p>
               {/* Video player would be implemented here */}
             </div>
           </div>
@@ -158,11 +167,11 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
                 onClick={() => handleViewChange(view)}
                 className={`px-3 sm:px-4 md:px-6 py-2 sm:py-3 cursor-pointer rounded-full text-xs sm:text-sm font-medium transition-all duration-300 flex items-center justify-center space-x-1 sm:space-x-2 whitespace-nowrap flex-shrink-0 ${
                   activeView === view
-                    ? 'bg-white text-[#51301F] shadow-lg'
-                    : 'text-white hover:bg-white/20'
+                    ? "bg-white text-[#51301F] shadow-lg"
+                    : "text-white hover:bg-white/20"
                 }`}
               >
-                {view === 'VIDEO' && <Play className="w-3 h-3 sm:w-4 sm:h-4" />}
+                {view === "VIDEO" && <Play className="w-3 h-3 sm:w-4 sm:h-4" />}
                 <span>{view}</span>
               </button>
             ))}
@@ -170,7 +179,7 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
         </nav>
 
         {/* Thumbnail Navigation - Responsive positioning */}
-        {activeView !== 'VIDEO' && filteredImages.length > 1 && (
+        {activeView !== "VIDEO" && filteredImages.length > 1 && (
           <>
             {/* Desktop - Right side vertical */}
             <div className="hidden md:block absolute right-4 lg:right-6 top-1/2 transform -translate-y-1/2 z-30">
@@ -194,23 +203,20 @@ const InteractiveProjectGallery: React.FC<InteractiveProjectGalleryProps> = ({
                         key={`${image.id}-${actualIndex}`}
                         onClick={() => handleThumbnailClick(actualIndex)}
                         className={`relative w-16 h-12 lg:w-20 lg:h-14 xl:w-28 xl:h-20 overflow-hidden transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white ${
-                          currentImageIndex === actualIndex 
-                            ? 'ring-2 ring-white shadow-lg transform scale-105' 
-                            : 'ring-1 ring-white/30 hover:ring-white/60'
+                          currentImageIndex === actualIndex
+                            ? "ring-2 ring-white shadow-lg transform scale-105"
+                            : "ring-1 ring-white/30 hover:ring-white/60"
                         }`}
                       >
-                        <CldImage
+                        <Image
+                          urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                           src={image.cloudinaryId}
                           alt={image.alt}
                           fill
                           className="object-cover"
-                          quality="auto:best"
-                          format="webp"
-                          crop="fit"
-                          gravity="auto"
                           sizes="(max-width: 1024px) 80px, (max-width: 1280px) 100px, 120px"
                         />
-                        
+
                         {/* Active indicator */}
                         {currentImageIndex === actualIndex && (
                           <div className="absolute inset-0 bg-white/20 flex items-center justify-center">

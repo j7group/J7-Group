@@ -1,5 +1,5 @@
 // types/property.ts
-export type UnitType = 'Studio' | '1 Bedroom' | '2 Bedroom' | '3 Bedroom' | 'Hotel Suites' | 'Penthouse' | 'Commercial Shops' | 'Office' | 'STZA IT Zone';
+export type UnitType = 'Studio' | '1 Bedroom' | '2 Bedroom' | '3 Bedroom' | 'Hotel Suites' | 'Penthouse' | 'Commercial Shops' | 'Office' | 'STZA IT Zone' | 'Hotel Residences';
 
 export interface FloorOverlay {
   id: string;

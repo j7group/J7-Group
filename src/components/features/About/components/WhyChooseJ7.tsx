@@ -1,6 +1,6 @@
 "use client";
+import { Image } from "@imagekit/next";
 import React, { useState, useEffect } from "react";
-import CldImage from "../../home/components/Cld-Image";
 
 interface FeatureCard {
   id: string;
@@ -21,7 +21,7 @@ const WhyChooseJ7Group: React.FC = () => {
       id: "01",
       title: "Innovative Design",
       subtitle: "Thinking",
-      image: "/imgi_5_1731504856-landmark_uyckmr",
+      image: "/About/imgi_32_s5rBZ70ov8MTz1WLx0FUlGF8eU_800x1200.jpg",
       hoverTitle: "Innovative Design Thinking",
       hoverDescription:
         "Every project is approached with a fresh perspective, ensuring it is unique",
@@ -30,7 +30,7 @@ const WhyChooseJ7Group: React.FC = () => {
       id: "02",
       title: "Sustainability & Smart",
       subtitle: "Solutions",
-      image: "/imgi_7_lYCuLgK59nD3yv4wHA5j21dNg_wh9z7n",
+      image: "/About/imgi_26_ZUSsikZgMvriQNChiRclHfEP6fA.jpg",
       hoverTitle: "Sustainability & Smart Solutions",
       hoverDescription:
         "Building for the future with eco-friendly materials and smart technology integration",
@@ -39,7 +39,7 @@ const WhyChooseJ7Group: React.FC = () => {
       id: "03",
       title: "Client-Centric",
       subtitle: "Approach",
-      image: "/imgi_6_DU68HHzHwr3XjkCZjuAwY6qYzY_dhbfo2",
+      image: "/About/imgi_33_lYCuLgK59nD3yv4wHA5j21dNg_800x1200.jpg",
       hoverTitle: "Client-Centric Approach",
       hoverDescription:
         "We work closely with clients, understanding their vision and transforming it into reality",
@@ -48,8 +48,7 @@ const WhyChooseJ7Group: React.FC = () => {
       id: "04",
       title: "Collaboration",
       subtitle: "Culture",
-      image:
-        "/imgi_49_1730716625-4-nicole-franzen-111-w57th_living-room_028-copy_jp26ry",
+      image: "/About/imgi_34_LnQ68JU0hKaSAsJcO4ignu9GS5I.jpg",
       hoverTitle: "Collaboration Culture",
       hoverDescription:
         "We value collaboration and teamwork, fostering a culture of creativity and innovation",
@@ -90,7 +89,8 @@ const WhyChooseJ7Group: React.FC = () => {
             >
               {/* Background Image */}
               <div className="absolute inset-0">
-                <CldImage
+                <Image
+                  urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                   src={feature.image}
                   alt={feature.title}
                   fill
@@ -99,7 +99,7 @@ const WhyChooseJ7Group: React.FC = () => {
                 {/* Overlay */}
                 <div
                   className={`absolute inset-0 transition-all duration-500 ${
-                    hoveredCard === feature.id ? "bg-[#51301F]" : "bg-black/10"
+                    hoveredCard === feature.id ? "bg-[#51301F]" : "bg-black/30"
                   }`}
                 />
               </div>
@@ -153,7 +153,8 @@ const WhyChooseJ7Group: React.FC = () => {
             >
               {/* Background Image */}
               <div className="absolute inset-0">
-                <CldImage
+                <Image
+                  urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                   src={feature.image}
                   alt={feature.title}
                   fill
@@ -224,7 +225,8 @@ const WhyChooseJ7Group: React.FC = () => {
                   >
                     {/* Background Image */}
                     <div className="absolute inset-0">
-                      <CldImage
+                      <Image
+                        urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                         src={feature.image}
                         alt={feature.title}
                         fill

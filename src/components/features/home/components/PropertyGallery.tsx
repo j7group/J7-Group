@@ -1,18 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { CldImage } from "next-cloudinary";
 import { FiPhone } from "react-icons/fi";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Image } from "@imagekit/next";
 
 const CostaMareHero: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const heroImages = [
-    "output_c4zqgy",
-    "nj35hpsamud4ekxqqqhj_k7g0j8",
-    "imgi_66_1-5.jpg-1_s17rfp",
-    "icon3_wzqaqu",
+    "J7 Emp/output (1).webp",
+    "Radisson/cb8agvkvjeestx6nrcxt_with_bgc.webp",
+    "Rotana/rotana1_with_bgc.webp",
+    "J7 Icon/icon2.webp",
   ];
 
   const propertyTitles = [
@@ -34,7 +34,8 @@ const CostaMareHero: React.FC = () => {
     <div className="relative w-full h-[60vh] sm:h-[70vh] md:[80vh] lg:h-screen overflow-hidden">
       {/* Background Layer */}
       <div className="absolute inset-0">
-        <CldImage
+        <Image
+          urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
           src={
             heroImages[
               currentImageIndex === 0
@@ -64,7 +65,8 @@ const CostaMareHero: React.FC = () => {
         }}
         className="absolute inset-0"
       >
-        <CldImage
+        <Image
+          urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
           src={heroImages[currentImageIndex]}
           alt={`Property ${currentImageIndex + 1}`}
           fill

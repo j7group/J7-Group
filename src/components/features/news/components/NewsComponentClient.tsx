@@ -151,7 +151,7 @@ const NewsListingClient: React.FC<NewsListingClientProps> = ({ posts }) => {
     <div className="min-h-screen bg-white">
      
      <Hero 
-     backgroundSrc='imgi_1_MW7isZMroAzztFTAdj3P1jeIuWU_pstmwz'
+     backgroundSrc='News_Image_1_ike9tg'
      backgroundType='image'
      />
       {/* News Grid Section */}

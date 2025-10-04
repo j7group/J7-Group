@@ -14,7 +14,7 @@ const Logo = ({ isScrolled }: LogoProps) => (
             isScrolled ? "text-[#51301F]" : "text-white"
           }`}
         >
-          <span className="font-normal">J7GROUP</span>
+          <span className="font-normal text-3xl ml-8 sm:ml-0 mt-1 sm:mt-0 text-center">J7GROUP</span>
         </h1>
       </div>
     </Link>

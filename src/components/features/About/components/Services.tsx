@@ -1,5 +1,5 @@
+import { Image } from "@imagekit/next";
 import React from "react";
-import CldImage from "../../home/components/Cld-Image";
 
 const services = [
   {
@@ -53,8 +53,9 @@ const Services: React.FC = () => {
     <div className="min-h-screen relative">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <CldImage
-          src="img3088_papmhn"
+        <Image
+        urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
+          src="Amenities J7 Emp/img2263.jpg"
           alt="Modern architecture background showcasing innovative design"
           fill
           className="object-cover"

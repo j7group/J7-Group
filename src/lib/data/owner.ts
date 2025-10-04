@@ -26,7 +26,7 @@ export const ownerContent: OwnerContent = {
     position: "CEO J7 Group"
   },
   image: {
-    src: "CEO_1_mviway",
+    src: "About/CEO (1) (1).webp",
     alt: "Yaseen Mahsud - Chief Executive Officer, J7 Group"
   }
 };
@@ -63,7 +63,7 @@ export const chairmanContent: ChairmanContent = {
     }
   },
   image: {
-    src: "chairman_ihrfrj",
+    src: "About/chairman.jpg",
     alt: "Maqbool Hussain Awan - Founder & Chairman, J7 Group"
   },
   meta: {

@@ -1,9 +1,13 @@
 // pages/properties.tsx
 "use client";
 import React, { useState } from "react";
-import { CldImage } from "next-cloudinary";
-import { FaArrowLeftLong, FaArrowRightLong, FaLocationPin  } from "react-icons/fa6";
+import {
+  FaArrowLeftLong,
+  FaArrowRightLong,
+  FaLocationPin,
+} from "react-icons/fa6";
 import Link from "next/link";
+import { Image } from "@imagekit/next";
 
 interface Property {
   id: string;
@@ -20,8 +24,8 @@ const properties: Property[] = [
   {
     id: "1",
     title: "J7 Emporium",
-    location: "Multi Gardens B17",
-    image: "Cam_12_final_day_light_mvu5m6",
+    location: "Multi Gardens B-17",
+    image: "J7 Emp/Cam_12 final day light.webp",
     type: "Residential",
     sqft: "250,000",
     year: "2023",
@@ -30,8 +34,8 @@ const properties: Property[] = [
   {
     id: "2",
     title: "Radisson Blu by J7 Group",
-    location: "Mumtaz City Near New Islamabad International Airport",
-    image: "bu6bonjx9ob7knrb24gw_hgpyzo",
+    location: "Mumtaz City Islamabad",
+    image: "Radisson/bu6bonjx9ob7knrb24gw_with_bgc.webp",
     type: "Commercial",
     sqft: "350,000",
     year: "2024",
@@ -40,8 +44,8 @@ const properties: Property[] = [
   {
     id: "3",
     title: "Royal Swiss by J7 Group",
-    location: "Mumtaz City Near New Islamabad International Airport",
-    image: "icon2_wwpfmi",
+    location: "Mumtaz City Islamabad",
+    image: "J7 Icon/icon3.webp",
     type: "Residential",
     sqft: "180,000",
     year: "2024",
@@ -50,8 +54,8 @@ const properties: Property[] = [
   {
     id: "4",
     title: "Rotana by J7 Group",
-    location: "Top City Near New Islamabad International Airport",
-    image: "rotana2_icu3pe",
+    location: "Top City Islamabad",
+    image: "Rotana/rotana2.webp",
     type: "Residential",
     sqft: "220,000",
     year: "2023",
@@ -67,7 +71,9 @@ const PropertiesPage: React.FC = () => {
   };
 
   const prevProperty = () => {
-    setCurrentIndex((prev) => (prev - 1 + properties.length) % properties.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + properties.length) % properties.length
+    );
   };
 
   return (
@@ -91,14 +97,13 @@ const PropertiesPage: React.FC = () => {
             >
               {/* Property Image */}
               <div className="aspect-[6/5] relative mb-3 sm:mb-4">
-                <CldImage
+                <Image
+                  urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                   src={properties[currentIndex].image}
                   alt={properties[currentIndex].title}
                   fill
                   className="h-full object-cover transition-transform duration-700"
                   sizes="100vw"
-                  quality="auto:best"
-                  format="webp"
                 />
 
                 {/* Hover Overlay */}
@@ -125,7 +130,7 @@ const PropertiesPage: React.FC = () => {
                 </h3>
                 <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm opacity-70 justify-center text-[#51301F]">
                   <span className="flex items-center gap-1 text-[#51301F]">
-                    <FaLocationPin className="text-xs sm:text-sm" /> 
+                    <FaLocationPin className="text-xs sm:text-sm" />
                     {properties[currentIndex].location}
                   </span>
                 </div>
@@ -149,7 +154,9 @@ const PropertiesPage: React.FC = () => {
                     key={index}
                     onClick={() => setCurrentIndex(index)}
                     className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                      index === currentIndex ? 'bg-[#51301F]' : 'bg-transparent border border-[#51301F]'
+                      index === currentIndex
+                        ? "bg-[#51301F]"
+                        : "bg-transparent border border-[#51301F]"
                     }`}
                     aria-label={`Go to property ${index + 1}`}
                   />
@@ -177,14 +184,13 @@ const PropertiesPage: React.FC = () => {
             >
               {/* Property Image */}
               <div className="aspect-[6/5] relative mb-3 sm:mb-4">
-                <CldImage
+                <Image
+                  urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                   src={property.image}
                   alt={property.title}
                   fill
                   className="h-full object-cover transition-transform duration-700"
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 50vw"
-                  quality="auto:best"
-                  format="webp"
                 />
 
                 {/* Hover Overlay */}
@@ -211,7 +217,7 @@ const PropertiesPage: React.FC = () => {
                 </h3>
                 <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm justify-center text-[#51301F]">
                   <span className="flex items-center gap-1 text-[#51301F]">
-                    <FaLocationPin className="text-xs sm:text-sm" /> 
+                    <FaLocationPin className="text-xs sm:text-sm" />
                     {property.location}
                   </span>
                 </div>

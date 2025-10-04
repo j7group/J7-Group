@@ -26,7 +26,7 @@ export default async function BlogPage() {
   return (
     <div>
       <Hero 
-      backgroundSrc="imgi_95_YddnbYdJG7QM8ZZjksy6JlWvOYI_oz0wcw"
+      backgroundSrc="Google_AI_Studio_2025-09-30T08_00_03.071Z_tmg8wn"
       backgroundType="image"
       overlay="medium"
       ariaLabel="Blog Hero section"

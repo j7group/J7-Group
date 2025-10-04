@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { CldImage } from "next-cloudinary";
 import { motion } from "framer-motion";
+import { Image } from "@imagekit/next";
 
 interface ContactFormSectionProps {
   /**
@@ -41,7 +41,7 @@ interface FormData {
 const ContactFormSection: React.FC<ContactFormSectionProps> = ({
   property,
   title = "Unlock Unparalleled Real Estate Opportunities - Let's Craft Your Next Chapter Together.",
-  backgroundImage = "imgi_1_xhUOxefU5jO3bNObumKRkEZ5KCU_qvjgbx",
+  backgroundImage = "Amenities J7 Emp/img4386.jpg",
   formHeading = "Contact us",
   className = "",
   onSubmit,
@@ -88,7 +88,8 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
   return (
     <div className={`relative min-h-screen overflow-hidden ${className}`}>
       {/* Background Image */}
-      <CldImage
+      <Image
+      urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
         src={backgroundImage}
         alt="Luxury interior background"
         fill

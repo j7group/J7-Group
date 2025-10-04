@@ -1,7 +1,7 @@
 // components/OurStory.tsx
 import React from "react";
-import CldImage from "../../home/components/Cld-Image";
 import { ourStoryContent } from "@/lib/data/story";
+import { Image } from "@imagekit/next";
 
 const OurStory = () => {
   return (
@@ -59,8 +59,9 @@ const OurStory = () => {
 
           {/* Right Column - Image */}
           <div className="relative">
-            <div className="aspect-[4/3] sm:aspect-[14/13] w-full overflow-hidden">
-              <CldImage
+            <div className="aspect-[7/6] sm:aspect-[14/13] w-full overflow-hidden">
+              <Image
+                urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                 src={ourStoryContent.image.src}
                 alt={ourStoryContent.image.alt}
                 className="w-full h-full object-cover transition-all duration-500"
@@ -71,7 +72,9 @@ const OurStory = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
               <div className="absolute bottom-6 left-6 text-white">
                 <p className="text-sm font-medium">J7 Group Heritage</p>
-                <p className="text-xs opacity-90">Building Pakistan&apos;s Future Since Foundation</p>
+                <p className="text-xs opacity-90">
+                  Building Pakistan&apos;s Future Since Foundation
+                </p>
               </div>
             </div>
           </div>

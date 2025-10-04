@@ -1,7 +1,7 @@
 // components/Owner.tsx (Updated)
 import React from "react";
-import CldImage from "../../home/components/Cld-Image";
 import { ownerContent } from "@/lib/data/owner";
+import { Image } from "@imagekit/next";
 
 const Owner = () => {
   return (
@@ -15,10 +15,13 @@ const Owner = () => {
                 {ownerContent.title}
               </h2>
             </div>
-                       
+
             <div className="space-y-4 sm:space-y-6">
               {ownerContent.paragraphs.map((paragraph, index) => (
-                <p key={index} className="text-[#22120a] text-sm sm:text-base leading-relaxed">
+                <p
+                  key={index}
+                  className="text-[#22120a] text-sm sm:text-base leading-relaxed"
+                >
                   {paragraph}
                 </p>
               ))}
@@ -29,16 +32,17 @@ const Owner = () => {
               <blockquote className="text-sm sm:text-base italic leading-relaxed">
                 &quot;{ownerContent.quote.text}&quot;
               </blockquote>
-              <cite className="text-xs sm:text-sm opacity-80 mt-2 block">
+              <cite className="text-xs text-white sm:text-sm opacity-80 mt-2 block">
                 — {ownerContent.quote.author}, {ownerContent.quote.position}
               </cite>
             </div>
           </div>
-           
+
           {/* Right Column - Image */}
           <div className="relative order-1 lg:order-2">
             <div className="aspect-[3/4] sm:aspect-[4/3] lg:aspect-[14/13] w-full overflow-hidden">
-              <CldImage
+              <Image
+                urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                 src={ownerContent.image.src}
                 alt={ownerContent.image.alt}
                 className="w-full h-full object-cover transition-transform duration-300"
