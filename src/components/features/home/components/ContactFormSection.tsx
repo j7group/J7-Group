@@ -1,41 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Image } from "@imagekit/next";
+import { CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { ContactFormData, useReusableContactForm } from "@/hooks/useReusableContactForm";
 
 interface ContactFormSectionProps {
-  /**
-   * Specific property to show in dropdown. If not provided, shows all properties
-   */
   property?: string;
-  /**
-   * Custom title text. If not provided, uses default title
-   */
   title?: string;
-  /**
-   * Custom background image. If not provided, uses default image
-   */
   backgroundImage?: string;
-  /**
-   * Custom form heading. If not provided, uses "Contact us"
-   */
   formHeading?: string;
-  /**
-   * Additional CSS classes for the container
-   */
   className?: string;
-  /**
-   * Callback function when form is submitted
-   */
-  onSubmit?: (formData: FormData) => void;
-}
-
-interface FormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  interestedIn: string;
-  message: string;
+  onSubmitSuccess?: (formData: ContactFormData) => void;
 }
 
 const ContactFormSection: React.FC<ContactFormSectionProps> = ({
@@ -44,15 +20,19 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
   backgroundImage = "Amenities J7 Emp/img4386.jpg",
   formHeading = "Contact us",
   className = "",
-  onSubmit,
+  onSubmitSuccess,
 }) => {
-  const [formData, setFormData] = useState<FormData>({
+  const { submitForm, isSubmitting, isSuccess, error, reset } = useReusableContactForm();
+  
+  const [formData, setFormData] = useState<ContactFormData>({
     fullName: "",
     email: "",
     phone: "",
-    interestedIn: property || "", // Pre-select if property prop is passed
+    interestedIn: property || "",
     message: "",
   });
+
+  const [showNotification, setShowNotification] = useState(false);
 
   // All available properties
   const allPropertyOptions = [
@@ -65,7 +45,11 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
   // Determine which properties to show based on prop
   const propertyOptions = property ? [property] : allPropertyOptions;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -73,15 +57,39 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // If custom onSubmit is provided, use it; otherwise use default behavior
-    if (onSubmit) {
-      onSubmit(formData);
+    const result = await submitForm(formData);
+    
+    setShowNotification(true);
+    
+    if (result.success) {
+      // Reset form on success
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        interestedIn: property || "",
+        message: "",
+      });
+      
+      // Call optional success callback
+      if (onSubmitSuccess) {
+        onSubmitSuccess(formData);
+      }
+      
+      // Hide notification after 5 seconds
+      setTimeout(() => {
+        setShowNotification(false);
+        reset();
+      }, 5000);
     } else {
-      console.log("Form submitted:", formData);
-      // You can add default form submission logic here (e.g., API call)
+      // Hide error notification after 5 seconds
+      setTimeout(() => {
+        setShowNotification(false);
+        reset();
+      }, 5000);
     }
   };
 
@@ -89,7 +97,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
     <div className={`relative min-h-screen overflow-hidden ${className}`}>
       {/* Background Image */}
       <Image
-      urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
+        urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
         src={backgroundImage}
         alt="Luxury interior background"
         fill
@@ -100,9 +108,44 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
+      {/* Notification Toast */}
+      <AnimatePresence>
+        {showNotification && (
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-4 right-4 z-50 max-w-md"
+          >
+            <div
+              className={`flex items-center gap-3 px-6 py-4 rounded-lg shadow-lg ${
+                isSuccess
+                  ? "bg-green-600 text-white"
+                  : "bg-red-600 text-white"
+              }`}
+            >
+              {isSuccess ? (
+                <CheckCircle className="w-6 h-6 flex-shrink-0" />
+              ) : (
+                <XCircle className="w-6 h-6 flex-shrink-0" />
+              )}
+              <div>
+                <p className="font-semibold">
+                  {isSuccess ? "Success!" : "Error"}
+                </p>
+                <p className="text-sm">
+                  {isSuccess
+                    ? "Thank you! We'll contact you soon."
+                    : error || "Something went wrong. Please try again."}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Content Container */}
       <div className="relative z-10 min-h-screen flex flex-col lg:flex-row items-center justify-between px-6 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-8 lg:py-2.5 gap-8 lg:gap-0">
-        
         {/* Left Content */}
         <motion.div
           className="flex-1 max-w-2xl text-center lg:text-left order-2 lg:order-1"
@@ -155,7 +198,8 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
               value={formData.fullName}
               onChange={handleInputChange}
               required
-              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all ease-in text-sm sm:text-base text-gray-800"
+              disabled={isSubmitting}
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all ease-in text-sm sm:text-base text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
               transition={{ duration: 0.2 }}
             />
 
@@ -168,7 +212,8 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-sm sm:text-base"
+                disabled={isSubmitting}
+                className="px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                 transition={{ duration: 0.2 }}
               />
               <motion.input
@@ -178,7 +223,8 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
-                className="px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-sm sm:text-base"
+                disabled={isSubmitting}
+                className="px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                 transition={{ duration: 0.2 }}
               />
             </div>
@@ -188,39 +234,57 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
               name="interestedIn"
               value={formData.interestedIn}
               onChange={handleInputChange}
-              disabled={!!property} // Disable if specific property is passed
+              disabled={!!property || isSubmitting}
               required
-              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-sm sm:text-base disabled:opacity-100 disabled:cursor-not-allowed"
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
               transition={{ duration: 0.2 }}
             >
               <option value="">
-                {property ? `Interested in ${property}` : "Interested in Property"}
+                {property
+                  ? `Interested in ${property}`
+                  : "Interested in Property"}
               </option>
-              {!property && propertyOptions.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
+              {!property &&
+                propertyOptions.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
             </motion.select>
 
             {/* Message */}
             <motion.textarea
               name="message"
-              placeholder={property ? `Tell us about your interest in ${property}...` : "Tell us about your requirements..."}
+              placeholder={
+                property
+                  ? `Tell us about your interest in ${property}...`
+                  : "Tell us about your requirements..."
+              }
               value={formData.message}
               onChange={handleInputChange}
               rows={6}
-              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none text-sm sm:text-base"
+              disabled={isSubmitting}
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 font-sans rounded-sm bg-white backdrop-blur-sm border-0 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
               transition={{ duration: 0.2 }}
             />
 
             {/* Submit Button */}
             <motion.button
               type="submit"
-              className="w-full font-sans rounded-sm hover:bg-transparent hover:border-2 hover:border-white hover:text-white bg-white py-3 sm:py-4 px-6 sm:px-8 font-medium text-xs sm:text-sm uppercase tracking-wider transition-colors ease-in duration-300 cursor-pointer text-gray-800"
+              disabled={isSubmitting}
+              className="w-full font-sans rounded-sm hover:bg-transparent hover:border-2 hover:border-white hover:text-white bg-white py-3 sm:py-4 px-6 sm:px-8 font-medium text-xs sm:text-sm uppercase tracking-wider transition-colors ease-in duration-300 cursor-pointer text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               transition={{ duration: 0.2 }}
             >
-              {property ? `INQUIRE ABOUT ${property.toUpperCase()}` : "SEND MESSAGE"}
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  SUBMITTING...
+                </>
+              ) : property ? (
+                `INQUIRE ABOUT ${property.toUpperCase()}`
+              ) : (
+                "SEND MESSAGE"
+              )}
             </motion.button>
           </motion.form>
 

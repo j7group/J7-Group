@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { CldImage } from "next-cloudinary";
 import { UnitType, PropertyData } from "@/lib/apartments/types";
 import { propertyConfigurations } from "@/lib/data/apartments";
 import { Image } from "@imagekit/next";

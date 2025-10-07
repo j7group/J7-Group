@@ -1,12 +1,14 @@
-import { ApiResponse, ContactFormData } from '@/lib/contact/types';
-import { useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { ApiResponse, ContactFormData } from "@/lib/contact/types";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 interface UseContactFormReturn {
   formData: ContactFormData;
   isSubmitting: boolean;
   handleInputChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   resetForm: () => void;
@@ -15,20 +17,22 @@ interface UseContactFormReturn {
 
 export const useContactForm = (): UseContactFormReturn => {
   const [formData, setFormData] = useState<ContactFormData>({
-    fullName: '',
-    email: '',
-    phone: '',
-    interestedIn: '',
-    message: '',
+    fullName: "",
+    email: "",
+    phone: "",
+    interestedIn: "",
+    message: "",
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -39,10 +43,10 @@ export const useContactForm = (): UseContactFormReturn => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -53,11 +57,11 @@ export const useContactForm = (): UseContactFormReturn => {
         toast.success(result.message);
         resetForm();
       } else {
-        toast.error(result.message || 'Something went wrong');
+        toast.error(result.message || "Something went wrong");
       }
     } catch (error) {
-      console.error('Form submission error:', error);
-      toast.error('Failed to send message. Please try again.');
+      console.error("Form submission error:", error);
+      toast.error("Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -65,16 +69,16 @@ export const useContactForm = (): UseContactFormReturn => {
 
   const resetForm = () => {
     setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      interestedIn: '',
-      message: '',
+      fullName: "",
+      email: "",
+      phone: "",
+      interestedIn: "",
+      message: "",
     });
   };
 
-  const isFormValid = formData.fullName.trim() !== '' && 
-                     formData.email.trim() !== '';
+  const isFormValid =
+    formData.fullName.trim() !== "" && formData.email.trim() !== "";
 
   return {
     formData,
