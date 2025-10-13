@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://localhost:3000',
+  siteUrl: process.env.SITE_URL || 'https://j7group.com.pk',
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: 'daily',
