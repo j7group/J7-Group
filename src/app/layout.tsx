@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/navigation/header";
 import SmoothScrollProvider from "@/components/layout/navigation/ReactLenis";
 import Footer from "@/components/layout/navigation/footer";
 import { StructuredData } from "@/components/seo/StructuredData";
+import GoogleAnalytics from "@/components/seo/GoogleAnalytics";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} font-poppins antialiased overflow-x-hidden`}
       >
+        <GoogleAnalytics />
         <StructuredData />
         {/* Navigation with dropdown support */}
         <Navbar />
