@@ -38,6 +38,7 @@ export default function RootLayout({
         {/* Main content area */}
         <main className="relative">
           <SmoothScrollProvider />
+          {children}
         </main>
 
         {/* Footer */}

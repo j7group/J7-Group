@@ -87,12 +87,12 @@ const Footer = () => {
                   <h2 className="text-2xl lg:text-3xl text-white mb-3 lg:mb-4 tracking-wide">
                     J7 GROUP
                   </h2>
-                  <div className="text-xs lg:text-sm font-light tracking-wider text-red-100 mb-4 lg:mb-6">
+                  <div className="text-xs lg:text-sm font-light tracking-wider text-white mb-4 lg:mb-6">
                     DEVELOPMENTS
                   </div>
                 </div>
 
-                <p className="text-red-100 leading-relaxed mb-6 lg:mb-8 text-sm lg:text-base">
+                <p className="text-white leading-relaxed mb-6 lg:mb-8 text-sm lg:text-base">
                   J7 Group, a leading technology and development company,
                   delivers comprehensive solutions for all kinds of development
                   projects, media services, and digital innovation from initial
@@ -110,7 +110,7 @@ const Footer = () => {
                     <li key={index}>
                       <a
                         href={link.href}
-                        className="text-red-100 hover:text-white transition-colors duration-200 text-sm lg:text-base leading-relaxed block"
+                        className="text-white hover:text-white transition-colors duration-200 text-sm lg:text-base leading-relaxed block"
                       >
                         {link.name}
                       </a>
@@ -127,13 +127,13 @@ const Footer = () => {
                 <div className="space-y-3 lg:space-y-4">
                   <div className="flex items-start">
                     <FaPhone
-                      className="text-red-200 mt-1 mr-3 flex-shrink-0"
+                      className="text-white mt-1 mr-3 flex-shrink-0"
                       size={14}
                     />
                     <div>
                       <a
                         href="tel:+923377777700"
-                        className="text-red-100 hover:text-white transition-colors text-sm lg:text-base"
+                        className="text-white hover:text-white transition-colors text-sm lg:text-base"
                       >
                         +923377777700
                       </a>
@@ -142,13 +142,13 @@ const Footer = () => {
 
                   <div className="flex items-start">
                     <FaEnvelope
-                      className="text-red-200 mt-1 mr-3 flex-shrink-0"
+                      className="text-white mt-1 mr-3 flex-shrink-0"
                       size={14}
                     />
                     <div>
                       <a
                         href="mailto:info@j7group.com"
-                        className="text-red-100 hover:text-white transition-colors text-sm lg:text-base"
+                        className="text-white hover:text-white transition-colors text-sm lg:text-base"
                       >
                         info@j7group.com
                       </a>
@@ -157,11 +157,11 @@ const Footer = () => {
 
                   <div className="flex items-start">
                     <FaMapMarkerAlt
-                      className="text-red-200 mt-1 mr-3 flex-shrink-0"
+                      className="text-white mt-1 mr-3 flex-shrink-0"
                       size={14}
                     />
                     <div>
-                      <p className="text-red-100 text-sm lg:text-base leading-relaxed">
+                      <p className="text-white text-sm lg:text-base leading-relaxed">
                         MR 9, Block C Multi Gardens B-17
                         <br />
                         Islamabad
