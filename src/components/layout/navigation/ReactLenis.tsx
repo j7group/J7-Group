@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import React, { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 
-interface LenisProviderProps {
-  children: ReactNode;
-}
-
-const LenisProvider: React.FC<LenisProviderProps> = ({ children }) => {
+const LenisScroll = () => {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -45,7 +41,7 @@ const LenisProvider: React.FC<LenisProviderProps> = ({ children }) => {
     };
   }, []);
 
-  return <>{children}</>;
+  return null;
 };
 
-export default LenisProvider;
+export default LenisScroll;

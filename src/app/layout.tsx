@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/navigation/header";
 import SmoothScrollProvider from "@/components/layout/navigation/ReactLenis";
 import Footer from "@/components/layout/navigation/footer";
+import { StructuredData } from "@/components/seo/StructuredData";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -28,12 +29,13 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} font-poppins antialiased overflow-x-hidden`}
       >
+        <StructuredData />
         {/* Navigation with dropdown support */}
         <Navbar />
 
         {/* Main content area */}
         <main className="relative">
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <SmoothScrollProvider />
         </main>
 
         {/* Footer */}
