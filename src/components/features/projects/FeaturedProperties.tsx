@@ -49,7 +49,7 @@ const properties: Property[] = [
     type: "Residential",
     sqft: "180,000",
     year: "2024",
-    href: "/developments/mall",
+    href: "/developments/icon",
   },
   {
     id: "4",

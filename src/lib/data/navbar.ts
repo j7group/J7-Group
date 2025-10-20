@@ -22,7 +22,7 @@ export const developments: DropdownSection[] = [
     category: "Developments",
     title: "J7 Icon",
     image: "J7 Icon/royal1.jpg",
-    href: "/developments/mall",
+    href: "/developments/icon",
   },
   {
     id: 4,

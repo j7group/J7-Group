@@ -337,7 +337,7 @@ export function StructuredData() {
         "@type": "ListItem",
         "position": 1,
         "item": {
-          "@id": "https://j7group.com/projects/j7-emporium",
+          "@id": "https://j7group.com/developments/j7-emporium",
           "name": "J7 Emporium",
           "description": "30-story mixed-use development in B-17 Islamabad"
         }

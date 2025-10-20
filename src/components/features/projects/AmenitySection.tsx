@@ -56,7 +56,7 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
           <div className="grid lg:grid-cols-2 gap-0 ">
             {/* Image Section */}
             <div className="mt-4 sm:mt-6 lg:mt-16 order-1 lg:order-1">
-              <div className="aspect-[4/3] sm:aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] xl:aspect-[4/3] 2xl:aspect-[6/5] w-full overflow-hidden">
+              <div className="aspect-[7/6] sm:aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] xl:aspect-[4/3] 2xl:aspect-[6/5] w-full overflow-hidden">
                 <Image
                   urlEndpoint={process.env.NEXT_PUBLIC_URL_ENDPOINT}
                   src={activeAmenity.imagePublicId}
@@ -71,7 +71,7 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
 
             {/* Content Section */}
             <div className="order-2 lg:order-2 py-6 sm:py-8 lg:py-0 -mt-6 sm:-mt-8 lg:mt-16">
-              <div className="bg-white px-3 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
+              <div className="bg-white px-0 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
                 <div className="w-full mx-auto lg:mx-0">
                   {/* Desktop Title and Description */}
                   <div className="hidden lg:block mb-2 sm:mb-3 lg:mb-4">
@@ -84,7 +84,7 @@ const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({
                   </div>
 
                   {/* Amenities Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 mb-6 sm:mb-8 lg:mb-6 mt-6">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6 sm:mb-8 lg:mb-6 mt-6">
                     {amenities.map((amenity) => (
                       <button
                         key={amenity.id}
