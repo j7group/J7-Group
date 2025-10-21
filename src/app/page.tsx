@@ -19,8 +19,24 @@ import { FEATURED_POSTS_QUERY } from "@/lib/sanity/queries";
 import { BlogPost } from "@/lib/sanity/types";
 import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
 
-import React from "react";
+import type { Metadata } from "next";
+import { HomePageStructuredData } from "@/components/seo/StructuredData";
 
+export const metadata: Metadata = {
+  title: "J7 Group — Leading Real Estate Developer in Pakistan",
+  description: "Discover J7 Group's portfolio of luxury developments including J7 Emporium, Radisson Blu, Signature Rotana, and J7 Icon in Islamabad.",
+  alternates: {
+    canonical: "https://j7group.com.pk"
+  },
+  openGraph: {
+    images: [{
+      url: `https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1/Cam_11_final_day_light_bpopj5`,
+      width: 1200,
+      height: 630,
+      alt: "J7 Group - Leading Real Estate Developer Pakistan"
+    }]
+  }
+};
 // Fetch featured posts function
 async function getFeaturedPosts(): Promise<BlogPost[]> {
   try {
@@ -36,6 +52,7 @@ const page = async() => {
     const featuredPosts = await getFeaturedPosts();
   return (
     <div className="relative">
+      <HomePageStructuredData />
       {/* Main content sections */}
       <main className="relative z-10">
         <Hero

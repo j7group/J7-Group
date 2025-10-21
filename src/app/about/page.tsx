@@ -10,10 +10,32 @@ import { aboutDetail } from "@/lib/data/emporium";
 import ChairmanMessage from "@/components/features/About/components/AboutLuxury";
 import OurStory from "@/components/features/About/components/story";
 
+import type { Metadata } from "next";
+import { AboutPageStructuredData } from "@/components/seo/StructuredData";
+
+export const metadata: Metadata = {
+  title: "About J7 Group - Premier Real Estate Developer",
+  description: "Learn about J7 Group's journey in transforming Pakistan's real estate landscape with world-class developments and international partnerships.",
+  alternates: {
+    canonical: "https://j7group.com.pk/about"
+  },
+  openGraph: {
+    title: "About J7 Group",
+    description: "Leading real estate and hospitality developer in Pakistan.",
+    url: "https://j7group.com.pk/about",
+    images: [{
+      url: "https://res.cloudinary.com/diqj8so5h/image/upload/v1/08_tjjknv",
+      width: 1200,
+      height: 630,
+      alt: "About J7 Group"
+    }]
+  }
+};
+
 const page = () => {
   return (
-    <div>
-      {/* <MissionVision /> */}
+    <>
+    <AboutPageStructuredData />
       <Hero
         backgroundType="image"
         backgroundSrc="Cam_13_final_day_light_qpbu12"
@@ -31,7 +53,7 @@ const page = () => {
       <Awards />
       <BrandCollaborations />
       <WhyChooseJ7Group />
-    </div>
+    </>
   );
 };
 

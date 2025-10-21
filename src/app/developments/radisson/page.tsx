@@ -8,16 +8,36 @@ import ReusableProgressSection from "@/components/features/projects/ProgressIndi
 import PropertySection from "@/components/features/projects/PropertySection";
 import MapLocation from "@/components/features/projects/radisson/Map";
 import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
+import { RadissonBluStructuredData } from "@/components/seo/StructuredData";
 import { getAmenitiesByProperty } from "@/lib/data/properties";
 import { radissonData, radissonDetail, radissonFeatures } from "@/lib/data/radisson";
-import React from "react";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Radisson Blu Hotel & Residences Islamabad",
+  description: "15-story 5-star Radisson Blu hotel and residences at Mumtaz City, Srinagar Highway. Premium international hospitality and branded residences.",
+  alternates: {
+    canonical: "https://j7group.com.pk/developments/radisson"
+  },
+  openGraph: {
+    title: "Radisson Blu Hotel & Residences - 5-Star Living",
+    description: "Experience world-class Radisson Blu standards in Islamabad's premier location.",
+    url: "https://j7group.com.pk/developments/radisson",
+    images: [{
+      url: "https://res.cloudinary.com/diqj8so5h/image/upload/v1/DJI_20250911154643_0012_D.00_01_02_09.Still004_qdar0f",
+      width: 1200,
+      height: 630,
+      alt: "Radisson Blu Hotel Islamabad"
+    }]
+  }
+};
 const page = () => {
   const propertyAmenities = getAmenitiesByProperty("Radisson");
   
   console.log(propertyAmenities);
   return (
     <div className="bg-white">
+      <RadissonBluStructuredData />
       <Hero
         isHomePage={false}
         backgroundType="video"

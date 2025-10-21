@@ -6,15 +6,35 @@ import GalleryComponent from "@/components/features/projects/GalleryComponent";
 import PropertySection from "@/components/features/projects/PropertySection";
 import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
 import RotanaIframe from "@/components/features/projects/rotana/Map";
+import { RotanaStructuredData } from "@/components/seo/StructuredData";
 import { getAmenitiesByProperty } from "@/lib/data/properties";
 import { rotanaData, rotanaDetail, rotanaFeatures } from "@/lib/data/rotana";
-import React from "react";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Signature Rotana Hotel & Residences Islamabad",
+  description: "26-story international 5-star Rotana hotel and branded residences at Top City-1, Srinagar Highway. PKR 35,000/sq.ft.",
+  alternates: {
+    canonical: "https://j7group.com.pk/developments/rotana"
+  },
+  openGraph: {
+    title: "Signature Rotana - International 5-Star Living",
+    description: "Rotana's signature hospitality and luxury residences in Islamabad's prime location.",
+    url: "https://j7group.com.pk/developments/rotana",
+    images: [{
+      url: "https://res.cloudinary.com/diqj8so5h/image/upload/v1/rotana2_stowlu",
+      width: 1200,
+      height: 630,
+      alt: "Signature Rotana Hotel Islamabad"
+    }]
+  }
+};
 const page = () => {
   const propertyAmenities = getAmenitiesByProperty("Rotana");
   console.log(propertyAmenities);
   return (
     <div className="">
+      <RotanaStructuredData />
       <Hero
         isHomePage={false}
         backgroundType="video"

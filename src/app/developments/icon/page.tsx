@@ -12,7 +12,28 @@ import { getAmenitiesByProperty } from "@/lib/data/properties";
 import { iconData, iconDetail, j7IconFeatures } from "@/lib/data/icon";
 import IconIframe from "@/components/features/projects/j7Icon/Map";
 
-const J7EmporiumPage = () => {
+import type { Metadata } from "next";
+import { J7IconStructuredData } from "@/components/seo/StructuredData";
+
+export const metadata: Metadata = {
+  title: "J7 Icon - Royal Swiss Hotel Islamabad",
+  description: "14-story luxury Royal Swiss hotel with shopping mall and commercial spaces at Mumtaz City. PKR 40,000-48,000/sq.ft.",
+  alternates: {
+    canonical: "https://j7group.com.pk/developments/icon"
+  },
+  openGraph: {
+    title: "J7 Icon - Royal Swiss Hotel & Mall",
+    description: "Premium hotel suites and commercial opportunities with Royal Swiss brand standards.",
+    url: "https://j7group.com.pk/developments/icon",
+    images: [{
+      url: "https://res.cloudinary.com/diqj8so5h/image/upload/v1/icon1_dyqngn",
+      width: 1200,
+      height: 630,
+      alt: "J7 Icon - Royal Swiss Hotel"
+    }]
+  }
+};
+const J7IconPage = () => {
   const propertyAmenities = getAmenitiesByProperty("J7 Icon");
 
   // Fallback data in case Sanity data is not available
@@ -70,6 +91,7 @@ const J7EmporiumPage = () => {
 
   return (
     <div className="bg-white">
+      <J7IconStructuredData />
       <Hero
         isHomePage={false}
         backgroundType="video"
@@ -123,4 +145,4 @@ const J7EmporiumPage = () => {
   );
 };
 
-export default J7EmporiumPage;
+export default J7IconPage;

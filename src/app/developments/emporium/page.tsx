@@ -14,6 +14,28 @@ import ReusableProgressSection from "@/components/features/projects/ProgressIndi
 import ReusableBuildingShowcase from "@/components/features/projects/BuildingShowcase";
 import GoogleMapsIframe from "@/components/features/contact/components/J7Map";
 
+import type { Metadata } from "next";
+import { J7EmporiumStructuredData } from "@/components/seo/StructuredData";
+
+export const metadata: Metadata = {
+  title: "J7 Emporium - Mixed-Use Development in B-17 Islamabad",
+  description: "30-story mixed-use tower featuring luxury apartments, STZA IT zone, commercial shops, and hotel suites. Starting from PKR 18,500/sq.ft.",
+  alternates: {
+    canonical: "https://j7group.com.pk/developments/emporium"
+  },
+  openGraph: {
+    title: "J7 Emporium - Premium Apartments & Commercial Spaces",
+    description: "Explore J7 Emporium's residential, commercial, and STZA IT zone spaces in Multi Garden, B-17 Islamabad.",
+    url: "https://j7group.com.pk/developments/emporium",
+    images: [{
+      url: `https://res.cloudinary.com/diqj8so5h/image/upload/v1/Cam_13_final_day_light_qpbu12`,
+      width: 1200,
+      height: 630,
+      alt: "J7 Emporium - Premium View"
+    }]
+  }
+};
+
 const J7EmporiumPage = () => {
   const propertyAmenities = getAmenitiesByProperty("J7 Emporium");
   // const handleEnquireClick = () => {
@@ -76,6 +98,7 @@ const J7EmporiumPage = () => {
 
   return (
     <div className="bg-white">
+      <J7EmporiumStructuredData />
       <Hero
         isHomePage={false}
         backgroundType="video"

@@ -1,6 +1,5 @@
 import { Hero } from "@/components/features/home/components/hero-section";
 import PropertiesPage from "@/components/features/projects/FeaturedProperties";
-import React from "react";
 
 const page = () => {
   return (
