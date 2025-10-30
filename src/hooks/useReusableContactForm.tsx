@@ -58,7 +58,7 @@ export const useReusableContactForm = (): UseContactFormReturn => {
       setIsSuccess(true);
       return result;
     } catch (err) {
-      const errorMessage = 'Network error. Please check your connection and try again.';
+      const errorMessage = `${err}` || 'Network error. Please check your connection and try again.';
       setIsError(true);
       setError(errorMessage);
       
