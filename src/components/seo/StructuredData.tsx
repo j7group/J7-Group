@@ -1,8 +1,4 @@
-// ============================================
-// 1. BASE STRUCTURED DATA COMPONENT
 // components/seo/base-structured-data.tsx
-// ============================================
-import React from 'react';
 
 // Only include Organization and Website schemas in root layout
 export function BaseStructuredData() {
@@ -195,7 +191,9 @@ export function J7EmporiumStructuredData() {
       { "@type": "LocationFeatureSpecification", "name": "STZA IT Zone", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Swimming Pool", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "Gym", "value": true },
-      { "@type": "LocationFeatureSpecification", "name": "24/7 Security", "value": true }
+      { "@type": "LocationFeatureSpecification", "name": "24/7 Security", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "24/7 Electricity", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Imtiaz Cash and Carry", "value": true },
     ],
     "developer": {
       "@id": "https://j7group.com.pk/#organization"
@@ -316,7 +314,6 @@ export function RadissonBluStructuredData() {
   );
 }
 
-// ============================================
 // 5. J7 ICON PAGE STRUCTURED DATA
 // app/developments/icon/page.tsx
 // ============================================
@@ -395,7 +392,6 @@ export function J7IconStructuredData() {
 // ============================================
 // 6. ROTANA PAGE STRUCTURED DATA
 // app/developments/rotana/page.tsx
-// ============================================
 export function RotanaStructuredData() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",

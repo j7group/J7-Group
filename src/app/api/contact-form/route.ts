@@ -1,341 +1,342 @@
 // app/api/contact/route.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { z } from 'zod';
 
-// Initialize Resend (you can also use Nodemailer or another service)
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Validation schema
+const ContactFormSchema = z.object({
+  fullName: z.string().min(2, 'Name must be at least 2 characters').max(100),
+  email: z.string().email('Invalid email address'),
+  phone: z.string().min(10, 'Phone number must be at least 10 characters').max(20),
+  interestedIn: z.string().min(1, 'Please select a property'),
+  message: z.string().max(1000, 'Message too long').optional(),
+});
 
-// Email configuration
-const FROM_EMAIL = process.env.FROM_EMAIL || 'onboarding@resend.dev';
-const TO_EMAIL = process.env.TO_EMAIL || 'your-email@example.com';
-const CC_EMAILS = process.env.CC_EMAILS?.split(',') || [];
+type ContactFormData = z.infer<typeof ContactFormSchema>;
 
-interface ContactFormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  interestedIn: string;
-  message: string;
-}
+// Rate limiting (simple in-memory, use Redis in production)
+const rateLimit = new Map<string, { count: number; resetTime: number }>();
 
-interface ValidationError {
-  field: string;
-  message: string;
-}
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const limit = rateLimit.get(ip);
 
-// Validation function
-function validateFormData(data: ContactFormData): ValidationError[] {
-  const errors: ValidationError[] = [];
-
-  // Full Name validation
-  if (!data.fullName || data.fullName.trim().length < 2) {
-    errors.push({
-      field: 'fullName',
-      message: 'Full name must be at least 2 characters long',
-    });
+  if (!limit || now > limit.resetTime) {
+    rateLimit.set(ip, { count: 1, resetTime: now + 60000 }); // 1 minute window
+    return true;
   }
 
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!data.email || !emailRegex.test(data.email)) {
-    errors.push({
-      field: 'email',
-      message: 'Please provide a valid email address',
-    });
+  if (limit.count >= 5) {
+    return false; // Max 5 requests per minute
   }
 
-  // Phone validation (basic)
-  const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
-  if (!data.phone || !phoneRegex.test(data.phone)) {
-    errors.push({
-      field: 'phone',
-      message: 'Please provide a valid phone number',
-    });
-  }
-
-  // Interested In validation
-  if (!data.interestedIn || data.interestedIn.trim().length === 0) {
-    errors.push({
-      field: 'interestedIn',
-      message: 'Please select a property you are interested in',
-    });
-  }
-
-  // Message validation (optional but recommended)
-  if (data.message && data.message.length > 2000) {
-    errors.push({
-      field: 'message',
-      message: 'Message must be less than 2000 characters',
-    });
-  }
-
-  return errors;
+  limit.count++;
+  return true;
 }
 
-// HTML Email Template
-function generateEmailHTML(data: ContactFormData): string {
-  return `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>New Contact Form Submission</title>
-        <style>
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-          }
-          .container {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-          }
-          .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 8px 8px 0 0;
-            margin: -30px -30px 30px -30px;
-          }
-          .header h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 600;
-          }
-          .field {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
-          }
-          .field:last-child {
-            border-bottom: none;
-          }
-          .label {
-            font-weight: 600;
-            color: #666;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-          }
-          .value {
-            font-size: 16px;
-            color: #333;
-            word-wrap: break-word;
-          }
-          .property-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-          }
-          .message-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            border-left: 4px solid #667eea;
-            white-space: pre-wrap;
-          }
-          .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
-            font-size: 12px;
-            color: #999;
-            text-align: center;
-          }
-          .timestamp {
-            color: #999;
-            font-size: 14px;
-            margin-top: 5px;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>🏢 New Contact Form Submission</h1>
-          </div>
-          
-          <div class="field">
-            <div class="label">Full Name</div>
-            <div class="value">${data.fullName}</div>
-          </div>
-          
-          <div class="field">
-            <div class="label">Email Address</div>
-            <div class="value">
-              <a href="mailto:${data.email}" style="color: #667eea; text-decoration: none;">
-                ${data.email}
-              </a>
-            </div>
-          </div>
-          
-          <div class="field">
-            <div class="label">Phone Number</div>
-            <div class="value">
-              <a href="tel:${data.phone}" style="color: #667eea; text-decoration: none;">
-                ${data.phone}
-              </a>
-            </div>
-          </div>
-          
-          <div class="field">
-            <div class="label">Interested In</div>
-            <div class="value">
-              <span class="property-badge">${data.interestedIn}</span>
-            </div>
-          </div>
-          
-          ${data.message ? `
-            <div class="field">
-              <div class="label">Message</div>
-              <div class="message-box">${data.message}</div>
-            </div>
-          ` : ''}
-          
-          <div class="footer">
-            <div class="timestamp">
-              Submitted on ${new Date().toLocaleString('en-US', { 
-                dateStyle: 'full', 
-                timeStyle: 'long' 
-              })}
-            </div>
-            <p style="margin-top: 15px;">
-              This email was sent from your website contact form.
-            </p>
-          </div>
-        </div>
-      </body>
-    </html>
-  `;
+// MailerLite API Integration
+async function addToMailerLite(data: ContactFormData) {
+  const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
+  const MAILERLITE_GROUP_ID = process.env.MAILERLITE_GROUP_ID; // Optional: specific group
+
+  if (!MAILERLITE_API_KEY) {
+    console.error('MailerLite API key not configured');
+    return { success: false, error: 'Configuration error' };
+  }
+
+  try {
+    const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${MAILERLITE_API_KEY}`,
+      },
+      body: JSON.stringify({
+        email: data.email,
+        fields: {
+          name: data.fullName,
+          phone: data.phone,
+          interested_in: data.interestedIn,
+          message: data.message || '',
+          last_name: data.fullName.split(' ').slice(1).join(' ') || '',
+        },
+        groups: MAILERLITE_GROUP_ID ? [MAILERLITE_GROUP_ID] : [],
+        status: 'active',
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error('MailerLite API error:', result);
+      return { success: false, error: result.message || 'Failed to add subscriber' };
+    }
+
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('MailerLite error:', error);
+    return { success: false, error: 'Failed to connect to MailerLite' };
+  }
 }
 
-// Plain text version
-function generateEmailText(data: ContactFormData): string {
-  return `
-New Contact Form Submission
+// Resend Email Integration
+async function sendEmailWithResend(data: ContactFormData) {
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
+  const TO_EMAIL = process.env.ADMIN_EMAIL || 'info@j7group.com.pk';
 
-Full Name: ${data.fullName}
-Email: ${data.email}
-Phone: ${data.phone}
-Interested In: ${data.interestedIn}
+  if (!RESEND_API_KEY) {
+    console.error('Resend API key not configured');
+    return { success: false, error: 'Configuration error' };
+  }
 
-${data.message ? `Message:\n${data.message}` : 'No message provided'}
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: 'J7 Group <noreply@j7group.com.pk>', // Must be verified domain
+        to: [TO_EMAIL],
+        reply_to: data.email,
+        subject: `New Contact Form: ${data.interestedIn} - ${data.fullName}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #51301F;">New Contact Form Submission</h2>
+            
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="margin-top: 0; color: #51301F;">Contact Details</h3>
+              <p><strong>Name:</strong> ${data.fullName}</p>
+              <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+              <p><strong>Phone:</strong> <a href="tel:${data.phone}">${data.phone}</a></p>
+              <p><strong>Interested In:</strong> ${data.interestedIn}</p>
+            </div>
+            
+            ${data.message ? `
+              <div style="background: #fff; padding: 20px; border-left: 4px solid #51301F; margin: 20px 0;">
+                <h3 style="margin-top: 0; color: #51301F;">Message</h3>
+                <p style="white-space: pre-wrap;">${data.message}</p>
+              </div>
+            ` : ''}
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px;">
+              <p>This email was sent from the J7 Group contact form.</p>
+              <p>Submitted at: ${new Date().toLocaleString('en-PK', { timeZone: 'Asia/Karachi' })}</p>
+            </div>
+          </div>
+        `,
+      }),
+    });
 
----
-Submitted on ${new Date().toLocaleString()}
-  `.trim();
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error('Resend API error:', result);
+      return { success: false, error: result.message || 'Failed to send email' };
+    }
+
+    // Send confirmation email to customer
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: 'J7 Group <noreply@j7group.com.pk>',
+        to: [data.email],
+        subject: `Thank you for your interest in ${data.interestedIn}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #51301F;">Thank You for Contacting J7 Group</h2>
+            
+            <p>Dear ${data.fullName},</p>
+            
+            <p>Thank you for your interest in <strong>${data.interestedIn}</strong>. We have received your inquiry and our team will get back to you within 24 hours.</p>
+            
+            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="margin-top: 0; color: #51301F;">Your Submission Details</h3>
+              <p><strong>Property of Interest:</strong> ${data.interestedIn}</p>
+              <p><strong>Email:</strong> ${data.email}</p>
+              <p><strong>Phone:</strong> ${data.phone}</p>
+            </div>
+            
+            <p>In the meantime, you can:</p>
+            <ul>
+              <li>Visit our website: <a href="https://j7group.com.pk">j7group.com</a></li>
+              <li>Call us: +92-XX-XXXXXXX</li>
+              <li>WhatsApp us for instant updates</li>
+            </ul>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+              <p style="color: #666; font-size: 12px;">
+                J7 Group - Building Pakistan's Future<br>
+                Islamabad, Pakistan
+              </p>
+            </div>
+          </div>
+        `,
+      }),
+    });
+
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Resend error:', error);
+    return { success: false, error: 'Failed to send email' };
+  }
 }
 
-// POST handler
+// Main POST handler
 export async function POST(request: NextRequest) {
   try {
-    // Parse request body
-    const body: ContactFormData = await request.json();
+    // Get client IP for rate limiting
+    const ip = request.headers.get('x-forwarded-for') || 
+               request.headers.get('x-real-ip') || 
+               'unknown';
 
-    // Validate form data
-    const validationErrors = validateFormData(body);
-    if (validationErrors.length > 0) {
+    // Check rate limit
+    if (!checkRateLimit(ip)) {
       return NextResponse.json(
-        {
-          success: false,
-          message: 'Validation failed',
-          errors: validationErrors,
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
+    // Parse and validate request body
+    const body = await request.json();
+    const validatedData = ContactFormSchema.parse(body);
+
+    // Process in parallel for better performance
+    const [mailerLiteResult, resendResult] = await Promise.allSettled([
+      addToMailerLite(validatedData),
+      sendEmailWithResend(validatedData),
+    ]);
+
+    // Check if both operations succeeded
+    const mailerLiteSuccess = mailerLiteResult.status === 'fulfilled' && mailerLiteResult.value.success;
+    const resendSuccess = resendResult.status === 'fulfilled' && resendResult.value.success;
+
+    // Log any failures (but don't fail the request)
+    if (!mailerLiteSuccess) {
+      console.error('MailerLite failed:', 
+        mailerLiteResult.status === 'fulfilled' ? mailerLiteResult.value.error : mailerLiteResult.reason
+      );
+    }
+
+    if (!resendSuccess) {
+      console.error('Resend failed:', 
+        resendResult.status === 'fulfilled' ? resendResult.value.error : resendResult.reason
+      );
+    }
+
+    // Return success if at least one service worked
+    if (mailerLiteSuccess || resendSuccess) {
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: 'Thank you! We will contact you soon.',
+          services: {
+            mailerlite: mailerLiteSuccess,
+            email: resendSuccess,
+          }
         },
+        { status: 200 }
+      );
+    }
+
+    // Both services failed
+    return NextResponse.json(
+      { error: 'Failed to process your request. Please try again or contact us directly.' },
+      { status: 500 }
+    );
+
+  } catch (error) {
+    // Validation error
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Validation failed', details: error.issues },
         { status: 400 }
       );
     }
 
-    // Check if Resend API key is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
-      return NextResponse.json(
-        {
-          success: false,
-          message: 'Email service is not configured. Please contact support.',
-        },
-        { status: 500 }
-      );
-    }
-
-    // Send email using Resend
-    try {
-      const emailData = await resend.emails.send({
-        from: FROM_EMAIL,
-        to: TO_EMAIL,
-        cc: CC_EMAILS.length > 0 ? CC_EMAILS : undefined,
-        replyTo: body.email,
-        subject: `New Inquiry: ${body.interestedIn} - ${body.fullName}`,
-        html: generateEmailHTML(body),
-        text: generateEmailText(body),
-      });
-
-      console.log('Email sent successfully:', emailData);
-
-      // Optional: Add to newsletter/CRM
-      // You can integrate with services like Mailchimp, ConvertKit, etc.
-      const subscriberAdded = false;
-      
-      // Example: Add to newsletter (implement your logic)
-      // try {
-      //   await addToNewsletter(body.email, body.fullName);
-      //   subscriberAdded = true;
-      // } catch (error) {
-      //   console.error('Failed to add subscriber:', error);
-      // }
-
-      return NextResponse.json(
-        {
-          success: true,
-          message: 'Thank you for your inquiry! We will contact you soon.',
-          emailSent: true,
-          subscriberAdded,
-        },
-        { status: 200 }
-      );
-    } catch (emailError) {
-      console.error('Error sending email:', emailError);
-      
-      return NextResponse.json(
-        {
-          success: false,
-          message: 'Failed to send email. Please try again or contact us directly.',
-        },
-        { status: 500 }
-      );
-    }
-  } catch (error) {
-    console.error('Unexpected error in contact form:', error);
-    
+    // Generic error
+    console.error('Contact form error:', error);
     return NextResponse.json(
-      {
-        success: false,
-        message: 'An unexpected error occurred. Please try again later.',
-      },
+      { error: 'An unexpected error occurred. Please try again.' },
       { status: 500 }
     );
   }
 }
 
-// Optional: GET handler for health check
+// Optional: GET handler for testing
 export async function GET() {
   return NextResponse.json(
-    {
-      status: 'ok',
-      message: 'Contact form API is running',
-      timestamp: new Date().toISOString(),
-    },
+    { message: 'Contact API is running', status: 'ok' },
     { status: 200 }
   );
+}
+
+// lib/mailerlite.ts - Optional: Separate MailerLite client
+export class MailerLiteClient {
+  private apiKey: string;
+  private baseURL = 'https://connect.mailerlite.com/api';
+
+  constructor(apiKey: string) {
+    this.apiKey = apiKey;
+  }
+
+  async createOrUpdateSubscriber(data: {
+    email: string;
+    name: string;
+    phone: string;
+    fields?: Record<string, any>;
+    groups?: string[];
+  }) {
+    const response = await fetch(`${this.baseURL}/subscribers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.apiKey}`,
+      },
+      body: JSON.stringify({
+        email: data.email,
+        fields: {
+          name: data.name,
+          phone: data.phone,
+          ...data.fields,
+        },
+        groups: data.groups || [],
+        status: 'active',
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to add subscriber');
+    }
+
+    return response.json();
+  }
+
+  async addToGroup(subscriberId: string, groupId: string) {
+    const response = await fetch(
+      `${this.baseURL}/subscribers/${subscriberId}/groups/${groupId}`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.apiKey}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to add subscriber to group');
+    }
+
+    return response.json();
+  }
 }

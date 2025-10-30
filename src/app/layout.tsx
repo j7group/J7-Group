@@ -17,10 +17,10 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "J7 Group — Leading Real Estate & Construction Developer in Pakistan",
   description:
-    "J7 Group is a premier real estate and hospitality developer based in Islamabad, Pakistan. Renowned for projects like J7 Emporium, Royal Swiss Islamabad, and Radisson Blu J7 Global, J7 Group is redefining urban living with luxury developments and sustainable innovation.",
+    "J7 Group is a premier real estate and hospitality developer based in Islamabad, Pakistan. Renowned for projects like J7 Emporium, Royal Swiss Islamabad, J7 Icon and Radisson Blu J7 Global, J7 Group is redefining urban living with luxury developments and sustainable innovation.",
     icons: {
-      icon: "/j7Logo.png",
-      shortcut: "/j7Logo.png"
+      icon: "/icons/j7Logo.png",
+      shortcut: "/icons/j7Logo.png"
     },
     openGraph: {
       images: [{
