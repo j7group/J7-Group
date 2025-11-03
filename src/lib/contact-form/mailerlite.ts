@@ -1,4 +1,3 @@
-// lib/mailerlite.ts - Separate MailerLite client
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export class MailerLiteClient {
