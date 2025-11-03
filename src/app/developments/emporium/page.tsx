@@ -1,17 +1,17 @@
 // pages/j7-emporium/page.tsx
 import ContactFormSection from "@/components/features/home/components/ContactFormSection";
 import { Hero } from "@/components/features/home/components/hero-section";
-import AmenitiesSection from "@/components/features/projects/AmenitySection";
+import AmenitiesSection from "@/components/features/developments/AmenitySection";
 // import BuildingShowcase from "@/components/features/projects/BuildingShowcase";
-import GalleryComponent from "@/components/features/projects/GalleryComponent";
-import PropertySection from "@/components/features/projects/PropertySection";
-import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
+import GalleryComponent from "@/components/features/developments/GalleryComponent";
+import PropertySection from "@/components/features/developments/PropertySection";
+import ResidenceShowcase from "@/components/features/developments/ResidenceShowcase";
 import { emporiumDetail, j7EmporiumData, emporiumFeatures } from "@/lib/data/emporium";
 import { getAmenitiesByProperty } from "@/lib/data/properties";
 import React from "react";
-import CarouselGalleryWrapper from "@/components/features/projects/CarouselGalleryWrapper";
-import ReusableProgressSection from "@/components/features/projects/ProgressIndicator";
-import ReusableBuildingShowcase from "@/components/features/projects/BuildingShowcase";
+import CarouselGalleryWrapper from "@/components/features/developments/CarouselGalleryWrapper";
+import ReusableProgressSection from "@/components/features/developments/ProgressIndicator";
+import ReusableBuildingShowcase from "@/components/features/developments/BuildingShowcase";
 import GoogleMapsIframe from "@/components/features/contact/components/J7Map";
 
 import type { Metadata } from "next";

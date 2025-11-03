@@ -1,6 +1,5 @@
-"use client";
 import React from "react";
-import { CldImage } from "next-cloudinary";
+import CldImage from "./Cld-Image";
 
 
 const J7GroupAbout = () => {

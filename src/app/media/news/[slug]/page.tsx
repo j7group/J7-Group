@@ -1,10 +1,10 @@
 // app/news/[slug]/page.tsx
-import React from 'react';
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { getPostBySlug, getRelatedPosts } from '@/lib/sanity/queries';
-import { urlFor } from '@/lib/sanity/image';
-import NewsDetailClient from '@/components/features/news/components/NewsDetailClient';
+import React from "react";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getPostBySlug, getRelatedPosts } from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
+import NewsDetailClient from "@/components/features/news/components/NewsDetailClient";
 
 interface NewsPostPageProps {
   params: Promise<{
@@ -12,41 +12,61 @@ interface NewsPostPageProps {
   }>;
 }
 
-export async function generateMetadata({ params }: NewsPostPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: NewsPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
-  if (!post || post.contentType !== 'news') {
+  if (!post || post.contentType !== "news") {
     return {
-      title: 'News Not Found',
-      description: 'The requested news article could not be found.',
+      title: "News Not Found",
+      description: "The requested news article could not be found.",
     };
   }
 
   const metaTitle = post.seo?.metaTitle || `${post.title} - News & Press`;
-  const metaDescription = post.seo?.metaDescription || post.excerpt || 'Latest news and press release from our architecture firm.';
-  const ogImage = post.seo?.openGraphImage 
+  const metaDescription =
+    post.seo?.metaDescription ||
+    post.excerpt ||
+    "Latest news and press release from our architecture firm.";
+  const ogImage = post.seo?.openGraphImage
     ? urlFor(post.seo.openGraphImage).width(1200).height(630).url()
-    : post.mainImage 
-    ? urlFor(post.mainImage).width(1200).height(630).url()
-    : undefined;
+    : post.mainImage
+      ? urlFor(post.mainImage).width(1200).height(630).url()
+      : undefined;
 
   return {
     title: metaTitle,
     description: metaDescription,
+    keywords: [
+      "Real Estate",
+      "J7 Group",
+      "News",
+      "Construction"
+    ],
+    metadataBase: new URL("https://j7group.com.pk"),
+    alternates: { canonical: `https://j7group.com.pk/media/news/${slug}` },
     openGraph: {
       title: metaTitle,
       description: metaDescription,
-      type: 'article',
+      type: "article",
       publishedTime: post.pressReleaseDate || post.publishedAt,
       authors: post.author ? [post.author.name] : undefined,
-      images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : undefined,
+      images: ogImage
+        ? [{ url: ogImage, width: 1200, height: 630 }]
+        : undefined,
+      url: `https://j7group.com.pk/media/news/${slug}`,
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
       images: ogImage ? [ogImage] : undefined,
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -56,13 +76,13 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
   const post = await getPostBySlug(slug);
 
   // Ensure this is actually a news post
-  if (!post || post.contentType !== 'news') {
+  if (!post || post.contentType !== "news") {
     notFound();
   }
 
   // Get related news posts
-  const categoryRefs = post.categories?.map(cat => cat._id) || [];
-  const relatedPosts = await getRelatedPosts(post._id, categoryRefs, 'news');
+  const categoryRefs = post.categories?.map((cat) => cat._id) || [];
+  const relatedPosts = await getRelatedPosts(post._id, categoryRefs, "news");
 
   return <NewsDetailClient post={post} relatedPosts={relatedPosts} />;
 }

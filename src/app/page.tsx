@@ -13,11 +13,11 @@ import LuxuryRealEstateComponent from "@/components/features/home/components/New
 import CostaMareHero from "@/components/features/home/components/PropertyGallery";
 // import TeamCards from "@/components/features/home/components/TeamCards";
 import TestimonialsSection from "@/components/features/home/components/Testimonials";
-import PropertiesPage from "@/components/features/projects/FeaturedProperties";
+import PropertiesPage from "@/components/features/developments/FeaturedProperties";
 import { client } from "@/lib/sanity/client";
 import { FEATURED_POSTS_QUERY } from "@/lib/sanity/queries";
 import { BlogPost } from "@/lib/sanity/types";
-import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
+import ResidenceShowcase from "@/components/features/developments/ResidenceShowcase";
 
 import type { Metadata } from "next";
 import { HomePageStructuredData } from "@/components/seo/StructuredData";

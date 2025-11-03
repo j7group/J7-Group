@@ -1,11 +1,11 @@
 import ContactFormSection from "@/components/features/home/components/ContactFormSection";
 import { Hero } from "@/components/features/home/components/hero-section";
-import AmenitiesSection from "@/components/features/projects/AmenitySection";
-import BuildingShowcase from "@/components/features/projects/BuildingShowcase";
-import GalleryComponent from "@/components/features/projects/GalleryComponent";
-import PropertySection from "@/components/features/projects/PropertySection";
-import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
-import RotanaIframe from "@/components/features/projects/rotana/Map";
+import AmenitiesSection from "@/components/features/developments/AmenitySection";
+import BuildingShowcase from "@/components/features/developments/BuildingShowcase";
+import GalleryComponent from "@/components/features/developments/GalleryComponent";
+import PropertySection from "@/components/features/developments/PropertySection";
+import ResidenceShowcase from "@/components/features/developments/ResidenceShowcase";
+import RotanaIframe from "@/components/features/developments/rotana/Map";
 import { RotanaStructuredData } from "@/components/seo/StructuredData";
 import { getAmenitiesByProperty } from "@/lib/data/properties";
 import { rotanaData, rotanaDetail, rotanaFeatures } from "@/lib/data/rotana";

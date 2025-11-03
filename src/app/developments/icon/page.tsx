@@ -1,16 +1,16 @@
 // pages/j7-emporium/page.tsx
 import ContactFormSection from "@/components/features/home/components/ContactFormSection";
 import { Hero } from "@/components/features/home/components/hero-section";
-import AmenitiesSection from "@/components/features/projects/AmenitySection";
-import BuildingShowcase from "@/components/features/projects/BuildingShowcase";
-import GalleryComponent from "@/components/features/projects/GalleryComponent";
-import PropertySection from "@/components/features/projects/PropertySection";
-import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
+import AmenitiesSection from "@/components/features/developments/AmenitySection";
+import BuildingShowcase from "@/components/features/developments/BuildingShowcase";
+import GalleryComponent from "@/components/features/developments/GalleryComponent";
+import PropertySection from "@/components/features/developments/PropertySection";
+import ResidenceShowcase from "@/components/features/developments/ResidenceShowcase";
 import { getAmenitiesByProperty } from "@/lib/data/properties";
 // import CarouselGalleryWrapper from "@/components/features/projects/CarouselGalleryWrapper";
 // import ReusableProgressSection from "@/components/features/projects/ProgressIndicator";
 import { iconData, iconDetail, j7IconFeatures } from "@/lib/data/icon";
-import IconIframe from "@/components/features/projects/j7Icon/Map";
+import IconIframe from "@/components/features/developments/j7Icon/Map";
 
 import type { Metadata } from "next";
 import { J7IconStructuredData } from "@/components/seo/StructuredData";

@@ -11,12 +11,13 @@ export const metadata: Metadata = {
     title: 'News and Press Releases - Latest Architecture Updates',
     description: 'Stay updated with the latest news, press releases, and announcements from the world of luxury architecture and real estate development.',
     type: 'website',
+    url: 'https://j7group.com.pk/media/news',
   },
 };
 
 export default async function NewsPage() {
   const [posts, categories] = await Promise.all([
-    getNewsPosts(), // Only fetch news posts (contentType === 'news')
+    getNewsPosts(),
     getCategories(),
   ]);
 

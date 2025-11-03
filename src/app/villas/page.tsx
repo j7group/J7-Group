@@ -1,4 +1,5 @@
 import { Hero } from "@/components/features/home/components/hero-section";
+import { VillasStructuredData } from "@/components/seo/StructuredData";
 import { Image } from "@imagekit/next";
 import React from "react";
 import { IconType } from "react-icons";
@@ -117,6 +118,7 @@ const VillasLandingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <VillasStructuredData />
       {/* Hero Section */}
       <Hero
         backgroundSrc="Villas_new_dgitte"

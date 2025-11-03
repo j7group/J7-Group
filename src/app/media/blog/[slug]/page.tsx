@@ -38,6 +38,9 @@ export async function generateMetadata({
   return {
     title: metaTitle,
     description: metaDescription,
+    alternates: {
+      canonical: `https://j7group.com.pk/media/blog/${slug}`,
+    },
     openGraph: {
       title: metaTitle,
       description: metaDescription,
@@ -47,6 +50,9 @@ export async function generateMetadata({
       images: ogImage
         ? [{ url: ogImage, width: 1200, height: 630 }]
         : undefined,
+      siteName: "J7 Group",
+      locale: "en_US",
+      url: `https://j7group.com.pk/media/blog/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -54,6 +60,10 @@ export async function generateMetadata({
       description: metaDescription,
       images: ogImage ? [ogImage] : undefined,
     },
+    robots: {
+      index: true,
+      follow: true
+    }
   };
 }
 
@@ -75,13 +85,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://j7group.com.pk/blog",
+        item: "https://j7group.com.pk/media/blog",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "J7 Group Blog",
-        item: `https://j7group.com.pk/blog/${slug}`,
+        item: `https://j7group.com.pk/media/blog/${slug}`,
       },
     ],
   };

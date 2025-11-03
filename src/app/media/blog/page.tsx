@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "J7 Group Blog - Real Estate News & Updates",
   description: "Latest news, updates, and insights from J7 Group about real estate development, market trends, and project launches in Pakistan.",
   alternates: {
-    canonical: "https://j7group.com.pk/blog"
+    canonical: "https://j7group.com.pk/media/blog"
   }
 };
 
@@ -27,7 +27,7 @@ export default async function BlogPage() {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://j7group.com.pk/blog"
+        "item": "https://j7group.com.pk/media/blog"
       }
     ]
   };

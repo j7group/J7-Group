@@ -3,7 +3,7 @@ import BrandCollaborations from "@/components/features/About/components/Brands";
 import Owner from "@/components/features/About/components/Owner";
 import Services from "@/components/features/About/components/Services";
 import WhyChooseJ7Group from "@/components/features/About/components/WhyChooseJ7";
-import ResidenceShowcase from "@/components/features/projects/ResidenceShowcase";
+import ResidenceShowcase from "@/components/features/developments/ResidenceShowcase";
 import { Hero } from "@/components/features/home/components/hero-section";
 import React from "react";
 import { aboutDetail } from "@/lib/data/emporium";

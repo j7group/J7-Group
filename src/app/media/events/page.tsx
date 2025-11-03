@@ -20,7 +20,22 @@ export const metadata: Metadata = {
   description:
     "Upcoming events, property launches, and exhibitions by J7 Group. Join us to explore investment opportunities.",
   alternates: {
-    canonical: "https://j7group.com.pk/events",
+    canonical: "https://j7group.com.pk/media/events",
+  },
+  openGraph: {
+    title: "J7 Group Events",
+    description:
+      "Upcoming events, property launches, and exhibitions by J7 Group. Join us to explore investment opportunities.",
+    url: "https://j7group.com.pk/media/events",
+  },
+  twitter: {
+    title: "J7 Group Events",
+    description:
+      "Upcoming events, property launches, and exhibitions by J7 Group. Join us to explore investment opportunities.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 interface EventsPageProps {
@@ -42,7 +57,7 @@ function EventCard({ event }: { event: Event }) {
         "@type": "ListItem",
         position: 2,
         name: "Events",
-        item: "https://j7group.com.pk/events",
+        item: "https://j7group.com.pk/media/events",
       },
     ],
   };

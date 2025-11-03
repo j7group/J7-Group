@@ -9,7 +9,7 @@ export function BaseStructuredData() {
     "name": "J7 Group",
     "legalName": "J7 Group of Companies",
     "url": "https://j7group.com.pk",
-    "logo": "https://j7group.com.pk/logo.png",
+    "logo": "https://j7group.com.pk/icons/j7Logo.png",
     "description": "J7 Group is a premier real estate and hospitality developer based in Islamabad, Pakistan. Leading developer of luxury hotels, branded residences, commercial spaces, and mixed-use developments.",
     "foundingDate": "2018",
     "address": {
@@ -562,3 +562,48 @@ export function ContactPageStructuredData() {
     </>
   );
 }
+
+export const VillasStructuredData = () => {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://j7group.com.pk"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Villas",
+        "item": "https://j7group.com.pk/villas"
+      }
+    ]
+  }
+  const villasSchema = {
+    "@context": "https://schema.org",
+    "@type": "Villas",
+    "@id": "https://j7group.com.pk/villas#webpage",
+    "url": "https://j7group.com.pk/villas",
+    "name": "Villas",
+    "description": "Discover luxurious villas and apartments in Islamabad, Pakistan",
+    "mainEntity": {
+      "@id": "https://j7group.com.pk/#organization"
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(villasSchema) }}
+      />
+    </>
+  );
+};
